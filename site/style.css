@@ -212,7 +212,7 @@ header {
   position: absolute;
   top: 4rem;
   left: 7.5rem;
-  padding-top: em;
+  overflow-x: hidden;
 }
 
 pre {
