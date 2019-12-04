@@ -1,6 +1,7 @@
 # KeyPaWs
+## cat-proof your keyboard
 
-## Running locally
+### Running locally
 
 Clone the repository and run `npm install`.
 

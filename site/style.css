@@ -1,0 +1,174 @@
+:root {
+  --default-20px: 20px;
+  --line-height: 1.2;
+  --text-color: #fdfdfd;
+  --background-color: #121218;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/*
+Core breakpoints
+*/
+
+@media (max-width: 1600px) {
+  :root {
+    --default-20px: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --default-20px: 16px;
+   }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --default-20px: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --default-20px: 16px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  clip-path: none;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+  outline: 0;
+}
+
+/*--------------------------------------------------------------
+# Foundations
+--------------------------------------------------------------*/
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: var(--larger-script-22px);
+  line-height: var(--line-height);
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.4;
+}
+
+*,
+*:before,
+*:after {
+  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+  box-sizing: inherit;
+}
+
+/*--------------------------------------------------------------
+# Core Typography
+--------------------------------------------------------------*/
+
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  color: var(--text-color);
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  background: var(--background-color);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 0 1.5em;
+}
+
+.container {
+  margin: 0 auto;
+  position: relative;
+}
