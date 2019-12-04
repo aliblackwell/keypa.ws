@@ -1,8 +1,11 @@
 :root {
   --default-20px: 20px;
   --pt-biggest: 1.2rem;
+  --pt-title: 1.8rem;
+  --pt-subtitle: 1.6rem;
   --line-height: 1.2;
   --text-color: #fdfdfd;
+  --outline-focus: #fafa00;
   --background-color: #121218;
   --teal: #008080;
   --teal-darker: #006060;
@@ -19,6 +22,10 @@
   font-family: omnes-cond, sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+.keypaws {
+  color: var(--teal);
 }
 
 /* apply a natural box layout model to all elements, but allowing components to change */
@@ -61,6 +68,8 @@ Core breakpoints
 @media (max-width: 480px) {
   :root {
     --default-20px: 16px;
+    --pt-title: 1.8rem;
+    --pt-subtitle: 1.2rem;
   }
 }
 
@@ -110,7 +119,7 @@ Core breakpoints
 }
 
 *:focus {
-  outline: 4px solid var(--dc-outline-focus);
+  outline: 4px solid var(--outline-focus);
 }
 
 /*--------------------------------------------------------------
@@ -151,7 +160,6 @@ option,
 li,
 span,
 optgroup {
-  font-size: 1rem;
   font-family: omnes-cond, sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -214,17 +222,22 @@ pre {
 header h1,
 header h2 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: var(--pt-title);
 }
 
 header h2 {
-  font-size: 1.6rem;
+  font-size: var(--pt-subtitle);
   color: var(--teal);
 }
 
 .welcome {
   margin-top: 1rem;
   border-top: 0.5rem solid var(--teal);
+}
+
+.welcome p:first-child {
+  margin: 1rem 0 0;
+  font-size: var(--pt-subtitle);
 }
 
 .welcome p {
@@ -279,4 +292,26 @@ button {
   border-radius: 0;
   float: right;
   height: 2.6rem;
+}
+
+@media (max-width: 600px) {
+  header {
+    left: 7.4rem;
+  }
+  main.container {
+    width: 90%;
+  }
+  form input {
+    width: 100%;
+    float: none;
+  }
+  button {
+    float:none
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    left: 6.4rem;
+  }
 }
