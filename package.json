@@ -3,7 +3,8 @@
   "main": "index.html",
   "dependencies": {
     "nw": "^0.42.6",
-    "sudo-prompt": "^9.1.1"
+    "sudo-prompt": "^9.1.1",
+    "zerorpc": "^0.9.8"
   },
   "scripts": {
     "start": "nw"
