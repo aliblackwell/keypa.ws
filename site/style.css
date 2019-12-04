@@ -1,8 +1,24 @@
 :root {
   --default-20px: 20px;
+  --pt-biggest: 1.2rem;
   --line-height: 1.2;
   --text-color: #fdfdfd;
   --background-color: #121218;
+  --teal: #008080;
+  --teal-darker: #006060;
+  --box-width: 30rem;
+}
+
+.body-text {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title-text {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* apply a natural box layout model to all elements, but allowing components to change */
@@ -33,7 +49,7 @@ Core breakpoints
 @media (max-width: 900px) {
   :root {
     --default-20px: 16px;
-   }
+  }
 }
 
 @media (max-width: 600px) {
@@ -93,6 +109,10 @@ Core breakpoints
   outline: 0;
 }
 
+*:focus {
+  outline: 4px solid var(--dc-outline-focus);
+}
+
 /*--------------------------------------------------------------
 # Foundations
 --------------------------------------------------------------*/
@@ -103,7 +123,7 @@ Core breakpoints
 
 html {
   box-sizing: border-box;
-  font-size: var(--larger-script-22px);
+  font-size: var(--default-20px);
   line-height: var(--line-height);
   text-rendering: optimizeLegibility;
   margin: 0;
@@ -125,15 +145,16 @@ html {
 
 body,
 button,
-input,
+label,
 select,
-optgroup,
-textarea {
-  color: var(--text-color);
-  font-family: inherit;
-  font-weight: 400;
-  font-size: 16px;
+option,
+li,
+span,
+optgroup {
   font-size: 1rem;
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
@@ -142,6 +163,7 @@ body {
   overflow-x: hidden;
   width: 100%;
   min-height: 100%;
+  color: var(--text-color);
 }
 
 h1,
@@ -151,6 +173,9 @@ h4,
 h5,
 h6 {
   clear: both;
+  font-family: omnes-cond, sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 p {
@@ -169,6 +194,89 @@ blockquote {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 0 auto 0;
   position: relative;
+  max-width: 30rem;
+  padding-top: 3rem;
+}
+
+header {
+  position: absolute;
+  top: 4rem;
+  left: 7.5rem;
+  padding-top: em;
+}
+
+pre {
+  margin: 0;
+}
+
+header h1,
+header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+header h2 {
+  font-size: 1.6rem;
+  color: var(--teal);
+}
+
+.welcome {
+  margin-top: 1rem;
+  border-top: 0.5rem solid var(--teal);
+}
+
+.welcome p {
+  font-size: var(--pt-biggest);
+}
+
+.kitty {
+  position: absolute;
+  bottom: 0;
+  left: -30rem;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.signup {
+  width: var(--box-width);
+  padding: 3rem;
+  background: white;
+  margin: 0 auto;
+  text-align: left;
+}
+
+form label {
+  display: block;
+  font-size: var(--pt-biggest);
+  margin-bottom: 0.5rem;
+}
+
+form input {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  width: 65%;
+  float: left;
+  margin-bottom: 1rem;
+}
+form input,
+form button {
+  font-size: var(--pt-biggest);
+}
+
+button {
+  background: var(--teal);
+  border: none;
+  color: white;
+  line-height: 1;
+  padding: 0.3rem 1rem 0.5rem;
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  border-radius: 0;
+  -webkit-appearance: none;
+  border-radius: 0;
+  float: right;
+  height: 2.6rem;
 }
