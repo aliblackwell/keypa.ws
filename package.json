@@ -1,0 +1,11 @@
+{
+  "name": "KayPa.ws",
+  "main": "index.html",
+  "dependencies": {
+    "nw": "^0.42.6",
+    "sudo-prompt": "^9.1.1"
+  },
+  "scripts": {
+    "start": "nw"
+  }
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>My Awesome Python App</title>
+</head>
+
+<body>
+  <h1>Python Output</h1>
+  <br>
+  <br>
+  <p id="python-output"></p>
+</body>
+<script>
+  var sudo = require('sudo-prompt');
+  var options = {
+    name: 'nwjs',
+    icns: '/Applications/nwjs.app/Contents/Resources/app.icns', // (optional)
+  };
+  sudo.exec('python3 ./keypaws.py', options, () => {});
+</script>
+
+</html>
