@@ -13,12 +13,27 @@
   <p id="python-output"></p>
 </body>
 <script>
-  var sudo = require('sudo-prompt');
-  var options = {
+
+  const zmq = require("zeromq/v5-compat")
+  const sudo = require('sudo-prompt');
+
+  // Socket to talk to server
+  const subscriber = zmq.socket('sub');
+  subscriber.subscribe('world');
+
+  subscriber.on('message', function (data) {
+    console.log(data.toString())
+    document.getElementById('python-output').innerHTML += 'Got cat!'
+  });
+
+  subscriber.connect("tcp://localhost:3002")
+
+  
+  const options = {
     name: 'nwjs',
     icns: '/Applications/nwjs.app/Contents/Resources/app.icns', // (optional)
   };
-  sudo.exec('python3 ./keypaws.py', options, () => {});
+  sudo.exec('python3 ./publisher.py', options, () => {});
 </script>
 
 </html>
