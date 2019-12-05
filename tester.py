@@ -1,14 +1,11 @@
+import time
+import sys
 import zmq
 import keyboard
 
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
-socket.bind("tcp://*:3011")
-
-# while True:
-#     #  Send reply back to client
-#     socket.send(b"world")
-#     time.sleep(5)
+socket.bind("tcp://*:3026")
 
 
 def print_pressed_keys(e):
@@ -23,4 +20,6 @@ def print_pressed_keys(e):
 
 
 keyboard.hook(print_pressed_keys)
-keyboard.wait()
+
+while True:
+    time.sleep(1)

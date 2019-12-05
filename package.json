@@ -1,12 +1,15 @@
 {
   "name": "KayPa.ws",
-  "main": "index.html",
+  "main": "main.js",
   "dependencies": {
+    "electron-sudo": "^4.0.12",
+    "node-sudo": "^9.5.13",
     "nw": "^0.42.6",
+    "sudo": "^1.0.3",
     "sudo-prompt": "^9.1.1",
     "zeromq": "^6.0.0-beta.4"
   },
   "scripts": {
-    "start": "nw"
+    "start": "nw --enable-logging=stderr "
   }
 }
