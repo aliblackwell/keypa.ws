@@ -1,23 +1,9 @@
-// const { spawn } = require("child_process")
-
-// const child = spawn("python3", ["./tester.py"])
-
-// child.on("exit", code => {
-//   console.log(`Child process exited with code ${code}`)
-// })
-
-// child.stdout.on('data', (data) => {
-//   console.log(`data:${data}`);
-// });
-// child.stdout.on('end', () => {
-//   console.log('enf')
-// });
-
 let settingsWin, catDetectedWin
 let isSettingsOpen = false
 let isCatDetectedOpen = false
 
 function openCatDetected() {
+  console.log('trying to open!')
   if (!isCatDetectedOpen) {
     nw.Window.open(
       "cat-detected.html",
@@ -29,8 +15,13 @@ function openCatDetected() {
         visible_on_all_workspaces: false
       },
       function(wind) {
+        wind.focus()
         catDetectedWin = wind
         isCatDetectedOpen = true
+        catDetectedWin.on("close", function() {
+          catDetectedWin.hide()
+          isCatDetectedOpen = false
+        })
       }
     )
   }
@@ -80,4 +71,11 @@ menu.append(menuItemOpenSettings)
 menu.append(menuItemQuit)
 tray.menu = menu
 
-openCatDetected()
+const { spawn } = require("child_process")
+const childProcess = spawn("python3", ["./keypaws.py"])
+
+childProcess.stdout.on("data", data => {
+  openCatDetected()
+})
+
+openSettings()

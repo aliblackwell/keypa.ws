@@ -2,3 +2,6 @@ node_modules
 .DS_Store
 capture/cat/*
 capture/human/*
+
+
+model/KeyPaws.mlproj/Data Sources/*

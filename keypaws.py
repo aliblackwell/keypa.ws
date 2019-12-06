@@ -27,10 +27,14 @@ def convert_to_query(recorded):
 
 def get_prediction(q):
   prediction = embedding_model.predict(q)
-  print(prediction)
+  if (prediction['target'] == 'cat'):
+    print('cat')
+    sys.stdout.flush()
 
 while True:
     time.sleep(1)
+    
+    sys.stdout.flush()
     stream = list(events_queue.queue)
     if (len(stream) > 0):
         events_queue.queue.clear()
