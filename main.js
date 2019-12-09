@@ -10,12 +10,12 @@ function openCatDetected() {
       {
         icon: "img/paws-menu-bar-white.png",
         always_on_top: false,
-        fullscreen: true,
         show_in_taskbar: false,
         visible_on_all_workspaces: false
       },
       function(wind) {
         wind.focus()
+        wind.enterKioskMode()
         catDetectedWin = wind
         isCatDetectedOpen = true
         catDetectedWin.on("close", function() {
