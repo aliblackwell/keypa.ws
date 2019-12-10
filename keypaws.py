@@ -2,7 +2,6 @@ import sys
 import time
 import keyboard
 import queue as _queue
-import coremltools
 from coremltools.models import MLModel
 
 embedding_path = './model/KeyPaws.mlproj/Models/KeyPaws 3.mlmodel'

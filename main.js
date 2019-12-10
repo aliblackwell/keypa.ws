@@ -80,7 +80,7 @@ menu.append(menuItemQuit)
 tray.menu = menu
 
 const { spawn } = require("child_process")
-const childProcess = spawn("python3", ["./keypaws.py"])
+const childProcess = spawn("./dist/keypaws")
 
 childProcess.stdout.on("data", data => {
   openCatDetected()
