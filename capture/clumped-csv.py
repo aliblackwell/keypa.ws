@@ -13,11 +13,11 @@ with open('validate.csv', 'w') as validate_file:
             cat_files = os.listdir(os.getcwd() + '/cat/')
             cat_files_wdir = []
             for f in cat_files:
-              cat_files_wdir.append('cat/'+f)
+                cat_files_wdir.append('cat/'+f)
             human_files = os.listdir(os.getcwd() + '/human/')
             human_files_wdir = []
             for h in human_files:
-              human_files_wdir.append('human/'+h)
+                human_files_wdir.append('human/'+h)
             all_files = cat_files_wdir + human_files_wdir
             random.shuffle(all_files)
             total_files = len(all_files)

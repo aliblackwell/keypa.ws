@@ -5,7 +5,7 @@ import queue as _queue
 import coremltools
 from coremltools.models import MLModel
 
-embedding_path = './model/KeyPaws.mlproj/Models/KeyPaws 1.mlmodel'
+embedding_path = './model/KeyPaws.mlproj/Models/KeyPaws 3.mlmodel'
 embedding_model = MLModel(embedding_path)
 
 # embedding_spec = embedding_model.get_spec()

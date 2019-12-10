@@ -1,14 +1,19 @@
 aiohttp==3.6.2
+altgraph==0.16.1
 async-timeout==3.0.1
 attrs==19.3.0
 chardet==3.0.4
+coremltools==3.1
 future==0.18.2
 gevent==1.4.0
 greenlet==0.4.15
 idna==2.8
 keyboard==0.13.4
+macholib==1.11
 msgpack==0.6.2
 multidict==4.6.1
+numpy==1.17.4
+PyInstaller==3.5
 pynput==1.4.5
 pyobjc==6.1
 pyobjc-core==6.1
@@ -125,7 +130,5 @@ pyobjc-framework-Vision==6.1
 pyobjc-framework-WebKit==6.1
 python-engineio==3.10.0
 python-socketio==4.4.0
-pyzmq==18.1.1
 six==1.13.0
 yarl==1.4.1
-zerorpc==0.6.3

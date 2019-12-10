@@ -3,7 +3,7 @@
   "main": "main.js",
   "window": {
     "show_in_taskbar": false,
-    "visible_on_all_workspaces":true,
+    "visible_on_all_workspaces": true,
     "frame": false
   },
   "dependencies": {

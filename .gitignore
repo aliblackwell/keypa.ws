@@ -1,7 +1,9 @@
 node_modules
 .DS_Store
-capture/cat/*
-capture/human/*
+__pycache__
+dist
+build
+Keypa.ws/*
 
 
 model/KeyPaws.mlproj/Data Sources/*
