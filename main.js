@@ -1,6 +1,13 @@
 let settingsWin, catDetectedWin
 let isSettingsOpen = false
 let isCatDetectedOpen = false
+nw.global.catDetectedWin = ''
+
+function closeCatDetected() {
+  catDetectedWin.leaveKioskMode()
+  catDetectedWin.close(true)
+  isCatDetectedOpen = false
+}
 
 function openCatDetected() {
   console.log('trying to open!')
@@ -11,12 +18,13 @@ function openCatDetected() {
         icon: "img/paws-menu-bar-white.png",
         always_on_top: false,
         show_in_taskbar: false,
-        visible_on_all_workspaces: false
+        visible_on_all_workspaces: true
       },
       function(wind) {
         wind.focus()
         wind.enterKioskMode()
         catDetectedWin = wind
+        nw.global.catDetectedWin = wind
         isCatDetectedOpen = true
         catDetectedWin.on("close", function() {
           catDetectedWin.hide()

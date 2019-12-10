@@ -27,9 +27,13 @@
       <textarea name="kitty-lit" id="kitty-lit"></textarea>
       <button type="button" onclick="focusInput()">Click me to focus on the text field!</button>
     </section>
+    <button onclick="closeWindow()">Close window</button>
   </main>
 </body>
 <script>
+  function closeWindow() {
+   nw.global.closeCatDetected()
+  }
   function focusInput() {
     document.getElementById('kitty-lit').focus()
   }
