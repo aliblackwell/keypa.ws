@@ -9,7 +9,7 @@ keyboard.start_recording(events_queue)
 
 # gets the second arg e.g. `python3 record.py human` 
 # will need to change when working with compiled `./dist/record human`
-being = str(sys.argv[1]) 
+being = str(sys.argv[0]) 
 
 def convert_to_dict(recorded):
   keyboard_activity = []

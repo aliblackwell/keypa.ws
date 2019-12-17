@@ -24,18 +24,24 @@
   font-style: normal;
 }
 
+.pre-text {
+  font-family: monotalic-wide, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .keypaws {
   color: var(--teal);
 }
 
 /* apply a natural box layout model to all elements, but allowing components to change */
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-*,
-*:before,
-*:after {
+
+*, *:before, *:after {
   box-sizing: inherit;
 }
 
@@ -78,6 +84,7 @@ Core breakpoints
 --------------------------------------------------------------*/
 
 /* Text meant only for screen readers. */
+
 .screen-reader-text {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
@@ -88,7 +95,8 @@ Core breakpoints
   padding: 0;
   position: absolute !important;
   width: 1px;
-  word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
 }
 
 .screen-reader-text:focus {
@@ -114,6 +122,7 @@ Core breakpoints
 }
 
 /* Do not show the outline on the skip link target. */
+
 #content[tabindex="-1"]:focus {
   outline: 0;
 }
@@ -125,6 +134,7 @@ Core breakpoints
 /*--------------------------------------------------------------
 # Foundations
 --------------------------------------------------------------*/
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -141,9 +151,7 @@ html {
   line-height: 1.4;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
   box-sizing: inherit;
 }
@@ -152,14 +160,7 @@ html {
 # Core Typography
 --------------------------------------------------------------*/
 
-body,
-button,
-label,
-select,
-option,
-li,
-span,
-optgroup {
+body, button, label, select, option, li, span, optgroup {
   font-family: omnes-cond, sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -174,12 +175,7 @@ body {
   color: var(--text-color);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   clear: both;
   font-family: omnes-cond, sans-serif;
   font-weight: 700;
@@ -190,10 +186,7 @@ p {
   margin-bottom: 1.5em;
 }
 
-dfn,
-cite,
-em,
-i {
+dfn, cite, em, i {
   font-style: italic;
 }
 
@@ -219,8 +212,7 @@ pre {
   margin: 0;
 }
 
-header h1,
-header h2 {
+header h1, header h2 {
   margin: 0;
   font-size: var(--pt-title);
 }
@@ -273,8 +265,8 @@ form input {
   float: left;
   margin-bottom: 1rem;
 }
-form input,
-form button {
+
+form input, form button {
   font-size: var(--pt-biggest);
 }
 
@@ -306,7 +298,7 @@ button {
     float: none;
   }
   button {
-    float:none
+    float: none
   }
 }
 

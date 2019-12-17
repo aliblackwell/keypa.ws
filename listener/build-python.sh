@@ -1,6 +1,6 @@
 #!/bin/sh
 pyinstaller --noconfirm --log-level=WARN \
     --onefile \
-    --osx-bundle-identifier=com.mindfulpuss.KeyPaws \
+    --osx-bundle-identifier=com.mindfulpuss.keypaws \
     keypaws.py \
     ./keypaws.spec
