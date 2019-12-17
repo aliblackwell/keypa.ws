@@ -1,9 +1,9 @@
 {
-  "name": "Keyjaws",
-  "main": "main.js",
+  "name": "KeyPaws",
+  "main": "index.js",
   "version": "0.1.0",
   "build": {
-    "appId": "com.mindfulpuss.Keyjaws",
+    "appId": "com.aliblackwell.KeyPaws",
     "nwVersion": "0.42.6",
     "packed": true,
     "targets": [
@@ -14,12 +14,12 @@
     ],
     "outputPattern": "${NAME} ${VERSION} ${PLATFORM} ${ARCH}",
     "mac": {
-      "displayName": "Keyjaws",
+      "displayName": "KeyPaws",
       "copyright": "copyright",
-      "icon": "./assets/icons.icns",
+      "icon": "./app/assets/icons.icns",
       "plistStrings": {
-        "CFBundleName": "Keyjaws",
-        "CFBundleIdentifier": "com.mindfulpuss.Keyjaws",
+        "CFBundleName": "KeyPaws",
+        "CFBundleIdentifier": "com.aliblackwell.KeyPaws",
         "CFBundleDocumentTypes": []
       }
     },
@@ -37,14 +37,16 @@
   },
   "scripts": {
     "start": "nw --enable-logging=stderr",
-    "build": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && rm -rf ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app/Contents/Resources/app.nw/node_modules",
-    "clean": "rm -rf ./dist/",
-    "sign": "codesign --options runtime --entitlements entitlements.plist --force --verbose=4 --sign 'Developer ID Application: Alasdair Blackwell (6B4HNA4Z97)' --deep ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app",
-    "verify": "codesign --verify --deep --strict --verbose=2 ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app",
-    "is-entitled": "codesign -dvvv --entitlements :- ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app/",
-    "zip": "zip -r ./dist/Keyjaws.zip ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app/",
-    "notarize": "xcrun altool -t osx -f './dist/Keyjaws.zip' --primary-bundle-id com.mindfulpuss.Keyjaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
-    "staple": "xcrun stapler staple ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app"
+    "update": "cp index.js ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/index.js && cp ./app/*.html ./app/*.css ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/app/",
+    "build:python": "pyinstaller ./listener/keypaws.py ./listener/kaybord.spec && cp ./model/KeyPaws.mlproj/Models/KeyPaws\\ 3.mlmodel ./dist/keypaws/keypaws.mlmodel && mv ./dist ./background",
+    "build": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && rm -rf ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/node_modules && chmod 775 ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws",
+    "clean": "rm -rf ./dist/ ./background/ ./build/",
+    "sign": "codesign --options runtime --entitlements entitlements.plist --force --verbose=4 --sign 'Developer ID Application: Alasdair Blackwell (6B4HNA4Z97)' --deep ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app",
+    "verify": "codesign --verify --deep --strict --verbose=2 ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app",
+    "is-entitled": "codesign -dvvv --entitlements :- ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/",
+    "zip": "zip -r ./dist/KeyPaws.zip ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/",
+    "notarize": "xcrun altool -t osx -f './dist/KeyPaws.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
+    "staple": "xcrun stapler staple ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app"
   },
   "devDependencies": {
     "nwjs-builder-phoenix": "^1.15.0"

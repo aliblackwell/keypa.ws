@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['l.py'],
+a = Analysis(['keypaws-uis.py', 'kaybord.spec'],
              pathex=['/Users/aliblackwell/keypa.ws/listener'],
              binaries=[],
              datas=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='l',
+          name='keypaws-uis',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
@@ -32,10 +32,6 @@ exe = EXE(pyz,
           runtime_tmpdir=None,
           console=False )
 app = BUNDLE(exe,
-             name='KeyPaws.app',
-             icon='../src/assets/icons.icns',
-             bundle_identifier='com.aliblackwell.KeyPaws',
-             info_plist={
-                 'Bundle identifier': 'com.aliblackwell.KeyPaws'
-             }
-             )
+             name='keypaws-uis.app',
+             icon=None,
+             bundle_identifier=None)

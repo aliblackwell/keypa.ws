@@ -1,0 +1,309 @@
+:root {
+  --default-20px: 20px;
+  --pt-biggest: 1.2rem;
+  --pt-title: 1.8rem;
+  --pt-subtitle: 1.6rem;
+  --line-height: 1.2;
+  --text-color: #fdfdfd;
+  --outline-focus: #fafa00;
+  --background-color: #121218;
+  --teal: #008080;
+  --teal-darker: #006060;
+  --box-width: 30rem;
+}
+
+.body-text {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title-text {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pre-text {
+  font-family: monotalic-wide, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.keypaws {
+  color: var(--teal);
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/*
+Core breakpoints
+*/
+
+@media (max-width: 1600px) {
+  :root {
+    --default-20px: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --default-20px: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --default-20px: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --default-20px: 16px;
+    --pt-title: 1.8rem;
+    --pt-subtitle: 1.2rem;
+  }
+}
+
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+
+/* Text meant only for screen readers. */
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip: auto !important;
+  clip-path: none;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+  /* Above WP toolbar. */
+}
+
+/* Do not show the outline on the skip link target. */
+
+#content[tabindex="-1"]:focus {
+  outline: 0;
+}
+
+*:focus {
+  outline: 4px solid var(--outline-focus);
+}
+
+/*--------------------------------------------------------------
+# Foundations
+--------------------------------------------------------------*/
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: var(--default-20px);
+  line-height: var(--line-height);
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.4;
+}
+
+*, *:before, *:after {
+  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+  box-sizing: inherit;
+}
+
+/*--------------------------------------------------------------
+# Core Typography
+--------------------------------------------------------------*/
+
+body, button, label, select, option, li, span, optgroup {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  background: var(--background-color);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  clear: both;
+  font-family: omnes-cond, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+blockquote {
+  margin: 0 1.5em;
+}
+
+.container {
+  margin: 0 auto 0;
+  position: relative;
+  max-width: 30rem;
+  padding-top: 3rem;
+}
+
+header {
+  position: absolute;
+  top: 4rem;
+  left: 7.5rem;
+  overflow-x: hidden;
+}
+
+pre {
+  margin: 0;
+}
+
+header h1, header h2 {
+  margin: 0;
+  font-size: var(--pt-title);
+}
+
+header h2 {
+  font-size: var(--pt-subtitle);
+  color: var(--teal);
+}
+
+.welcome {
+  margin-top: 1rem;
+  border-top: 0.5rem solid var(--teal);
+}
+
+.welcome p:first-child {
+  margin: 1rem 0 0;
+  font-size: var(--pt-subtitle);
+}
+
+.welcome p {
+  font-size: var(--pt-biggest);
+}
+
+.kitty {
+  position: absolute;
+  bottom: 0;
+  left: -30rem;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.signup {
+  width: var(--box-width);
+  padding: 3rem;
+  background: white;
+  margin: 0 auto;
+  text-align: left;
+}
+
+form label {
+  display: block;
+  font-size: var(--pt-biggest);
+  margin-bottom: 0.5rem;
+}
+
+form input {
+  padding: 0.5rem 1rem;
+  width: 100%;
+  width: 65%;
+  float: left;
+  margin-bottom: 1rem;
+}
+
+form input, form button {
+  font-size: var(--pt-biggest);
+}
+
+button {
+  background: var(--teal);
+  border: none;
+  color: white;
+  line-height: 1;
+  padding: 0.3rem 1rem 0.5rem;
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+  border-radius: 0;
+  -webkit-appearance: none;
+  border-radius: 0;
+  float: right;
+  height: 2.6rem;
+}
+
+@media (max-width: 600px) {
+  header {
+    left: 7.4rem;
+  }
+  main.container {
+    width: 90%;
+  }
+  form input {
+    width: 100%;
+    float: none;
+  }
+  button {
+    float: none
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    left: 6.4rem;
+  }
+}

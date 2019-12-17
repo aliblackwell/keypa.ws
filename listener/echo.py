@@ -3,9 +3,9 @@ import time
 import keyboard
 import queue as _queue
 
-
 events_queue = _queue.Queue()
 keyboard.start_recording(events_queue)
+
 
 def convert_to_query(recorded):
     scan_code_list = ''
@@ -19,21 +19,11 @@ def convert_to_query(recorded):
     return {'key_code': scan_code_list, 'direction': type_list, 'time_stamp': time_list}
 
 
-def get_prediction(q):
-    print('Got a letter!')
-    print(q['key_code'])
-    # prediction = embedding_model.predict(q)
-    # if (prediction['target'] == 'cat'):
-    #     print('cat')
-    #     sys.stdout.flush()
-
-
 while True:
     time.sleep(1)
 
-    sys.stdout.flush()
     stream = list(events_queue.queue)
     if (len(stream) > 0):
         events_queue.queue.clear()
         query = convert_to_query(stream)
-        get_prediction(query)
+        

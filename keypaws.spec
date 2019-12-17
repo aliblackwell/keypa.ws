@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['l.py'],
-             pathex=['/Users/aliblackwell/keypa.ws/listener'],
+a = Analysis(['listener/keypaws.py', 'listener/kaybord.spec'],
+             pathex=['/Users/aliblackwell/keypa.ws'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -19,23 +19,19 @@ pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,
           [],
-          name='l',
+          exclude_binaries=True,
+          name='keypaws',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          upx_exclude=[],
-          runtime_tmpdir=None,
-          console=False )
-app = BUNDLE(exe,
-             name='KeyPaws.app',
-             icon='../src/assets/icons.icns',
-             bundle_identifier='com.aliblackwell.KeyPaws',
-             info_plist={
-                 'Bundle identifier': 'com.aliblackwell.KeyPaws'
-             }
-             )
+          console=True )
+coll = COLLECT(exe,
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=False,
+               upx=True,
+               upx_exclude=[],
+               name='keypaws')

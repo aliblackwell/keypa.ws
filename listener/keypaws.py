@@ -1,13 +1,18 @@
 import sys
 import time
-import json
 import keyboard
 import queue as _queue
-import tkinter as tk
+import coremltools
+from coremltools.models import MLModel
+
+embedding_path = './background/keypaws/keypaws.mlmodel'
+embedding_model = MLModel(embedding_path)
+
+# embedding_spec = embedding_model.get_spec()
+# print(embedding_spec.description)
 
 events_queue = _queue.Queue()
 keyboard.start_recording(events_queue)
-
 
 def convert_to_query(recorded):
     scan_code_list = ''
@@ -20,46 +25,18 @@ def convert_to_query(recorded):
 
     return {'key_code': scan_code_list, 'direction': type_list, 'time_stamp': time_list}
 
+def get_prediction(q):
+  prediction = embedding_model.predict(q)
+  if (prediction['target'] == 'cat'):
+    print('cat')
+    sys.stdout.flush()
 
-root = tk.Tk()
-
-canvas1 = tk.Canvas(root, width=300, height=300)
-canvas1.pack()
-
-
-def hello():
+while True:
+    time.sleep(1)
+    
+    sys.stdout.flush()
     stream = list(events_queue.queue)
-    query = convert_to_query(stream)
-    label1 = tk.Label(root, text=query['direction'], fg='green',
-                      font=('helvetica', 12, 'bold'))
-    canvas1.create_window(150, 200, window=label1)
-
-
-button1 = tk.Button(text='Click Me', command=hello, bg='brown', fg='white')
-canvas1.create_window(150, 150, window=button1)
-
-root.mainloop()
-
-
-def save_to_file(query):
-    keys_json = json.dumps(query)
-    timestr = time.strftime("%Y%m%d-%H%M%S")
-    filename = timestr + ".json"
-    f = open(filename, "w+")
-    f.write(keys_json)
-
-
-def main():
-    while True:
-        time.sleep(2)
-        stream = list(events_queue.queue)
-        if (len(stream) > 0):
-            events_queue.queue.clear()
-            query = convert_to_query(stream)
-            save_to_file(query)
-
-
-if __name__ == "__main__":
-    main()
-
-print('hello')
+    if (len(stream) > 0):
+        events_queue.queue.clear()
+        query = convert_to_query(stream)
+        get_prediction(query)
