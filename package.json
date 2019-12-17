@@ -1,0 +1,52 @@
+{
+  "name": "Keyjaws",
+  "main": "main.js",
+  "version": "0.1.0",
+  "build": {
+    "appId": "com.mindfulpuss.Keyjaws",
+    "nwVersion": "0.42.6",
+    "packed": true,
+    "targets": [
+      "nsis7z"
+    ],
+    "strippedProperties": [
+      "build"
+    ],
+    "outputPattern": "${NAME} ${VERSION} ${PLATFORM} ${ARCH}",
+    "mac": {
+      "displayName": "Keyjaws",
+      "copyright": "copyright",
+      "icon": "./assets/icons.icns",
+      "plistStrings": {
+        "CFBundleName": "Keyjaws",
+        "CFBundleIdentifier": "com.mindfulpuss.Keyjaws",
+        "CFBundleDocumentTypes": []
+      }
+    },
+    "nsis": {
+      "installDirectory": "$PROGRAMFILES\\${_COMPANYNAME}\\${_APPNAME}",
+      "diffUpdaters": true
+    }
+  },
+  "window": {
+    "show_in_taskbar": false,
+    "kiosk": false
+  },
+  "dependencies": {
+    "nw": "^0.42.6"
+  },
+  "scripts": {
+    "start": "nw --enable-logging=stderr",
+    "build": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && rm -rf ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app/Contents/Resources/app.nw/node_modules",
+    "clean": "rm -rf ./dist/",
+    "sign": "codesign --options runtime --entitlements entitlements.plist --force --verbose=4 --sign 'Developer ID Application: Alasdair Blackwell (6B4HNA4Z97)' --deep ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app",
+    "verify": "codesign --verify --deep --strict --verbose=2 ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app",
+    "is-entitled": "codesign -dvvv --entitlements :- ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app/",
+    "zip": "zip -r ./dist/Keyjaws.zip ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app/",
+    "notarize": "xcrun altool -t osx -f './dist/Keyjaws.zip' --primary-bundle-id com.mindfulpuss.Keyjaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
+    "staple": "xcrun stapler staple ./dist/Keyjaws\\ 0.1.0\\ mac\\ x64/Keyjaws.app"
+  },
+  "devDependencies": {
+    "nwjs-builder-phoenix": "^1.15.0"
+  }
+}
