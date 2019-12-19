@@ -27,9 +27,9 @@ def convert_to_query(recorded):
 
 def get_prediction(q):
   prediction = embedding_model.predict(q)
-  if (prediction['target'] == 'cat'):
-    print('cat')
-    sys.stdout.flush()
+  #if (prediction['target'] == 'cat'):
+  print(prediction['target'])
+  sys.stdout.flush()
 
 while True:
     time.sleep(1)

@@ -2,77 +2,91 @@ const fs = require("fs");
 const path = require("path")
 const { spawn } = require("child_process")
 
-const settingsFile = 'my-settings-file.json';
+const settingsFile = 'my-settings-file29.json';
 const settingsPath = path.join(nw.App.dataPath, settingsFile);
 
-let settingsWin, catDetectedWin, welcomeWin, childProcess, settings
+const windowSettings = {
+  show_in_taskbar: false,
+  width: 1200,
+  height: 480,
+  position: "center"
+}
+
+console.log(nw.global)
+
+const defaultSettings = {
+  accessibilityGranted: false,
+  mood: 'friendly',
+  mode: 'active',
+  palette: 'default'
+};
+
+
+let settingsWin, catDetectedWin, welcomeWin, childProcess
 let isSettingsOpen = false
 let isWelcomeOpen = false
 let isCatDetectedOpen = false
+let isTriggerRunning = false
 nw.global.catDetectedWin = ''
+nw.global.settings = ''
 
+function startApp(callback) {
+  getSettings(checkAccessibilityGranted, setDefaultSettings)
+}
 
-function checkSettings(callback) {
+function getSettings(handleSuccess, handleError) {
   fs.readFile(settingsPath, (err, data) => {
     if (err) {
-      loadFirstRun()
-      return callback(err)
+      handleError(err)
+      return false
     }
     const settings = JSON.parse(data)
-    handleSettings(settings)
-    callback('Loaded settings')
+    handleSuccess(settings)
   })
 }
 
-function handleSettings(s) {
-  settings = s
-  if (settings.accessibilityGranted) {
+function checkAccessibilityGranted(s) {
+  nw.global.settings = s
+  if (s.accessibilityGranted) {
     startKeypaws()
   } else {
     showWelcomeWindow();
   }
 }
 
-function saveSettings(settings, callback) {
+function setDefaultSettings() {
+  
+  saveSettings(defaultSettings, function () {
+    showWelcomeWindow()
+  });
+}
 
-  fs.writeFile(settingsPath, JSON.stringify(settings), function (err) {
+function saveSettings(s, callback) {
+
+  fs.writeFile(settingsPath, JSON.stringify(s), function (err) {
     if (err) {
       console.info("There was an error attempting to save your data.");
       console.warn(err.message);
       return;
     } else if (callback) {
+      nw.global.settings = s
       callback();
     }
   });
 }
 
 
-checkSettings(r => console.log(r))
 
-function loadFirstRun() {
-  console.log('first run woo!')
-  const mySettings = {
-    "accessibilityGranted": false,
-    "theme": "dark"
-  };
-  saveSettings(mySettings, function () {
-    console.log('Settings saved');
-    showWelcomeWindow()
-  });
-}
+
+
 
 function showWelcomeWindow() {
   nw.Window.open(
     "./app/welcome.html",
-    {
-      icon: "./app/assets/paws-menu-bar-white.png",
-      show_in_taskbar: true
-    },
+    windowSettings,
     function (win) {
       welcomeWin = win
       isWelcomeOpen = true
-
-      welcomeWin.leaveKioskMode()
       welcomeWin.on("close", function () {
 
       })
@@ -91,13 +105,18 @@ function closeSettingsWin() {
   isSettingsOpen = false
 }
 
+function closeWelcomeWin() {
+  welcomeWin.hide()
+  isWelcomeOpen = false
+}
+
 function openCatDetected() {
   if (!isCatDetectedOpen) {
     nw.Window.open(
       "./app/cat-detected.html",
       {
-        icon: "assets/paws-menu-bar-white.png",
-        visible_on_all_workspaces: true
+        visible_on_all_workspaces: true,
+        show_in_taskbar: false
       },
       function (wind) {
         wind.focus()
@@ -113,19 +132,24 @@ function openCatDetected() {
     )
   }
 }
+
+function hideTaskbar() {
+  var win = nw.Window.get();
+  console.log(win.zoomLevel)
+
+}
+
+
 function openSettings() {
   if (!isSettingsOpen) {
 
     nw.Window.open(
       "./app/settings.html",
-      {
-        icon: "./app/assets/paws-menu-bar-white.png",
-        show_in_taskbar: true
-      },
+      windowSettings,
       function (win) {
+        hideTaskbar()
         settingsWin = win
         isSettingsOpen = true
-
         settingsWin.leaveKioskMode()
         settingsWin.on("close", function () {
           closeSettingsWin()
@@ -171,13 +195,29 @@ tray.menu = menu
 
 
 function triggerAccessibilityPermission() {
-  childProcess = spawn("./background/keypaws/keypaws")
+  if (!isTriggerRunning) {
+    childProcess = spawn("./background/trigger/trigger")
+    childProcess.on("exit", (code, signal) => {
+      console.log(signal)
+      isTriggerRunning = false
+    })
+    childProcess.stdout.on("data", data => {
+      isTriggerRunning = true
+      console.log(data.toString())
+    })
+  }
+
 }
 
 function triggerAccessibilityPermissionGranted() {
-  childProcess.kill('SIGINT')
+  alert('here')
+  if (isTriggerRunning) {
+    childProcess.kill('SIGINT')
+  }
+  alert(settings.accessibilityGranted)
   settings.accessibilityGranted = true
   saveSettings(settings, function () {
+    closeWelcomeWin()
     startKeypaws()
   })
 
@@ -186,7 +226,11 @@ function triggerAccessibilityPermissionGranted() {
 function startKeypawsScript() {
   const childProcess = spawn("./background/keypaws/keypaws")
   childProcess.stdout.on("data", data => {
-    openCatDetected()
+    let mammal = data.toString()[0]
+    if (mammal === 'c') {
+      openCatDetected()
+    }
+
   })
 }
 
@@ -194,3 +238,7 @@ function startKeypaws() {
   startKeypawsScript()
   openSettings()
 }
+
+
+
+startApp(() => console.log('app started'))

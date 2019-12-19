@@ -1,31 +1,205 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <title>KeyPaws</title>
-    <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
-    <link rel="stylesheet" href="./style.css"/>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>KeyPaws</title>
+  <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./form-styles.css" />
+</head>
 
-  <body>
-  <main class="container">
+<body>
+  <main class="container dashboard">
     <pre>
  /\___/\
 (  o o  )
 (  =^=  )
 (        )
 (         )
-(          )____£$tr2frfgre?
+(          )__£etgfsss!2wewesws
 </pre>
-    <header>
 
-      <h1>Settings</h1>
-      <h2>KeyPaws: Cat-proof your keyboard</h2>
-    </header>
-    <p>Thanks for installing KeyPaws.</p>
-    <p>KeyPaws works best when you train it for a day or so on your own keyboard use.</p>
-    </main>
-  </body>
+    <section id="settings">
+      <h1>Dashpawed</h1>
+      <div class="grid">
+        <article>
+          <h3>Status</h3>
+          <dl>
+            <dt>Mode</dt>
+            <dd>Active</dd>
+            <dt>Mood</dt>
+            <dd>Friendly</dd>
+            <dt>Cats detected</dt>
+            <dd>0</dd>
+            <dt>Hours protected</dt>
+            <dd>0</dd>
+          </dl>
+        </article>
+        <article>
+          <h3>Mood</h3>
+          <p class="explainer">
+            What happens when kitty steps on your keys? An engaging game to keep them entertained, or a scary screen to
+            keep them at bay? The choice is yours:
+          </p>
+          <div class="wrapper">
+            <input id="mood:friendly" name="mood" type="radio" value="mood:friendly">
+            <label for="mood:friendly">Friendly</label>
+          </div>
+          <div class="wrapper">
+            <input id="mood:hostile" name="mood" type="radio" value="mood:hostile">
+            <label for="mood:hostile">Hostile</label>
+          </div>
+        </article>
+        <article>
+          <h3>Mode</h3>
+          <p class="explainer">
+            KeyPaws runs best when you train it on your own keyboard use. You can also train it on your cat:
+          </p>
+          <div class="wrapper">
+            <input id="mode:active" name="mode" type="radio" value="mode:active">
+            <label for="mode:active">Active</label>
+          </div>
+          <div class="wrapper">
+            <input id="mode:learning-human" name="mode" type="radio" value="mode:learning-human">
+            <label for="mode:learning-human">Learning: Human</label>
+          </div>
+          <div class="wrapper">
+            <input id="mode:learning-cat" name="mode" type="radio" value="mode:learning-cat">
+            <label for="mode:learning-cat">Learning: Cat</label>
+          </div>
+        </article>
+        <article>
+          <h3>Palette</h3>
+          <p class="explainer">
+            KeyPaws runs best when you train it on your own keyboard use. You can also train it on your cat:
+          </p>
+          <div class="wrapper">
+            <input id="palette:active" name="palette" type="radio" value="palette:default">
+            <label for="palette:active">Default</label>
+          </div>
+          <div class="wrapper">
+            <input id="palette:learning-human" name="palette" type="radio" value="palette:light">
+            <label for="palette:learning-human">Light</label>
+          </div>
+          <div class="wrapper">
+            <input id="palette:learning-cat" name="palette" type="radio" value="palette:nyan">
+            <label for="palette:learning-cat">Nyan Cat</label>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+  </main>
+</body>
+<script>
+
+  let radios = document.querySelectorAll('input[type="radio"]')
+  let radioWrappers = document.querySelectorAll('.wrapper')
+  let interval1, interval2
+  radios.forEach(function (elem) {
+
+    // Lookup key in settings 
+    let key = elem.value.split(":")[0]
+    let value = elem.value.split(":")[1]
+    if (nw.global.settings[key] === value) {
+      elem.setAttribute('checked', true)
+    }
+    elem.addEventListener("click", function (e) {
+      
+      let settingsDetails = e.target.value.split(":")
+      let settingsKey = settingsDetails[0]
+      let settingsValue = settingsDetails[1]
+      setLoading(settingsValue)
+      const newSettings = nw.global.settings
+      newSettings[settingsKey] = settingsValue
+      nw.global.saveSettings(newSettings, () => {
+        setTimeout(setLoaded, 500)
+      })
+    });
+  });
+
+  function setLoading(clicked) {
+
+    loading = true;
+    let newCat = generateCat()
+    cat.innerHTML = newCat;
+    interval1 = setInterval(() => {
+      loading = !loading
+    }, 250)
+    interval2 = setInterval(() => {
+      let newCat = generateCat()
+      cat.innerHTML = newCat;
+    }, 250)
+    radioWrappers.forEach((el) => {
+      el.children[0].setAttribute('disabled', true)
+      if (el.children[0].value.split(':')[1] != clicked) {
+        el.classList.add('disabled')
+      }
+    })
+  }
+
+  function setLoaded() {
+    loading = false
+    clearInterval(interval1)
+    clearInterval(interval2)
+    radioWrappers.forEach((el) => {
+      el.children[0].removeAttribute('disabled')
+      el.classList.remove('disabled')
+    })
+    setTimeout(() => {
+      let newCat = generateCat()
+      cat.innerHTML = newCat;
+    }, 500)
+
+  }
+
+  let cat = document.getElementsByTagName('pre')[0]
+  let loading = false
+  let catString = cat.innerHTML
+  let catArray = catString.split('')
+
+  function generateGibberish(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!!!!@@@@@@£££££$$$$%%%%^^^^&&&&****(((())))++++_____))>>>???<<<""":::~~~//****---````~~~~"';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  function generateCat() {
+    let newCat = ''
+    for (let i = 0; i < catArray.length - 18; i++) {
+
+      if (loading && (i === 12 || i === 14)) {
+        newCat += '-'
+      } else {
+        newCat += catArray[i]
+      }
+    }
+    if (loading) {
+      newCat += 'Saving_settings__'
+      newCat[12] = 'o'
+      newCat[14] = 'o'
+    } else {
+      newCat += generateGibberish(17)
+    }
+    return newCat;
+  }
+
+
+  cat.innerHTML = generateCat()
+
+
+
+
+
+
+
+
+</script>
 
 </html>

@@ -1,5 +1,6 @@
 src/node_modules
 node_modules
+background/*
 .DS_Store
 __pycache__
 dist

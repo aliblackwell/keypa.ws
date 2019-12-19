@@ -30,16 +30,16 @@
       <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then
         instantly forgets what you typed. Nothing is sent over the network.</p>
     </div>
-    <button id="welcome-action" onclick="grantPermission()">Grant permission</button>
+    <button class="welcome-action" onclick="grantPermission()">Grant permission</button>
+    <button class="welcome-action" onclick="confirmPermission()">I have granted permission</button>
     <script>
       function grantPermission() {
-        console.log('granting permission')
+        alert('granting permission')
         nw.global.triggerAccessibilityPermission()
-        const but = document.getElementById('welcome-action')
-        but.innerHTML = 'I have granted permission'
-        but.onclick = function() {
-          nw.global.triggerAccessibilityPermissionGranted()
-        }
+      }
+      function confirmPermission() {
+        alert('confirming permission')
+        nw.global.triggerAccessibilityPermissionGranted()
       }
     </script>
   </main>
