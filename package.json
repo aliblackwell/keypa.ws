@@ -49,7 +49,7 @@
     "zip": "zip -r ./dist/KeyPaws.zip ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/",
     "notarize": "xcrun altool -t osx -f './dist/KeyPaws.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
     "staple": "xcrun stapler staple ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app",
-    "clear-settings":"rm -rf /Users/aliblackwell/Library/Application Support/KeyPaws/Default/my-settings-file.json"
+    "clear-settings": "rm -rf /Users/aliblackwell/Library/Application Support/KeyPaws/Default/my-settings-file.json"
   },
   "devDependencies": {
     "nwjs-builder-phoenix": "^1.15.0"
