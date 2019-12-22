@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "nw --enable-logging=stderr",
-    "update": "cp index.js ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/index.js && cp ./app/*.html ./app/*.css ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/app/",
+    "update": "cp *.js ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/app/",
     "build:python": "pyinstaller ./listener/keypaws.py ./listener/kaybord.spec && cp ./model/KeyPaws.mlproj/Models/KeyPaws\\ 3.mlmodel ./dist/keypaws/keypaws.mlmodel",
     "build:trigger": "pyinstaller ./listener/trigger.py ./listener/kaybord.spec",
     "build": "mv ./dist ./background && build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && rm -rf ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/node_modules && chmod 775 ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger",

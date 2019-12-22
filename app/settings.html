@@ -94,7 +94,7 @@
   </main>
 </body>
 <script>
-
+  const {saveSettings} = require('./settings');
   let radios = document.querySelectorAll('input[type="radio"]')
   let radioWrappers = document.querySelectorAll('.wrapper')
   let interval1, interval2
@@ -114,7 +114,7 @@
       setLoading(settingsValue)
       const newSettings = nw.global.settings
       newSettings[settingsKey] = settingsValue
-      nw.global.saveSettings(newSettings, () => {
+      saveSettings(newSettings, () => {
         setTimeout(setLoaded, 500)
       })
     });

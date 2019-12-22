@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <title>KeyPaws</title>
-  <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
-  <link rel="stylesheet" href="./style.css" />
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>KeyPaws</title>
+    <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
+    <link rel="stylesheet" href="./style.css"/>
+  </head>
 
-<body>
-  <main class="container">
-    <pre>
+  <body>
+    <main class="container">
+      <pre>
  /\___/\
 (  o o  )
 (  =^=  )
@@ -18,31 +18,30 @@
 (         )
 (          )____£$tr2frfgre?
 </pre>
-    <header>
+      <header>
 
-      <h1>Welcome</h1>
-      <h2>KeyPaws: Cat-proof your keyboard</h2>
-    </header>
-    <p>Thanks for installing KeyPaws.</p>
-    <p>In order to use Keypaws, you need to grant the app permission to listen to you keyboard.</p>
-    <div class="security-reassure">
-      <h3>Don't worry</h3>
-      <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then
-        instantly forgets what you typed. Nothing is sent over the network.</p>
-    </div>
-    <button class="welcome-action" onclick="grantPermission()">Grant permission</button>
-    <button class="welcome-action" onclick="confirmPermission()">I have granted permission</button>
-    <script>
-      function grantPermission() {
-        alert('granting permission')
-        nw.global.triggerAccessibilityPermission()
-      }
-      function confirmPermission() {
-        alert('confirming permission')
-        nw.global.triggerAccessibilityPermissionGranted()
-      }
-    </script>
-  </main>
-</body>
+        <h1>Welcome</h1>
+        <h2>KeyPaws: Cat-proof your keyboard</h2>
+      </header>
+      <p>Thanks for installing KeyPaws.</p>
+      <p>In order to use Keypaws, you need to grant the app permission to listen to you keyboard.</p>
+      <div class="security-reassure">
+        <h3>Don't worry</h3>
+        <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then instantly forgets what you typed. Nothing is sent over the network.</p>
+      </div>
+      <button class="welcome-action" onclick="grantPermission()">Grant permission</button>
+      <button class="welcome-action" onclick="confirmPermission()">I have granted permission</button>
+      <script>
+
+        const {triggerAccessibilityPermission, triggerAccessibilityPermissionGranted} = require('../runner.js')
+        function grantPermission() {
+          triggerAccessibilityPermission()
+        }
+        function confirmPermission() {
+          triggerAccessibilityPermissionGranted()
+        }
+      </script>
+    </main>
+  </body>
 
 </html>
