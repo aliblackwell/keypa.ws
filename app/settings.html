@@ -107,9 +107,12 @@
       elem.setAttribute('checked', true)
     }
     elem.addEventListener("click", function (e) {
-      
+      console.log(e.target.value)
       let settingsDetails = e.target.value.split(":")
       let settingsKey = settingsDetails[0]
+      if (settingsKey === 'mode') {
+        console.log('changing mode!')
+      }
       let settingsValue = settingsDetails[1]
       setLoading(settingsValue)
       const newSettings = nw.global.settings

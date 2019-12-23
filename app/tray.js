@@ -14,7 +14,7 @@ function createStatusMenu(format) {
       label: "Settings"
     })
     menuItemOpenSettings.on("click", () => {
-      openSettings()
+      openSettingsWindow()
     })
     menu.append(menuItemOpenSettings)
   }

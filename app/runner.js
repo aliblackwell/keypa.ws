@@ -1,13 +1,21 @@
 const { spawn } = require("child_process")
-const {openCatDetected} = require('./windows.js')
+const { openCatDetected, closeWelcomeWin } = require("./windows.js")
 
 let isTriggerRunning = false
-let childProcess;
+let isScriptRunning = false
+let childProcess
 
+function stopScript(callback) {
+  if (isScriptRunning) {
+    childProcess.kill("SIGINT")
+  }
+  callback()
+}
 
 function startKeypawsScript() {
-  const childProcess = spawn("./background/keypaws/keypaws")
+  childProcess = spawn("./background/keypaws/keypaws")
   childProcess.stdout.on("data", data => {
+    isScriptRunning = true
     let mammal = data.toString()[0]
     if (mammal === "c") {
       openCatDetected()
@@ -15,17 +23,14 @@ function startKeypawsScript() {
   })
 }
 
- 
 function triggerAccessibilityPermission() {
   if (!isTriggerRunning) {
     childProcess = spawn("./background/trigger/trigger")
     childProcess.on("exit", (code, signal) => {
-      console.log(signal)
       isTriggerRunning = false
     })
     childProcess.stdout.on("data", data => {
       isTriggerRunning = true
-      console.log(data.toString())
     })
   }
 }
@@ -36,13 +41,14 @@ function triggerAccessibilityPermissionGranted() {
   }
   settings.accessibilityGranted = true
   saveSettings(settings, () => {
-    nw.global.closeWelcomeWin()
+    closeWelcomeWin()
     nw.global.startKeypaws()
   })
 }
 
 module.exports = {
   startKeypawsScript,
+  stopScript,
   triggerAccessibilityPermission,
   triggerAccessibilityPermissionGranted
 }

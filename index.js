@@ -1,5 +1,5 @@
 const { getStartupSettings } = require("./app/settings")
-const { openSettings } = require("./app/windows")
+const { openSettingsWindow } = require("./app/windows")
 const { startKeypawsScript } = require("./app/runner")
 const { createStatusMenu } = require("./app/tray")
 
@@ -15,7 +15,7 @@ function showWelcomeWindow() {
 function startKeypaws() {
   createStatusMenu("normal")
   startKeypawsScript()
-  openSettings()
+  openSettingsWindow()
 }
 
 nw.global.startKeypaws = startKeypaws

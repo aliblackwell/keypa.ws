@@ -58,7 +58,7 @@ function closeWelcomeWin() {
 
 nw.global.closeWelcomeWin = closeWelcomeWin
 
-function openSettings() {
+function openSettingsWindow() {
   if (!isSettingsOpen) {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
       hideTaskbar()
@@ -76,4 +76,4 @@ function openSettings() {
   }
 }
 
-module.exports = { openCatDetected, openSettings}
+module.exports = { openCatDetected, closeCatDetected, openSettingsWindow, closeWelcomeWin}
