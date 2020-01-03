@@ -50,7 +50,7 @@
     "is-entitled": "codesign -dvvv --entitlements :- ./package/KeyPaws.app/",
     "build": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run build:app && npm run sign",
     "package": "appdmg ./package/appdmg.json ./package/KeyPaws0.1.0.dmg",
-    "zip": "zip -r ./package/KeyPaws0.1.0.zip ./package/KeyPaws.1.0.dmg",
+    "zip": "zip -r ./package/KeyPaws0.1.0.zip ./package/KeyPaws0.1.0.dmg",
     "notarize": "xcrun altool -t osx -f './package/KeyPaws0.1.0.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
     "staple": "xcrun stapler staple ./package/KeyPaws0.1.0.dmg && mv ./package/KeyPaws0.1.0.dmg ./downloads/KeyPaws0.1.0.dmg"
   },
