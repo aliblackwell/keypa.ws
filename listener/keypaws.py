@@ -5,7 +5,7 @@ import queue as _queue
 import coremltools
 from coremltools.models import MLModel
 
-embedding_path = './background/keypaws/keypaws.mlmodel'
+embedding_path = './model/KeyPaws.mlproj/Models/KeyPaws 4.mlmodel'
 embedding_model = MLModel(embedding_path)
 
 # embedding_spec = embedding_model.get_spec()
@@ -22,7 +22,6 @@ def convert_to_query(recorded):
         scan_code_list += ';' + str(key_event.scan_code)
         type_list += ';' + key_event.event_type
         time_list += ';' + str(key_event.time).split('.')[1]
-
     return {'key_code': scan_code_list, 'direction': type_list, 'time_stamp': time_list}
 
 def get_prediction(q):
@@ -33,8 +32,6 @@ def get_prediction(q):
 
 while True:
     time.sleep(1)
-    
-    sys.stdout.flush()
     stream = list(events_queue.queue)
     if (len(stream) > 0):
         events_queue.queue.clear()

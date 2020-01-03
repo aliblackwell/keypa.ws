@@ -3,13 +3,17 @@ import csv
 import os
 import random
 
+titles = ['key_code', 'direction', 'time_stamp', 'target']
 
 with open('validate.csv', 'w') as validate_file:
     validate_writer = csv.writer(validate_file)
+    validate_writer.writerow(titles)
     with open('testing.csv', 'w') as testing_file:
         testing_writer = csv.writer(testing_file)
+        testing_writer.writerow(titles)
         with open('training.csv', 'w') as new_file:
-            csv_file = csv.writer(new_file)
+            training_writer = csv.writer(new_file)
+            training_writer.writerow(titles)
             cat_files = os.listdir(os.getcwd() + '/cat/')
             cat_files_wdir = []
             for f in cat_files:
@@ -44,6 +48,6 @@ with open('validate.csv', 'w') as validate_file:
                         testing_writer.writerow(
                             [scan_code_list, type_list, time_list, target])
                     else:
-                        csv_file.writerow(
+                        training_writer.writerow(
                             [scan_code_list, type_list, time_list, target])
                     counter = counter + 1

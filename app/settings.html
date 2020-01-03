@@ -28,8 +28,6 @@
           <dl>
             <dt>Mode</dt>
             <dd>Active</dd>
-            <dt>Mood</dt>
-            <dd>Friendly</dd>
             <dt>Cats detected</dt>
             <dd>0</dd>
             <dt>Hours protected</dt>
@@ -52,25 +50,7 @@
           </div>
         </article>
         <article>
-          <h3>Mode</h3>
-          <p class="explainer">
-            KeyPaws runs best when you train it on your own keyboard use. You can also train it on your cat:
-          </p>
-          <div class="wrapper">
-            <input id="mode:active" name="mode" type="radio" value="mode:active">
-            <label for="mode:active">Active</label>
-          </div>
-          <div class="wrapper">
-            <input id="mode:learning-human" name="mode" type="radio" value="mode:learning-human">
-            <label for="mode:learning-human">Learning: Human</label>
-          </div>
-          <div class="wrapper">
-            <input id="mode:learning-cat" name="mode" type="radio" value="mode:learning-cat">
-            <label for="mode:learning-cat">Learning: Cat</label>
-          </div>
-        </article>
-        <article>
-          <h3>Palette</h3>
+          <h3>Theme</h3>
           <p class="explainer">
             KeyPaws runs best when you train it on your own keyboard use. You can also train it on your cat:
           </p>
@@ -95,6 +75,7 @@
 </body>
 <script>
   const {saveSettings} = require('./settings');
+  const { startKeypawsScript, startRecordScript } = require("./runner")
   let radios = document.querySelectorAll('input[type="radio"]')
   let radioWrappers = document.querySelectorAll('.wrapper')
   let interval1, interval2
@@ -107,12 +88,9 @@
       elem.setAttribute('checked', true)
     }
     elem.addEventListener("click", function (e) {
-      console.log(e.target.value)
+      
       let settingsDetails = e.target.value.split(":")
       let settingsKey = settingsDetails[0]
-      if (settingsKey === 'mode') {
-        console.log('changing mode!')
-      }
       let settingsValue = settingsDetails[1]
       setLoading(settingsValue)
       const newSettings = nw.global.settings
@@ -195,13 +173,6 @@
 
 
   cat.innerHTML = generateCat()
-
-
-
-
-
-
-
 
 </script>
 

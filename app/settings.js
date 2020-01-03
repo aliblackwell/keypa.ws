@@ -3,6 +3,8 @@ const path = require("path")
 
 nw.global.settings = ""
 
+
+
 const defaultSettings = {
   accessibilityGranted: false,
   mood: "friendly",
@@ -14,6 +16,7 @@ const settingsFile = "my-settings-file48.json"
 const settingsPath = path.join(nw.App.dataPath, settingsFile)
 
 function getStartupSettings(handleRegular, handleFirstTime) {
+  console.log(nw.App.dataPath)
   fs.readFile(settingsPath, (err, data) => {
     if (err) {
       setDefaultSettings(err, handleFirstTime)

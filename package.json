@@ -34,22 +34,27 @@
     "kiosk": false
   },
   "dependencies": {
+    "netlify-cli": "^2.25.0",
     "nw": "^0.42.6"
   },
   "scripts": {
     "start": "nw --enable-logging=stderr",
-    "update": "cp *.js ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/app/",
-    "build:python": "pyinstaller ./listener/keypaws.py ./listener/kaybord.spec && cp ./model/KeyPaws.mlproj/Models/KeyPaws\\ 3.mlmodel ./dist/keypaws/keypaws.mlmodel",
-    "build:trigger": "pyinstaller ./listener/trigger.py ./listener/kaybord.spec",
-    "build": "mv ./dist ./background && build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && rm -rf ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/node_modules && chmod 775 ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger",
-    "clean": "rm -rf ./dist/ ./background/ ./build/",
-    "sign": "codesign --options runtime --entitlements entitlements.plist --force --verbose=4 --sign 'Developer ID Application: Alasdair Blackwell (6B4HNA4Z97)' --deep ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app",
-    "verify": "codesign --verify --deep --strict --verbose=2 ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app",
-    "is-entitled": "codesign -dvvv --entitlements :- ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/",
-    "zip": "zip -r ./dist/KeyPaws.zip ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app/",
-    "notarize": "xcrun altool -t osx -f './dist/KeyPaws.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
-    "staple": "xcrun stapler staple ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app",
-    "clear-settings": "rm -rf /Users/aliblackwell/Library/Application Support/KeyPaws/Default/my-settings-file.json"
+    "update": "cp *.js /Applications/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
+    "build:keypaws": "pyinstaller ./listener/keypaws.py ./listener/kaybord.spec",
+    "build:record": "pyinstaller ./capture/record.py ./record.spec",
+    "build:trigger": "pyinstaller ./listener/trigger.py ./listener/kaybord.spec && cp ./dist/trigger/trigger ./dist/keypaws/trigger && rm -rf ./dist/trigger",
+    "build:app": "mkdir background && mv ./dist/keypaws ./background/keypaws && build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && mv ./dist/KeyPaws\\ 0.1.0\\ mac\\ x64/KeyPaws.app ./package/KeyPaws.app && rm -rf ./package/KeyPaws.app/Contents/Resources/app.nw/node_modules && chmod 775 ./package/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./package/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/trigger && rm -rf build",
+    "build": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run build:app && npm run sign",
+    "clean": "rm -rf ./dist/ ./background/ ./build/ ./package/KeyPaws.app ./downloads/KeyPaws0.1.0.dmg",
+    "sign": "codesign --options runtime --entitlements entitlements.plist --force --verbose=4 --sign 'Developer ID Application: Alasdair Blackwell (6B4HNA4Z97)' --deep ./package/KeyPaws.app",
+    "verify": "codesign --verify --deep --strict --verbose=2 ./package/KeyPaws.app",
+    "is-entitled": "codesign -dvvv --entitlements :- ./package/KeyPaws.app/",
+    
+    "notarize": "xcrun altool -t osx -f './package/KeyPaws0.1.0.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
+    "staple": "xcrun stapler staple ./package/KeyPaws0.1.0.dmg && mv ./package/KeyPaws0.1.0.dmg ./downloads/KeyPaws0.1.0.dmg",
+    "package": "appdmg ./package/appdmg.json ./package/KeyPaws0.1.0.dmg",
+    "zip": "zip -r ./package/KeyPaws0.1.0.zip ./package/KeyPaws.1.0.dmg",
+    "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json"
   },
   "devDependencies": {
     "nwjs-builder-phoenix": "^1.15.0"

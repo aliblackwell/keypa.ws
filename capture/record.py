@@ -9,8 +9,14 @@ keyboard.start_recording(events_queue)
 
 # gets the second arg e.g. `python3 record.py human` 
 # will need to change when working with compiled `./dist/record human`
-being = str(sys.argv[0]) 
 
+# kpPath = str(sys.argv[0])
+# if (kpPath is 'python3' or kpPath is 'python'):
+#     kpPath = str(sys.argv[1])
+# parentDir = kpPath.split('/')[1]
+being = str(sys.argv[1])  
+dataPath = str(sys.argv[2])
+ 
 def convert_to_dict(recorded):
   keyboard_activity = []
   for key_event in recorded:
@@ -24,9 +30,11 @@ def convert_to_dict(recorded):
   save_to_file(keys_json)
 
 def save_to_file(json):
+  print('saving')
+  sys.stdout.flush()
   timestr = time.strftime("%Y%m%d-%H%M%S")
   filename = being + "/" + timestr + ".json"
-  f = open(filename, "w+")
+  f = open(dataPath + '/' + filename, "w+")
   f.write(json)
   
 while True:

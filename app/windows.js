@@ -76,4 +76,12 @@ function openSettingsWindow() {
   }
 }
 
-module.exports = { openCatDetected, closeCatDetected, openSettingsWindow, closeWelcomeWin}
+function openWelcomeWindow() {
+  nw.Window.open("./app/welcome.html", windowSettings, function(win) {
+    welcomeWin = win
+    isWelcomeOpen = true
+    welcomeWin.on("close", function() {})
+  })
+}
+
+module.exports = { openCatDetected, closeCatDetected, openSettingsWindow, openWelcomeWindow, closeWelcomeWin}
