@@ -5,7 +5,6 @@ const windowSettings = {
   position: "center"
 }
 
-
 let isCatDetectedOpen = false
 let settingsWin, catDetectedWin, welcomeWin
 let isSettingsOpen = false
@@ -23,7 +22,8 @@ function openCatDetected() {
       "./app/cat-detected.html",
       {
         visible_on_all_workspaces: true,
-        show_in_taskbar: false
+        show_in_taskbar: false,
+        position: "center"
       },
       function(wind) {
         wind.focus()
@@ -84,4 +84,10 @@ function openWelcomeWindow() {
   })
 }
 
-module.exports = { openCatDetected, closeCatDetected, openSettingsWindow, openWelcomeWindow, closeWelcomeWin}
+module.exports = {
+  openCatDetected,
+  closeCatDetected,
+  openSettingsWindow,
+  openWelcomeWindow,
+  closeWelcomeWin
+}

@@ -1,11 +1,16 @@
 src/node_modules
 node_modules
 background/*
+downloads/*.dmg
 .DS_Store
 __pycache__
 dist
 build
 Keypa.ws/*
+package/KeyPaws.app
+keypaws0.1.0.dmg
 
 
 model/KeyPaws.mlproj/Data Sources/*
+# Local Netlify folder
+.netlify

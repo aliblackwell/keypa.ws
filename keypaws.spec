@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['listener/keypaws.py', 'listener/kaybord.spec'],
-             pathex=['/Users/aliblackwell/kp'],
+             pathex=['/Users/aliblackwell/kp2'],
              binaries=[],
              datas=[],
              hiddenimports=[],
