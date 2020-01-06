@@ -74,6 +74,10 @@
     "./app/**/*.{js,html}": [
       "eslint --fix",
       "git add"
+    ],
+    "./listener/*.{py}": [
+      "pylint",
+      "git add"
     ]
   }
 }
