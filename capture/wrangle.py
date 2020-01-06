@@ -9,23 +9,23 @@ import random
 
 TITLES = ['key_code', 'direction', 'time_stamp', 'target']
 FRACTION = 20
-with open('validate.csv', 'w') as validate_file:
+with open('capture/validate.csv', 'w') as validate_file:
     VALIDATE_WRITER = csv.writer(validate_file)
     VALIDATE_WRITER.writerow(TITLES)
-    with open('testing.csv', 'w') as testing_file:
+    with open('capture/testing.csv', 'w') as testing_file:
         TESTING_WRITER = csv.writer(testing_file)
         TESTING_WRITER.writerow(TITLES)
-        with open('training.csv', 'w') as new_file:
+        with open('capture/training.csv', 'w') as new_file:
             TRAINING_WRITER = csv.writer(new_file)
             TRAINING_WRITER.writerow(TITLES)
-            CAT_FILES = os.listdir(os.getcwd() + '/cat/')
+            CAT_FILES = os.listdir(os.getcwd() + '/capture/cat/')
             CAT_FILES_WDIR = []
             for f in CAT_FILES:
-                CAT_FILES_WDIR.append('cat/'+f)
-            HUMAN_FILES = os.listdir(os.getcwd() + '/human/')
+                CAT_FILES_WDIR.append('capture/cat/'+f)
+            HUMAN_FILES = os.listdir(os.getcwd() + '/capture/human/')
             HUMAN_FILES_WDIR = []
             for h in HUMAN_FILES:
-                HUMAN_FILES_WDIR.append('human/'+h)
+                HUMAN_FILES_WDIR.append('capture/human/'+h)
             ALL_FILES = CAT_FILES_WDIR + HUMAN_FILES_WDIR
             random.shuffle(ALL_FILES)
             TOTAL_FILES = len(ALL_FILES)
@@ -34,7 +34,7 @@ with open('validate.csv', 'w') as validate_file:
             for filename in ALL_FILES:
                 if filename.endswith(".json"):
                     #print("json file found:\t", filename)
-                    mammal = filename.split('/')[0]
+                    mammal = filename.split('/')[1]
                     parsed = json.loads(open(filename).read())
 
                     scan_code_list = ''

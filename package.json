@@ -40,6 +40,7 @@
     "start": "nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",
     "record:human": "python3 ./capture/record.py human",
+    "ml:wrangle": "python3 ./capture/wrangle.py",
     "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json",
     "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg ./downloads/KeyPaws0.1.0.dmg",
     "update:package": "cp *.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
