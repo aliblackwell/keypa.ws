@@ -58,7 +58,7 @@
     "bundle:mac": "dotenv cross-var appdmg ./ship-mac/appdmg.json ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
-    "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg && mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg"
+    "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg"
   },
   "devDependencies": {
     "cross-var": "^1.1.0",
