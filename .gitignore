@@ -7,8 +7,8 @@ __pycache__
 dist
 build
 Keypa.ws/*
-package/*.app
-package/*.zip
+ship-mac/*.app
+ship-mac/*.zip
 keypaws0.1.0.dmg
 
 
