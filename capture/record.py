@@ -1,6 +1,7 @@
 """
 Record keyboard input for humans and cats
 """
+from __future__ import print_function
 
 import sys
 import json
@@ -35,19 +36,20 @@ def convert_to_dict(recorded):
     save_to_file(keys_json)
 
 
-def save_to_file(json):
+def save_to_file(json_data):
     """ Save to file based on BEING """
     print('saving')
     sys.stdout.flush()
     timestr = time.strftime("%Y%m%d-%H%M%S")
     filename = BEING + "/" + timestr + ".json"
-    new_file = open(dataPath + '/' + filename, "w+")
-    new_file.write(json)
+    new_file = open('./capture/'+ filename, "w+")
+    new_file.write(json_data)
 
 
 while True:
     time.sleep(1)
     STREAM = list(EVENTS_QUEUE.queue)
-    if len(STREAM) > 0:
+    GOT_EVENTS = len(STREAM)
+    if GOT_EVENTS > 0:
         EVENTS_QUEUE.queue.clear()
         convert_to_dict(STREAM)
