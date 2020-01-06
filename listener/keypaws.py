@@ -1,20 +1,25 @@
+"""
+Get keyboard input and predict cat or human
+"""
+from __future__ import print_function
 import sys
 import time
-import keyboard
 import queue as _queue
-import coremltools
+import keyboard
 from coremltools.models import MLModel
 
-embedding_path = './model/KeyPaws.mlproj/Models/KeyPaws 4.mlmodel'
-embedding_model = MLModel(embedding_path)
+EMBEDDING_PATH = './model/KeyPaws.mlproj/Models/KeyPaws 4.mlmodel'
+EMBEDDING_MODEL = MLModel(EMBEDDING_PATH)
 
-# embedding_spec = embedding_model.get_spec()
+# embedding_spec = EMBEDDING_MODEL.get_spec()
 # print(embedding_spec.description)
 
-events_queue = _queue.Queue()
-keyboard.start_recording(events_queue)
+EVENTS_QUEUE = _queue.Queue()
+keyboard.start_recording(EVENTS_QUEUE)
+
 
 def convert_to_query(recorded):
+    "Format keyboard events for ML model"
     scan_code_list = ''
     type_list = ''
     time_list = ''
@@ -24,16 +29,19 @@ def convert_to_query(recorded):
         time_list += ';' + str(key_event.time).split('.')[1]
     return {'key_code': scan_code_list, 'direction': type_list, 'time_stamp': time_list}
 
-def get_prediction(q):
-  prediction = embedding_model.predict(q)
-  #if (prediction['target'] == 'cat'):
-  print(prediction['target'])
-  sys.stdout.flush()
+
+def get_prediction(query):
+    "Make a prediction"
+    prediction = EMBEDDING_MODEL.predict(query)
+    print(prediction['target'])
+    sys.stdout.flush()
+
 
 while True:
     time.sleep(1)
-    stream = list(events_queue.queue)
-    if (len(stream) > 0):
-        events_queue.queue.clear()
-        query = convert_to_query(stream)
-        get_prediction(query)
+    STREAM = list(EVENTS_QUEUE.queue)
+    GOT_KEYS = len(STREAM)
+    if GOT_KEYS > 0:
+        EVENTS_QUEUE.queue.clear()
+        QUERY = convert_to_query(STREAM)
+        get_prediction(QUERY)
