@@ -9,8 +9,9 @@ build
 Keypa.ws/*
 ship-mac/*.app
 ship-mac/*.zip
+ship-mac/*.dmg
 keypaws0.1.0.dmg
-
+.env
 
 model/KeyPaws.mlproj/Data Sources/*
 # Local Netlify folder
