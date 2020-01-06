@@ -1,7 +1,7 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.2.0",
+  "version": "0.2.5",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
     "nwVersion": "0.43.3",
