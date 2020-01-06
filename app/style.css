@@ -125,6 +125,7 @@ html {
   height: 100%;
   line-height: 1.4;
   overflow: hidden;
+  overflow-y: scroll;
 }
 
 *, *:before, *:after {
@@ -173,14 +174,11 @@ blockquote {
 .container {
   margin: 0 auto 0;
   position: relative;
-
+  height: 100%;
 }
 
-header {
-  position: absolute;
-  top: 4rem;
-  left: 7.5rem;
-  overflow-x: hidden;
+section {
+  height: 100%;;
 }
 
 pre {
@@ -253,14 +251,25 @@ button {
   height: 2.6rem;
 }
 
-main.dashboard {
+main.container {
   padding: 1rem 1rem 1rem 7rem;
+  min-height: 100vh;
 }
 
 .grid {
   display: grid;
   grid-column-gap: 3rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr;
+}
+
+.welcome-grid {
+  display: grid;
+  grid-column-gap: 3rem;
+  grid-template-columns: 1fr 3fr;
+}
+
+.step.hidden {
+  display: none;
 }
 
 .updated {
@@ -289,10 +298,11 @@ dd {
   font-style: normal;
 }
 
-.dashboard pre {
-  position: absolute;
-  bottom: 0;
+.container pre {
+  position: fixed;
+  bottom: 1rem;
   left: 1rem;
+  z-index: -1;
 }
 
 dl, dt, dd {

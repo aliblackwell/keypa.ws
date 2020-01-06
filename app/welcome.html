@@ -6,6 +6,7 @@
   <title>KeyPaws</title>
   <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
   <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./form-styles.css" />
 </head>
 
 <body>
@@ -18,39 +19,101 @@
 (         )
 (          )____£$tr2frfgre?
 </pre>
-    <header>
+    <section id="welcome">
 
-      <h1>Welcome</h1>
-      <h2>KeyPaws: Cat-proof your keyboard</h2>
-    </header>
-    <p>Thanks for installing KeyPaws.</p>
-    <p>In order to use Keypaws, you need to grant the app permission to listen to you keyboard.</p>
-    <div class="security-reassure">
-      <h3>Don't worry</h3>
-      <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then instantly
-        forgets what you typed. Nothing is sent over the network.</p>
-    </div>
-    <button class="welcome-action" id="grant-permission">Grant permission</button>
-    <button class="welcome-action" id="confirm-permission">I have granted permission</button>
-    <script>
-const {
-  triggerAccessibilityPermission,
-  triggerAccessibilityPermissionGranted,
-} = require("./runner.js")
+      <h1>Setup KeyPaws</h1>
+      <article class="step" data-panel="panel-0">
+        <div class="welcome-grid">
+          <header>
+            <p>Thanks for installing KeyPaws.</p>
+            <p>For KeyPaws to run, you need to grant the app permission to access your keyboard.</p>
+            <button class="stepper" id="begin-setup">Let's do this</button>
+          </header>
+          <div class="security-reassure">
+            <h3>Don't worry</h3>
+            <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then
+              instantly
+              forgets what you typed. Nothing is sent over the network.</p>
+          </div>
+        </div>
 
-const grantPermissionButton = document.querySelector("#grant-permission")
-grantPermissionButton.addEventListener("click", grantPermission)
-const confirmPermissionButton = document.querySelector("#confirm-permission")
-confirmPermissionButton.addEventListener("click", confirmPermission)
+      </article>
+      <article class="step" data-panel="panel-1">
+        <div class="welcome-grid">
+          <header>
+            <p>The image to the right shows you where you need to add KeyPaws to your accessibility settings.</p>
+            <p>Clicking the button below should take you there.</p>
+            <button class="welcome-action" id="grant-permission">Grant permission</button>
+          </header>
+          <img src="assets/accessibility-permission.png"
+            alt="KeyPaws app with a tick next to it inside Settings > Security & Privacy > Accessibility" />
+        </div>
+      </article>
 
-function grantPermission() {
-  triggerAccessibilityPermission()
-}
-function confirmPermission() {
-  triggerAccessibilityPermissionGranted()
-}
-    </script>
+      <article class="step" data-panel="panel-2">
+        <div class="welcome-grid">
+          <header>
+            <p>Once you've granted KeyPaws access to your keyboard, you can go ahead and launch the app:</p>
+
+            <button class="welcome-action" id="confirm-permission">I have granted permission</button>
+          </header>
+          <section>
+            <h2>KeyPaws stats</h2>
+            <p>The Machine Learning model that powers KeyPaws has been trained on 25,000 different key presses. Of
+              these, 12,500 were human and 12,500 were cats</p>
+          </section>
+        </div>
+      </article>
+      <button class="back" id="go-back">Go back</button>
+    </section>
   </main>
 </body>
+
+<script>
+  let currentSlide = 0
+
+  function renderPanel(slide) {
+    currentSlide = slide
+    let panels = document.querySelectorAll(".step")
+    panels.forEach(panel => {
+      panel.classList.add("hidden")
+    })
+    let visiblePanel = document.querySelector(`.step[data-panel="panel-${slide}"]`)
+    visiblePanel.classList.remove("hidden")
+  }
+
+  function goBack() {
+    if (currentSlide === 2) renderPanel(1)
+    if (currentSlide === 1) renderPanel(0)
+    if (currentSlide === 0) return false
+    if (currentSlide === 3) return false
+    return
+  }
+
+  renderPanel(2)
+
+  const backButton = document.querySelector("#go-back")
+  backButton.addEventListener("click", goBack)
+  const beginSetupButton = document.querySelector("#begin-setup")
+  beginSetupButton.addEventListener("click", () => renderPanel(1))
+
+  const grantPermissionButton = document.querySelector("#grant-permission")
+  grantPermissionButton.addEventListener("click", grantPermission)
+  const confirmPermissionButton = document.querySelector("#confirm-permission")
+  confirmPermissionButton.addEventListener("click", confirmPermission)
+
+  const {
+    triggerAccessibilityPermission,
+    triggerAccessibilityPermissionGranted,
+  } = require("./runner.js")
+
+  function grantPermission() {
+    renderPanel(2)
+    triggerAccessibilityPermission()
+  }
+  function confirmPermission() {
+    triggerAccessibilityPermissionGranted()
+  }
+</script>
 
 </html>
