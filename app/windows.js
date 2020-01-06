@@ -2,7 +2,7 @@ const windowSettings = {
   show_in_taskbar: false,
   width: 1200,
   height: 480,
-  position: "center"
+  position: "center",
 }
 
 let isCatDetectedOpen = false
@@ -13,7 +13,7 @@ nw.global.catDetectedWin = ""
 
 function hideTaskbar() {
   // TODO
-  var win = nw.Window.get()
+  //var win = nw.Window.get()
 }
 
 function openCatDetected() {
@@ -23,7 +23,7 @@ function openCatDetected() {
       {
         visible_on_all_workspaces: true,
         show_in_taskbar: false,
-        position: "center"
+        position: "center",
       },
       function(wind) {
         wind.focus()
@@ -80,7 +80,7 @@ function openWelcomeWindow() {
   nw.Window.open("./app/welcome.html", windowSettings, function(win) {
     welcomeWin = win
     isWelcomeOpen = true
-    welcomeWin.on("close", function() {})
+    isWelcomeOpen && welcomeWin.on("close", function() {})
   })
 }
 
@@ -89,5 +89,5 @@ module.exports = {
   closeCatDetected,
   openSettingsWindow,
   openWelcomeWindow,
-  closeWelcomeWin
+  closeWelcomeWin,
 }

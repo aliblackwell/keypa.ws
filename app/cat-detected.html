@@ -26,20 +26,20 @@
         <textarea name="kitty-lit" id="kitty-lit"></textarea>
         <button type="button" onclick="focusInput()">Click me to focus on the text field!</button>
       </section>
-      <button onclick="closeWindow()">Close window</button>
+      <button id="close-window">Close window</button>
     </main>
   </body>
-  <script>
-    const {closeCatDetected} = require('./windows')
+  <script>const closeWindowButton = document.getElementById("close-window")
+    closeWindowButton.addEventListener("click", closeWindow)
+
+    const { closeCatDetected } = require("./windows")
     function closeWindow() {
       closeCatDetected()
     }
     function focusInput() {
-      document
-        .getElementById('kitty-lit')
-        .focus()
+      document.getElementById("kitty-lit").focus()
     }
-    setInterval(focusInput, 100);
+    setInterval(focusInput, 100)
   </script>
 
 </html>

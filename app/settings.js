@@ -3,13 +3,11 @@ const path = require("path")
 
 nw.global.settings = ""
 
-
-
 const defaultSettings = {
   accessibilityGranted: false,
   mood: "friendly",
   mode: "active",
-  palette: "default"
+  palette: "default",
 }
 
 const settingsFile = "my-settings-file48.json"

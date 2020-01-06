@@ -1,7 +1,9 @@
+const { openSettingsWindow } = require("./windows")
+
 // Create a tray icon
 let tray = new nw.Tray({
   title: "",
-  icon: "./app/assets/paws-menu-bar-white.png"
+  icon: "./app/assets/paws-menu-bar-white.png",
 })
 
 function createStatusMenu(format) {
@@ -11,7 +13,7 @@ function createStatusMenu(format) {
   if (format === "normal") {
     let menuItemOpenSettings = new nw.MenuItem({
       type: "normal",
-      label: "Settings"
+      label: "Settings",
     })
     menuItemOpenSettings.on("click", () => {
       openSettingsWindow()

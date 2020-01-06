@@ -1,6 +1,6 @@
 {
   "name": "KeyPaws",
-  "main": "index.js",
+  "main": "./app/index.js",
   "version": "0.1.0",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
@@ -36,7 +36,7 @@
     "nw": "^0.42.6"
   },
   "scripts": {
-    "lint": "eslint --fix './app/*.js' './index.js' './app/*.html'",
+    "lint": "eslint --fix './app/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
     "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json",
     "clean": "rm -rf ./dist/ ./background/ ./build/ ./package/KeyPaws.app ./downloads/KeyPaws0.1.0.dmg",
@@ -64,5 +64,16 @@
     "lint-staged": "^9.5.0",
     "nwjs-builder-phoenix": "^1.15.0",
     "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./app/**/*.{js,html}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

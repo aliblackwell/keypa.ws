@@ -1,5 +1,5 @@
 const { spawn } = require("child_process")
-const {saveSettings} = require("./settings")
+const { saveSettings } = require("./settings")
 const { openCatDetected, closeWelcomeWin } = require("./windows")
 
 let isTriggerRunning = false
@@ -24,12 +24,11 @@ function startKeypawsScript() {
       }
     })
   })
-
 }
 
 function startRecordScript(mammal) {
   stopScript(() => {
-    childProcess = spawn('./background/keypaws/record', [mammal, `"${nw.App.dataPath}"`])
+    childProcess = spawn("./background/keypaws/record", [mammal, `"${nw.App.dataPath}"`])
     childProcess.stdout.on("data", data => {
       isScriptRunning = true
       let output = data.toString()[0]
@@ -41,10 +40,10 @@ function startRecordScript(mammal) {
 function triggerAccessibilityPermission() {
   if (!isTriggerRunning) {
     childProcess = spawn("./background/trigger/trigger")
-    childProcess.on("exit", (code, signal) => {
+    childProcess.on("exit", () => {
       isTriggerRunning = false
     })
-    childProcess.stdout.on("data", data => {
+    childProcess.stdout.on("data", () => {
       isTriggerRunning = true
     })
   }
@@ -66,5 +65,5 @@ module.exports = {
   startRecordScript,
   stopScript,
   triggerAccessibilityPermission,
-  triggerAccessibilityPermissionGranted
+  triggerAccessibilityPermissionGranted,
 }
