@@ -52,23 +52,26 @@
 
       <article class="step" data-panel="panel-2">
         <div class="welcome-grid">
+          <article id="auto-launch"></article>
           <header>
             <p>Once you've granted KeyPaws access to your keyboard, you can go ahead and launch the app:</p>
 
             <button class="welcome-action" id="confirm-permission">I have granted permission</button>
           </header>
-          <section>
+          
+          <!-- <section>
             <h2>KeyPaws stats</h2>
             <p>The Machine Learning model that powers KeyPaws has been trained on 25,000 different key presses. Of
               these, 12,500 were human and 12,500 were cats</p>
-          </section>
+          </section> -->
         </div>
       </article>
       <button class="back" id="go-back">Go back</button>
     </section>
   </main>
 </body>
-
+<script src="./widgets/auto-launch.js"></script>
+<script src="./loading.js"></script>
 <script>
   let currentSlide = 0
 

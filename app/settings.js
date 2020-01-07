@@ -10,7 +10,7 @@ const defaultSettings = {
   palette: "default",
 }
 
-const settingsFile = "my-settings-file51.json"
+const settingsFile = "my-settings-file53.json"
 const settingsPath = path.join(nw.App.dataPath, settingsFile)
 
 function getStartupSettings(handleRegular, handleFirstTime) {

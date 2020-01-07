@@ -8,7 +8,7 @@ import queue as _queue
 import keyboard
 from coremltools.models import MLModel
 
-EMBEDDING_PATH = './model/KeyPaws.mlproj/Models/KeyPaws 5.mlmodel'
+EMBEDDING_PATH = './model/KeyPaws.mlproj/Models/KeyPaws 7.mlmodel'
 EMBEDDING_MODEL = MLModel(EMBEDDING_PATH)
 
 # embedding_spec = EMBEDDING_MODEL.get_spec()

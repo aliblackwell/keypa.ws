@@ -32,10 +32,14 @@
     "show_in_taskbar": false
   },
   "dependencies": {
+    "@11ty/eleventy": "^0.9.0",
+    "auto-launch": "^5.0.5",
     "netlify-cli": "^2.25.0",
     "nw": "^0.42.6"
   },
   "scripts": {
+    "site:serve": "npx eleventy --serve",
+    "site:build": "npx eleventy",
     "lint": "eslint --fix './app/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",
@@ -43,7 +47,7 @@
     "ml:wrangle": "python3 ./capture/wrangle.py",
     "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json",
     "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg ./downloads/*.dmg",
-    "update:package": "cp *.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
+    "update:package": "cp -r ./app/* ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
     "update:app": "cp *.js /Applications/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
     "build:keypaws": "pyinstaller ./capture/keypaws.spec",
     "build:record": "pyinstaller ./capture/record.spec",
