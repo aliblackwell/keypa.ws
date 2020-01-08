@@ -6,7 +6,10 @@
 
   "globals": {
     "nw": "writable",
-    "settings": "writable"
+    "settings": "writable",
+    "describe": "readonly",
+    "beforeEach": "readonly",
+    "it":"readonly"
   },
 
   "parserOptions": {

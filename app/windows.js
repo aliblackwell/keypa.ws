@@ -1,3 +1,5 @@
+const { resetWarning } = require("./tray")
+
 const windowSettings = {
   show_in_taskbar: false,
   width: 1200,
@@ -44,6 +46,7 @@ function closeCatDetected() {
   catDetectedWin.close(true)
   isCatDetectedOpen = false
   closeSettingsWin()
+  resetWarning()
 }
 
 function closeSettingsWin() {

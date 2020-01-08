@@ -38,9 +38,10 @@
     "nw": "^0.42.6"
   },
   "scripts": {
+    "test": "mocha",
     "site:serve": "npx eleventy --serve",
     "site:build": "npx eleventy",
-    "lint": "eslint --fix './app/*.js' './app/*.html'",
+    "lint": "eslint --fix './test/*.test.js' './app/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",
     "record:human": "python3 ./capture/record.py human",
@@ -64,6 +65,9 @@
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
     "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg"
   },
+  "directories": {
+    "test": "./test"
+  },
   "devDependencies": {
     "cross-var": "^1.1.0",
     "dotenv-cli": "^3.1.0",
@@ -74,7 +78,8 @@
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "nwjs-builder-phoenix": "^1.15.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "mocha": "^7.0.0"
   },
   "husky": {
     "hooks": {
@@ -83,6 +88,10 @@
   },
   "lint-staged": {
     "./app/**/*.{js,html}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "./test/*.test.js": [
       "eslint --fix",
       "git add"
     ],
