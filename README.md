@@ -7,6 +7,10 @@ KeyPaws uses the cross-platform [NW.JS](https://nwjs.io/) framework (formerly no
 
 If you'd rather just use it, KeyPaws is available to purchase from [the KeyPaws website](https://www.keypa.ws). 
 
+### Deploying website
+
+The KeyPaws website is a static site generated using [Eleventy](https://www.11ty.dev/). Netlify has been configured to only deploy if there's a push to the `website` branch, to reduce the project's carbon footprint.
+
 ### Running locally
 
 Clone the repository and run `npm install`.

@@ -6,6 +6,7 @@ from __future__ import print_function
 import sys
 import json
 import time
+from time import time as now
 import queue as _queue
 import keyboard
 
@@ -22,13 +23,14 @@ keyboard.start_recording(EVENTS_QUEUE)
 BEING = str(sys.argv[1])
 
 
-def convert_to_dict(recorded):
+def convert_to_dict(recorded, began):
     """ Format the keypresses """
     keyboard_activity = []
     for key_event in recorded:
+        time_stamp = int((began - key_event.time) * -1000)
         k = {
             "scan_code": key_event.scan_code,
-            "time": key_event.time,
+            "time": time_stamp,
             "type": key_event.event_type
         }
         keyboard_activity.append(k)
@@ -47,9 +49,10 @@ def save_to_file(json_data):
 
 
 while True:
+    NOW = now()
     time.sleep(1)
     STREAM = list(EVENTS_QUEUE.queue)
     GOT_EVENTS = len(STREAM)
     if GOT_EVENTS > 0:
         EVENTS_QUEUE.queue.clear()
-        convert_to_dict(STREAM)
+        convert_to_dict(STREAM, NOW)
