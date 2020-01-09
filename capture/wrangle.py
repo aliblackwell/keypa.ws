@@ -44,7 +44,7 @@ with open('capture/validate.csv', 'w') as validate_file:
                     for item in parsed:
                         scan_code_list += ';' + str(item['scan_code'])
                         type_list += ';' + item['type']
-                        time_list += ';' + str(item['time']).split('.')[1]
+                        time_list += ';' + str(item['time'])
                     if COUNTER < PORTION:
                         VALIDATE_WRITER.writerow(
                             [scan_code_list, type_list, time_list, target])

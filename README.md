@@ -11,6 +11,12 @@ If you'd rather just use it, KeyPaws is available to purchase from [the KeyPaws 
 
 The KeyPaws website is a static site generated using [Eleventy](https://www.11ty.dev/). Netlify has been configured to only deploy if there's a push to the `website` branch, to reduce the project's carbon footprint.
 
+### Training the model
+
+There are scripts inside package.json for everything you might want to do. To gather cat or human keyboard data to train the model with, run `npm run record:human` or `npm run record:cat`. This will create a file for every second the keyboard is being used in a corresponding directory inside `./capture/`. Once you've gathered the data you need to format it for the model which you can do by running `npm run ml:wrangle`. Finally, download and install XCode and open the CreateML application that it comes bundled with. The wrangle script creates three files, training.csv, testing.csv and validate.csv. Use training and testing in the CreateML GUI to train the model, and then validate.csv can be used to manually validate it.
+
+
+
 ### Running locally
 
 Clone the repository and run `npm install`.
