@@ -1,6 +1,6 @@
 ---
-title: Mindfulpuss
-subtitle: Live in the meow
+title: KeyPaws
+subtitle: Catproof your keyboard
 layout: layouts/holding.njk 
 language: 'en'
 permalink: '/'

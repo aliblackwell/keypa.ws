@@ -1,10 +1,10 @@
-const { resetWarning } = require("./tray")
-
 const windowSettings = {
-  show_in_taskbar: false,
+  show_in_taskbar: true,
   width: 1200,
   height: 480,
   position: "center",
+  frame: false,
+  transparent: false,
 }
 
 let isCatDetectedOpen = false
@@ -46,12 +46,13 @@ function closeCatDetected() {
   catDetectedWin.close(true)
   isCatDetectedOpen = false
   closeSettingsWin()
-  resetWarning()
+  //resetWarning()
 }
 
 function closeSettingsWin() {
   settingsWin.hide()
   isSettingsOpen = false
+  settingsWin.setShowInTaskbar(false)
 }
 
 function closeWelcomeWin() {
@@ -67,6 +68,7 @@ function openSettingsWindow() {
       hideTaskbar()
       settingsWin = win
       isSettingsOpen = true
+      settingsWin.setShowInTaskbar(true)
       settingsWin.leaveKioskMode()
       settingsWin.on("close", function() {
         closeSettingsWin()
@@ -75,6 +77,7 @@ function openSettingsWindow() {
   } else {
     settingsWin.show()
     settingsWin.restore()
+    settingsWin.setShowInTaskbar(true)
     isSettingsOpen = true
   }
 }

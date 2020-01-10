@@ -1,7 +1,8 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.2.5",
+  "version": "0.2.3",
+  "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
     "nwVersion": "0.43.3",
@@ -29,25 +30,28 @@
     }
   },
   "window": {
-    "show_in_taskbar": false
+    "show_in_taskbar": false,
+    "frame": false,
+    "transparent": true
   },
   "dependencies": {
     "@11ty/eleventy": "^0.9.0",
     "auto-launch": "^5.0.5",
     "netlify-cli": "^2.25.0",
-    "nw": "^0.42.6"
+    "nw": "^0.43.4",
+    "nw-autoupdater": "^1.1.11"
   },
   "scripts": {
     "test": "mocha",
     "site:serve": "npx eleventy --serve",
     "site:build": "npx eleventy",
-    "lint": "eslint --fix './test/*.test.js' './app/*.js' './app/*.html'",
+    "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",
     "record:human": "python3 ./capture/record.py human",
     "ml:wrangle": "python3 ./capture/wrangle.py",
     "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json",
-    "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg ./downloads/*.dmg",
+    "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg", 
     "update:package": "cp -r ./app/* ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
     "update:app": "cp *.js /Applications/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
     "build:keypaws": "pyinstaller ./capture/keypaws.spec",
@@ -63,7 +67,8 @@
     "bundle:mac": "dotenv cross-var appdmg ./ship-mac/appdmg.json ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
-    "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg"
+    "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg",
+    "release": "dotenv -- cross-var node ./downloads/release.js"
   },
   "directories": {
     "test": "./test"
@@ -88,6 +93,10 @@
   },
   "lint-staged": {
     "./app/**/*.{js,html}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "./downloads/**.js": [
       "eslint --fix",
       "git add"
     ],

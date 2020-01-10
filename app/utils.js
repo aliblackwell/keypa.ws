@@ -4,7 +4,6 @@ function clearArray(arr, clearMethod) {
     arr.splice(i, 1)
     i--
   }
-  console.log(arr)
 }
 
 module.exports = { clearArray }

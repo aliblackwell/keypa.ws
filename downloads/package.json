@@ -1,0 +1,14 @@
+{
+  "name": "keypaws-release-server",
+  "version": "1.0.0",
+  "description": "",
+  "packages": {
+    "mac64": {
+      "url": "https://downloads.keypa.ws/KeyPaws0.2.4.dmg",
+      "size": 148767675
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
