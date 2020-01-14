@@ -1,10 +1,7 @@
 const windowSettings = {
-  show_in_taskbar: true,
   width: 1200,
   height: 480,
   position: "center",
-  frame: false,
-  transparent: false,
 }
 
 let isCatDetectedOpen = false
@@ -13,18 +10,12 @@ let isSettingsOpen = false
 let isWelcomeOpen = false
 nw.global.catDetectedWin = ""
 
-function hideTaskbar() {
-  // TODO
-  //var win = nw.Window.get()
-}
-
 function openCatDetected() {
   if (!isCatDetectedOpen) {
     nw.Window.open(
       "./app/cat-detected.html",
       {
         visible_on_all_workspaces: true,
-        show_in_taskbar: false,
         position: "center",
       },
       function(wind) {
@@ -65,10 +56,9 @@ nw.global.closeWelcomeWin = closeWelcomeWin
 function openSettingsWindow() {
   if (!isSettingsOpen) {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
-      hideTaskbar()
       settingsWin = win
       isSettingsOpen = true
-      settingsWin.setShowInTaskbar(true)
+      // settingsWin.setShowInTaskbar(true)
       settingsWin.leaveKioskMode()
       settingsWin.on("close", function() {
         closeSettingsWin()
@@ -77,7 +67,7 @@ function openSettingsWindow() {
   } else {
     settingsWin.show()
     settingsWin.restore()
-    settingsWin.setShowInTaskbar(true)
+    //settingsWin.setShowInTaskbar(true)
     isSettingsOpen = true
   }
 }

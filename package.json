@@ -1,7 +1,7 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.2.3",
+  "version": "0.2.2",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
@@ -29,13 +29,8 @@
       "diffUpdaters": true
     }
   },
-  "window": {
-    "show_in_taskbar": false,
-    "frame": false,
-    "transparent": true
-  },
+  "window": {},
   "dependencies": {
-    "@11ty/eleventy": "^0.9.0",
     "auto-launch": "^5.0.5",
     "netlify-cli": "^2.25.0",
     "nw": "^0.43.4",
@@ -51,9 +46,9 @@
     "record:human": "python3 ./capture/record.py human",
     "ml:wrangle": "python3 ./capture/wrangle.py",
     "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json",
-    "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg", 
+    "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg",
     "update:package": "cp -r ./app/* ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
-    "update:app": "cp *.js /Applications/KeyPaws.app/Contents/Resources/app.nw/ && cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
+    "update:app": "cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
     "build:keypaws": "pyinstaller ./capture/keypaws.spec",
     "build:record": "pyinstaller ./capture/record.spec",
     "build:trigger": "pyinstaller ./capture/trigger.spec",
@@ -63,17 +58,18 @@
     "sign": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app",
     "verify": "codesign --verify --deep --strict --verbose=2 ./ship-mac/KeyPaws.app",
     "is-entitled": "codesign -dvvv --entitlements :- ./ship-mac/KeyPaws.app/",
-    "build": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:app && npm run tidy:app && npm run sign",
+    "build": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:app && npm run tidy:app && npm run sign && npm run bundle:mac",
     "bundle:mac": "dotenv cross-var appdmg ./ship-mac/appdmg.json ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
-    "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg",
-    "release": "dotenv -- cross-var node ./downloads/release.js"
+    "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
+    "release": "dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg && dotenv -- cross-var node ./downloads/release.js && dotenv -- cross-var zip -r ./downloads/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws.app"
   },
   "directories": {
     "test": "./test"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^0.9.0",
     "cross-var": "^1.1.0",
     "dotenv-cli": "^3.1.0",
     "eslint": "^6.8.0",

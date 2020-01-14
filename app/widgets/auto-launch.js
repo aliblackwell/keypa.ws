@@ -5,7 +5,7 @@ var keyPawsAutoLauncher = new AutoLaunch({
   path: "/Users/aliblackwell/kp2/ship-mac/KeyPaws.app",
 })
 
-const html = `
+const autoLaunchHTML = `
 <h3>Startup</h3>
 <p class="explainer">
   Set it and forget it
@@ -34,5 +34,5 @@ function init() {
 }
 
 let AutoLaunchWidget = document.getElementById("auto-launch")
-AutoLaunchWidget.innerHTML = html
+AutoLaunchWidget.innerHTML = autoLaunchHTML
 init()

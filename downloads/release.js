@@ -5,8 +5,9 @@ const fileSizeInBytes = stats.size
 
 function updateManifest() {
   const packageJSON = JSON.parse(fs.readFileSync("./downloads/package.json"))
+  packageJSON.version = process.env.VERSION_NUMBER
   packageJSON.packages.mac64.size = fileSizeInBytes
-  packageJSON.packages.mac64.url = `https://downloads.keypa.ws/KeyPaws${process.env.VERSION_NUMBER}.dmg`
+  packageJSON.packages.mac64.url = `https://downloads.keypa.ws/KeyPaws${process.env.VERSION_NUMBER}.zip`
   fs.writeFile("./downloads/package.json", JSON.stringify(packageJSON, null, 2), err => {
     if (err) throw err
   })

@@ -9,6 +9,8 @@ build
 Keypa.ws/*
 ship-mac/*.app
 ship-mac/*.zip
+downloads/*.zip
+model/*
 ship-mac/*.dmg
 keypaws0.1.0.dmg
 .env

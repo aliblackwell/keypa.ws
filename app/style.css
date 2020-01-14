@@ -259,7 +259,7 @@ main.container {
 .grid {
   display: grid;
   grid-column-gap: 3rem;
-  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .welcome-grid {
@@ -317,4 +317,11 @@ dt {
 
 dd {
   float: right;
+}
+
+#auto-update {
+  float: right;
+  position: relative;
+  bottom: 0rem;
+  text-align: right;
 }

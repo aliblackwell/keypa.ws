@@ -23,50 +23,19 @@
     <section id="settings">
       <h1>Dashpawed</h1>
       <div class="grid">
-        <article>
-          <h3>Mood</h3>
-          <p class="explainer">
-            What happens when kitty steps on your keys? An engaging game to keep them entertained, or a scary screen to
-            keep them at bay? The choice is yours:
-          </p>
-          <div class="wrapper">
-            <input id="mood:friendly" name="mood" type="radio" value="mood:friendly">
-            <label for="mood:friendly">Friendly</label>
-          </div>
-          <div class="wrapper">
-            <input id="mood:hostile" name="mood" type="radio" value="mood:hostile">
-            <label for="mood:hostile">Hostile</label>
-          </div>
-        </article>
-        <article>
-          <h3>Theme</h3>
-          <p class="explainer">
-            KeyPaws runs best when you train it on your own keyboard use. You can also train it on your cat:
-          </p>
-          <div class="wrapper">
-            <input id="palette:active" name="palette" type="radio" value="palette:default">
-            <label for="palette:active">Default</label>
-          </div>
-          <div class="wrapper">
-            <input id="palette:learning-human" name="palette" type="radio" value="palette:light">
-            <label for="palette:learning-human">Light</label>
-          </div>
-          <div class="wrapper">
-            <input id="palette:learning-cat" name="palette" type="radio" value="palette:nyan">
-            <label for="palette:learning-cat">Nyan Cat</label>
-          </div>
-        </article>
+        <article id="mood-switcher"></article>
+        <article id="theme-switcher"></article>
         <article id="auto-launch"></article>
       </div>
-      <div id="output">
-         
-      </div>
+      <div id="auto-update"></div>
       
     </section>
 
 
   </main>
-</body style="background-color:rgba(0,0,0,0);">
+</body> 
+<script src="./widgets/mood-switcher.js"></script>
+<script src="./widgets/theme-switcher.js"></script>
 <script src="./widgets/auto-launch.js"></script>
 <script src="./loading.js"></script>
 <script src="./auto-update.js"></script>

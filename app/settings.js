@@ -14,7 +14,6 @@ const settingsFile = "my-settings-file53.json"
 const settingsPath = path.join(nw.App.dataPath, settingsFile)
 
 function getStartupSettings(handleRegular, handleFirstTime) {
-  console.log(nw.App.dataPath)
   fs.readFile(settingsPath, (err, data) => {
     if (err) {
       setDefaultSettings(err, handleFirstTime)
