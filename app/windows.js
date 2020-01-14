@@ -58,7 +58,7 @@ function openSettingsWindow() {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
       settingsWin = win
       isSettingsOpen = true
-      // settingsWin.setShowInTaskbar(true)
+      settingsWin.setShowInTaskbar(true)
       settingsWin.leaveKioskMode()
       settingsWin.on("close", function() {
         closeSettingsWin()
@@ -67,7 +67,7 @@ function openSettingsWindow() {
   } else {
     settingsWin.show()
     settingsWin.restore()
-    //settingsWin.setShowInTaskbar(true)
+    settingsWin.setShowInTaskbar(true)
     isSettingsOpen = true
   }
 }

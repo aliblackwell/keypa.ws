@@ -1,4 +1,5 @@
 src/node_modules
+.cache
 node_modules
 background/*
 downloads/*.dmg
@@ -19,3 +20,5 @@ ship-site/*
 model/KeyPaws.mlproj/Data Sources/*
 # Local Netlify folder
 .netlify
+keypaws.spec
+trigger.spec

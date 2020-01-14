@@ -1,10 +1,3 @@
-var AutoLaunch = require("auto-launch")
-
-var keyPawsAutoLauncher = new AutoLaunch({
-  name: "KeyPaws",
-  path: "/Users/aliblackwell/kp2/ship-mac/KeyPaws.app",
-})
-
 const autoLaunchHTML = `
 <h3>Startup</h3>
 <p class="explainer">
@@ -25,9 +18,9 @@ function init() {
   autoLaunchRadios.forEach(radio => {
     radio.addEventListener("click", e => {
       if (e.target.value === "auto-launch:enabled") {
-        keyPawsAutoLauncher.enable().then(d => console.log(d))
+        nw.global.keyPawsAutoLauncher.enable().then(d => console.log(d))
       } else {
-        keyPawsAutoLauncher.disable().then(d => console.log(d))
+        nw.global.keyPawsAutoLauncher.disable().then(d => console.log(d))
       }
     })
   })

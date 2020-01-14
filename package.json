@@ -1,17 +1,20 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.2.2",
+  "version": "0.3.1",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
-    "nwVersion": "0.43.3",
-    "packed": true,
-    "targets": [
-      "nsis7z"
-    ],
+    "nwVersion": "0.43.4",
+    "packed": false,
+    "files": ["app/**/*", "background/**/*", "model/KeyPaws.mlproj/Models/*"],
     "strippedProperties": [
-      "build"
+      "build",
+      "devDependencies",
+      "scripts",
+      "directories",
+      "husky",
+      "lint-staged"
     ],
     "outputPattern": "${NAME} ${VERSION} ${PLATFORM} ${ARCH}",
     "mac": {
@@ -23,10 +26,6 @@
         "CFBundleIdentifier": "com.aliblackwell.KeyPaws",
         "CFBundleDocumentTypes": []
       }
-    },
-    "nsis": {
-      "installDirectory": "$PROGRAMFILES\\${_COMPANYNAME}\\${_APPNAME}",
-      "diffUpdaters": true
     }
   },
   "window": {},
@@ -49,16 +48,19 @@
     "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg",
     "update:package": "cp -r ./app/* ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
     "update:app": "cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
-    "build:keypaws": "pyinstaller ./capture/keypaws.spec",
+    "build:keypaws": "pyinstaller ./capture/keypaws.py",
     "build:record": "pyinstaller ./capture/record.spec",
-    "build:trigger": "pyinstaller ./capture/trigger.spec",
+    "build:trigger": "pyinstaller ./capture/trigger.py",
     "bundle:python": "mkdir background && mv ./dist/keypaws ./background/keypaws && mv ./dist/trigger ./background/trigger",
-    "build:app": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && dotenv -- cross-var mv ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64/KeyPaws.app ./ship-mac/KeyPaws.app",
-    "tidy:app": "rm -rf ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/node_modules ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/downloads ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/ship-mac ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/site ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/build && chmod 775 ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger",
+    "build:auto-launch": "parcel build ./app/widgets/auto-launch-server.js --target node --bundle-node-modules",
+    "build:auto-update": "parcel build ./app/auto-update-server.js --target node --bundle-node-modules",
+    "build:app": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && dotenv -- cross-var mv ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64/KeyPaws.app ./ship-mac/KeyPaws.app && dotenv -- cross-var rm -rf ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64",
+    "tidy:app": "rm -rf ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/node_modules ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/downloads ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/ship-mac ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/site ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/build && chmod 775 ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger && mv ./dist/auto-update-server.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/auto-update-server.js && mv ./dist/auto-launch-server.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/widgets/auto-launch-server.js",
+    "sign:deep": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libswiftshader_libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libswiftshader_libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws",
     "sign": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app",
     "verify": "codesign --verify --deep --strict --verbose=2 ./ship-mac/KeyPaws.app",
     "is-entitled": "codesign -dvvv --entitlements :- ./ship-mac/KeyPaws.app/",
-    "build": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:app && npm run tidy:app && npm run sign && npm run bundle:mac",
+    "build:all": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:auto-launch && npm run build:auto-update && npm run build:app && npm run tidy:app && npm run sign:deep && npm run sign && npm run bundle:mac",
     "bundle:mac": "dotenv cross-var appdmg ./ship-mac/appdmg.json ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
@@ -71,6 +73,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^0.9.0",
     "cross-var": "^1.1.0",
+    "cssnano": "^4.1.10",
     "dotenv-cli": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
@@ -78,9 +81,9 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
+    "mocha": "^7.0.0",
     "nwjs-builder-phoenix": "^1.15.0",
-    "prettier": "^1.19.1",
-    "mocha": "^7.0.0"
+    "prettier": "^1.19.1"
   },
   "husky": {
     "hooks": {
