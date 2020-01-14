@@ -60,7 +60,7 @@
     "sign": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app",
     "verify": "codesign --verify --deep --strict --verbose=2 ./ship-mac/KeyPaws.app",
     "is-entitled": "codesign -dvvv --entitlements :- ./ship-mac/KeyPaws.app/",
-    "build:all": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:auto-launch && npm run build:auto-update && npm run build:app && npm run tidy:app && npm run sign:deep && npm run sign && npm run bundle:mac",
+    "build:all": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:auto-launch && npm run build:auto-update && npm run build:app && npm run tidy:app && npm run sign:deep && npm run sign && npm run bundle:mac && npm run zip",
     "bundle:mac": "dotenv cross-var appdmg ./ship-mac/appdmg.json ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
