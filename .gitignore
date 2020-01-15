@@ -17,6 +17,7 @@ keypaws0.1.0.dmg
 .env
 capture/*.csv
 ship-site/*
+archive/*
 model/KeyPaws.mlproj/Data Sources/*
 # Local Netlify folder
 .netlify

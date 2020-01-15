@@ -2,6 +2,7 @@ const windowSettings = {
   width: 1200,
   height: 480,
   position: "center",
+  kiosk: false,
 }
 
 let isCatDetectedOpen = false

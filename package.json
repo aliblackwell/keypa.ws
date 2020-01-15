@@ -1,7 +1,7 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
@@ -65,7 +65,7 @@
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
     "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
-    "release": "dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg && dotenv -- cross-var node ./downloads/release.js && dotenv -- cross-var zip -r ./downloads/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws.app"
+    "release": "mv ./downloads/KeyPaws*.dmg ./archive/ && mv ./downloads/KeyPaws*.zip ./archive/ && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg && mv ./ship-mac/KeyPaws.app ./KeyPaws.app && dotenv -- cross-var zip --symlinks -r ./downloads/KeyPaws%VERSION_NUMBER%.zip ./KeyPaws.app && mv ./KeyPaws.app ./build/KeyPaws.app && dotenv -- cross-var node ./downloads/release.js"
   },
   "directories": {
     "test": "./test"
