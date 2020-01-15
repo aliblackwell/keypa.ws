@@ -22,3 +22,4 @@ model/KeyPaws.mlproj/Data Sources/*
 .netlify
 keypaws.spec
 trigger.spec
+downloads/_headers

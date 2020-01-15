@@ -1,14 +1,14 @@
 module.exports = function(config) {
   // pass some assets right through
-  config.addPassthroughCopy("./site/css")
-  config.addPassthroughCopy("./site/img")
-  config.addPassthroughCopy("./site/js")
-  config.addPassthroughCopy("./site/_redirects")
-  config.addPassthroughCopy("./site/humans.txt")
-  config.addPassthroughCopy("./site/favicon.png")
+  config.addPassthroughCopy("./website/css")
+  config.addPassthroughCopy("./website/img")
+  config.addPassthroughCopy("./website/js")
+  config.addPassthroughCopy("./website/_redirects")
+  config.addPassthroughCopy("./website/humans.txt")
+  config.addPassthroughCopy("./website/favicon.png")
   return {
     dir: {
-      input: "site",
+      input: "website",
       output: "ship-site"
     }
   }
