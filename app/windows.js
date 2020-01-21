@@ -6,34 +6,42 @@ const windowSettings = {
 }
 
 let isCatDetectedOpen = false
+let isCatDetectedOpening = false
 let settingsWin, welcomeWin, catDetectedWin
 let isSettingsHidden = false
 let isWelcomeOpen = false
 
 function openCatDetected() {
-  if (!isCatDetectedOpen) {
-    nw.Window.open("./app/cat-detected.html", windowSettings, function(wind) {
-      catDetectedWin = wind
-      wind.focus()
-      wind.show()
-      wind.enterKioskMode()
-      isCatDetectedOpen = true
-      wind.on("close", function() {
-        console.log("closing!")
-        wind.close(true)
-        console.log("closed")
-      })
-    })
+  if (!isCatDetectedOpen && !isCatDetectedOpening) {
+    isCatDetectedOpening = true
+    nw.Window.open(
+      "./app/cat-detected.html",
+      {
+        visible_on_all_workspaces: true,
+        position: "center",
+      },
+      function(wind) {
+        catDetectedWin = wind
+        wind.focus()
+        wind.show()
+        wind.enterKioskMode()
+        isCatDetectedOpen = true
+        wind.on("close", function() {
+          console.log("closing!")
+        })
+      }
+    )
   }
 }
 
 function closeCatDetected() {
+  isCatDetectedOpening = false
   catDetectedWin.close()
   catDetectedWin.hide()
   catDetectedWin.leaveKioskMode()
   isCatDetectedOpen = false
   catDetectedWin.close(true)
-  closeSettingsWin()
+  //closeSettingsWin()
   nw.global.resetWarning()
   nw.global.resetEnvironment()
 }
