@@ -11,7 +11,7 @@
 .wrapper label {
     display: block;
     padding: 7px 0 0 53px;
-    font-size: 1rem;
+    font-size: var(--text-medium);
 }
 
 /*style and hide original checkbox*/
@@ -57,12 +57,20 @@
 .wrapper input+label::after {
     content: "";
     opacity: 0;
-    border: 10px solid;
+    border: 10px solid var(--text-highlight-dark);
     border-radius: 50%;
     position: absolute;
     left: 10px;
     top: 10px;
     transition: opacity 0.2s ease-in-out;
+}
+
+.light .wrapper input+label::after {
+    border: 10px solid var(--text-highlight-light);
+}
+
+.nyan .wrapper input+label::after {
+    border: 10px solid var(--text-highlight-nyan);
 }
 
 /*reveal check for 'on' state*/

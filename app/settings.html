@@ -7,37 +7,42 @@
   <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./form-styles.css" />
+  <link rel="stylesheet" href="./themes/nyan.css">
 </head>
 
-<body style="background-color:rgba(0,0,0,0.95);">
+<body>
+  <div id="theme-wrapper"></div>
   <main class="container dashboard">
-    <pre>
+    <pre class="kitcat">
  /\___/\
 (  o o  )
 (  =^=  )
 (        )
 (         )
-(          )__£etgfsss!2wewesws
+(          )____£$tr2frfgre?
 </pre>
 
     <section id="settings">
       <h1>Dashpawed</h1>
       <div class="grid">
-        <article id="mood-switcher"></article>
         <article id="theme-switcher"></article>
         <article id="auto-launch"></article>
+        <article id="show-status"></article>
       </div>
       <div id="auto-update"></div>
-      
+
     </section>
 
 
   </main>
-</body> 
-<script src="./widgets/mood-switcher.js"></script>
+
+</body>
+<script src="./themes/nyan.js"></script>
 <script src="./widgets/theme-switcher.js"></script>
 <script src="./widgets/auto-launch.js"></script>
+<script src="./widgets/show-status.js"></script>
 <script src="./loading.js"></script>
+<script src="./kitty.js"></script>
 <script src="./auto-update.js"></script>
 
 </html>

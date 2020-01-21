@@ -1,7 +1,18 @@
 <!DOCTYPE html>
-  {% include 'partials/head.njk' %}
-  <body>
-    {% include 'partials/nav.njk' %}
+{% include 'partials/head.njk' %}
+<body>
+  <main class="container">
+    <header class="banner">
+      <h1 class="logo">
+        <a href="/home"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</a>
+      </h1>
+      {% include 'partials/nav.njk' %}
+    </header>
+    {% include 'partials/noun_cat paw_1605399.svg' %}
+    <div class="content">
+      {{ content | safe }}
+    </div>
     {% include 'partials/footer.njk' %}
-  </body>
+  </main>
+</body>
 </html>

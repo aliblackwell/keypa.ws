@@ -1,13 +1,17 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
-    "nwVersion": "0.43.4",
+    "nwVersion": "0.43.6",
     "packed": false,
-    "files": ["app/**/*", "background/**/*", "model/KeyPaws.mlproj/Models/*"],
+    "files": [
+      "app/**/*",
+      "background/**/*",
+      "model/KeyPaws.mlproj/Models/*"
+    ],
     "strippedProperties": [
       "build",
       "devDependencies",
@@ -30,9 +34,10 @@
   },
   "window": {},
   "dependencies": {
+    "@adobe/leonardo-contrast-colors": "^1.0.0-alpha.2",
     "auto-launch": "^5.0.5",
     "netlify-cli": "^2.25.0",
-    "nw": "^0.43.4",
+    "nw": "^0.43.6",
     "nw-autoupdater": "^1.1.11"
   },
   "scripts": {

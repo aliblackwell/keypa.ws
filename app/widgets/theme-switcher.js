@@ -1,15 +1,38 @@
 const body = document.getElementsByTagName("body")[0]
 const ThemeSwitcherWidget = document.getElementById("theme-switcher")
 
+function getSystemTheme() {
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches // could change on mac auto
+  return isDarkMode ? "dark" : "light"
+}
+
+function getCurrentTheme() {
+  let settings = nw.global.settings
+  const currentPalette = settings.palette
+  if (!currentPalette || currentPalette === "dark" || currentPalette === "light") {
+    settings.palette = getSystemTheme()
+  }
+  if (!settings.theme) {
+    settings.theme = "default"
+  }
+  if (settings.theme === "nyan") {
+    nw.global.initNyan()
+  }
+
+  if (settings.theme === "default") {
+    nw.global.endNyan()
+  }
+  nw.global.saveSettings(settings, () => console.log("settings saved"))
+}
+
 const classes = [
-  { slug: "dark", name: "Dark" },
-  { slug: "light", name: "Light" },
+  { slug: "default", name: "Default" },
   { slug: "nyan", name: "Nyan Cat" },
 ]
 
-const ThemeSwitcherHTML = `<h3>Theme</h3>
+const ThemeSwitcherHTML = `<h2>Theme</h2>
 <p class="explainer">
-  KeyPaws runs best when you train it on your own keyboard use. You can also train it on your cat:
+  It' got to be Nyan Cat!
 </p>${classes
   .map(
     cls => `<div class="wrapper">
@@ -26,18 +49,29 @@ function initThemeSwitcherSettings() {
       for (let i = 0; i < classes.length; i++) {
         body.classList.remove(classes[i].slug)
       }
-      body.classList.add(e.target.value.split(":")[1])
+      const currentTheme = e.target.value.split(":")[1]
+      body.classList.add(currentTheme)
+      if (currentTheme === "nyan") {
+        nw.global.initNyan()
+      }
     })
   })
 }
 
 function switchStyles() {
-  body.classList.add(nw.global.settings.theme)
+  body.classList.add(nw.global.settings.palette)
+  if (nw.global.settings.theme === "nyan") {
+    body.classList.add("nyan")
+    body.classList.remove("light")
+    body.classList.add("dark")
+  } else {
+    body.classList.add(nw.global.settings.theme)
+  }
 }
 
 if (ThemeSwitcherWidget) {
   ThemeSwitcherWidget.innerHTML = ThemeSwitcherHTML
   initThemeSwitcherSettings()
 }
-
+getCurrentTheme()
 switchStyles()

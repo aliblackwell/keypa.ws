@@ -14,6 +14,36 @@ let possibleCat = false
 let possibleHuman = false
 let timeouts = []
 
+let previousFive = []
+
+function checkPreviousFive(mammal) {
+  previousFive.push(mammal)
+  if (previousFive.length > 5) {
+    previousFive.shift()
+  }
+  let c = 0
+  for (let i = 0; i < previousFive.length; i++) {
+    if (previousFive[i] === "c") c++
+  }
+
+  if (c >= 3) {
+    setStatus("TOO MUCH CAT!!")
+    openCatDetected()
+  }
+}
+
+function resetEnvironment() {
+  humanTyping = false
+  previousFive = []
+  possibleHuman = false
+  possibleCat = false
+  probableCat = false
+  resetWarning()
+  setStatus("nothing typing")
+}
+
+nw.global.resetEnvironment = resetEnvironment
+
 function startTimeout() {
   humanTyping = true
   possibleHuman = false
@@ -22,13 +52,13 @@ function startTimeout() {
   resetWarning()
   clearArray(timeouts, clearTimeout)
   const timeout = setTimeout(() => {
-    humanTyping = false
-    setStatus("nothing typing")
+    resetEnvironment()
   }, 2000)
   timeouts.push(timeout)
 }
 
 function gotKeys(mammal) {
+  checkPreviousFive(mammal)
   if (mammal === "h" && !humanTyping && !possibleCat) {
     humanTyping = true
     possibleCat = true

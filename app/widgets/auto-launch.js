@@ -1,5 +1,5 @@
-const autoLaunchHTML = `
-<h3>Startup</h3>
+const AutoLaunchHTML = `
+<h2>Startup</h2>
 <p class="explainer">
   Set it and forget it
 </p>
@@ -13,7 +13,7 @@ const autoLaunchHTML = `
 </div>
 `
 
-function init() {
+function initAutoLaunch() {
   let autoLaunchRadios = document.querySelectorAll(".auto-launch-radio")
   autoLaunchRadios.forEach(radio => {
     radio.addEventListener("click", e => {
@@ -27,5 +27,5 @@ function init() {
 }
 
 let AutoLaunchWidget = document.getElementById("auto-launch")
-AutoLaunchWidget.innerHTML = autoLaunchHTML
-init()
+AutoLaunchWidget.innerHTML = AutoLaunchHTML
+initAutoLaunch()

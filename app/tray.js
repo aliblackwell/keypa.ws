@@ -2,6 +2,7 @@ const { openSettingsWindow } = require("./windows")
 const { clearArray } = require("./utils")
 let warningIntervals = []
 let current = "white"
+let showStatus = nw.global.settings["show-status"]
 let statusUpdates = []
 // Create a tray icon
 let tray = new nw.Tray({
@@ -10,11 +11,25 @@ let tray = new nw.Tray({
 })
 
 function setStatus(words) {
-  tray.title = words
-  clearArray(statusUpdates, clearTimeout)
-  const clearStatus = setTimeout(() => (tray.title = ""), 500)
-  statusUpdates.push(clearStatus)
+  if (showStatus) {
+    tray.title = words
+    clearArray(statusUpdates, clearTimeout)
+    const clearStatus = setTimeout(() => (tray.title = ""), 500)
+    statusUpdates.push(clearStatus)
+  }
 }
+
+function setShowStatus() {
+  showStatus = true
+}
+
+nw.global.setShowStatus = setShowStatus
+
+function setHideStatus() {
+  showStatus = false
+}
+
+nw.global.setHideStatus = setHideStatus
 
 function showWarning() {
   const warningInterval = setInterval(() => {
@@ -32,6 +47,8 @@ function resetWarning() {
   warningIntervals.forEach(warning => clearInterval(warning))
   warningIntervals = []
 }
+
+nw.global.resetWarning = resetWarning
 
 function createStatusMenu(format) {
   // Give it a menu

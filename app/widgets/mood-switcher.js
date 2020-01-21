@@ -1,5 +1,5 @@
 const MoodSwitcherWidget = document.getElementById("mood-switcher")
-const MoodSwitcherHTML = `<h3>Mood</h3>
+const MoodSwitcherHTML = `<h2>Mood</h2ß>
   <p class="explainer">
     What happens when kitty steps on your keys? An engaging game to keep them entertained, or a scary screen to
     keep them at bay? The choice is yours:

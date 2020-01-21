@@ -1,7 +1,31 @@
 <!DOCTYPE html>
-  {% include 'partials/head.njk' %}
-  <body>
-    {% include 'partials/nav.njk' %}
+{% include 'partials/head.njk' %}
+<body>
+  <main class="container">
+    <header class="banner">
+      <h1 class="logo"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</h1>
+      {% include 'partials/nav.njk' %}
+      <div class="banner-box">
+        <h2 class="subtitle">Cat-proof your keyboard</h2>
+        <p>KeyPaws is an app that cat-proofs your laptop. It will keep your cat off your keyboard and your work cat paw free.</p>
+        <a class="button medium" href="/get" title="Get KeyPaws to cat-proof your computer">Get KeyPaws</a>
+      </div>
+      <pre class="homepage-kitty">
+ /\___/\
+(  o o  )
+(  =^=  )
+(        )
+(         )
+(          )
+(           )
+(            )____£$tr2frfgre??@£34r893j4r893j4r30ru430r49u03rtu430jtu4fg308gf389h3f43f43f43f43fr3
+</pre>
+
+    </header>
+    {% include 'partials/noun_cat paw_1605399.svg' %}
+    {% include 'partials/gift-widget.njk' %}
     {% include 'partials/footer.njk' %}
-  </body>
+  </main>
+  <script src="/js/home-kitty.js"></script>
+</body>
 </html>

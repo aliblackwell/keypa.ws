@@ -6,44 +6,41 @@ const windowSettings = {
 }
 
 let isCatDetectedOpen = false
-let settingsWin, catDetectedWin, welcomeWin
-let isSettingsOpen = false
+let settingsWin, welcomeWin, catDetectedWin
+let isSettingsHidden = false
 let isWelcomeOpen = false
-nw.global.catDetectedWin = ""
 
 function openCatDetected() {
   if (!isCatDetectedOpen) {
-    nw.Window.open(
-      "./app/cat-detected.html",
-      {
-        visible_on_all_workspaces: true,
-        position: "center",
-      },
-      function(wind) {
-        wind.focus()
-        wind.show()
-        wind.enterKioskMode()
-        catDetectedWin = wind
-        nw.global.catDetectedWin = wind
-        isCatDetectedOpen = true
-        catDetectedWin.on("close", function() {
-          closeCatDetected()
-        })
-      }
-    )
+    nw.Window.open("./app/cat-detected.html", windowSettings, function(wind) {
+      catDetectedWin = wind
+      wind.focus()
+      wind.show()
+      wind.enterKioskMode()
+      isCatDetectedOpen = true
+      wind.on("close", function() {
+        console.log("closing!")
+        wind.close(true)
+        console.log("closed")
+      })
+    })
   }
 }
 
 function closeCatDetected() {
-  catDetectedWin.close(true)
+  catDetectedWin.close()
+  catDetectedWin.hide()
+  catDetectedWin.leaveKioskMode()
   isCatDetectedOpen = false
+  catDetectedWin.close(true)
   closeSettingsWin()
-  //resetWarning()
+  nw.global.resetWarning()
+  nw.global.resetEnvironment()
 }
 
 function closeSettingsWin() {
   settingsWin.hide()
-  isSettingsOpen = false
+  isSettingsHidden = true
   settingsWin.setShowInTaskbar(false)
 }
 
@@ -55,10 +52,11 @@ function closeWelcomeWin() {
 nw.global.closeWelcomeWin = closeWelcomeWin
 
 function openSettingsWindow() {
-  if (!isSettingsOpen) {
+  if (!isSettingsHidden) {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
+      console.log("opening new window")
       settingsWin = win
-      isSettingsOpen = true
+      isSettingsHidden = false
       settingsWin.setShowInTaskbar(true)
       settingsWin.leaveKioskMode()
       settingsWin.on("close", function() {
@@ -66,10 +64,12 @@ function openSettingsWindow() {
       })
     })
   } else {
+    console.log("opening same window")
+    isSettingsHidden = false
     settingsWin.show()
     settingsWin.restore()
+    settingsWin.leaveKioskMode()
     settingsWin.setShowInTaskbar(true)
-    isSettingsOpen = true
   }
 }
 

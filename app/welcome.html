@@ -10,8 +10,9 @@
 </head>
 
 <body>
+  <div id="theme-wrapper"></div>
   <main class="container">
-    <pre>
+    <pre class="kitcat">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -25,12 +26,12 @@
       <article class="step" data-panel="panel-0">
         <div class="welcome-grid">
           <header>
-            <p>Thanks for installing KeyPaws.</p>
+            <h2>Thanks for installing</h2>
             <p>For KeyPaws to run, you need to grant the app permission to access your keyboard.</p>
             <button class="stepper" id="begin-setup">Let's do this</button>
           </header>
           <div class="security-reassure">
-            <h3>Don't worry</h3>
+            <h2>Don't worry</h2>
             <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then
               instantly
               forgets what you typed. Nothing is sent over the network.</p>
@@ -39,11 +40,11 @@
 
       </article>
       <article class="step" data-panel="panel-1">
-        <div class="welcome-grid">
+        <div class="welcome-grid grid-img">
           <header>
-            <p>The image to the right shows you where you need to add KeyPaws to your accessibility settings.</p>
-            <p>Clicking the button below should take you there.</p>
-            <button class="welcome-action" id="grant-permission">Grant permission</button>
+            <h2>Grant KeyPaws permission</h2>
+            <p>Please add KeyPaws to your accessibility settings.</p>
+            <button class="welcome-action" id="grant-permission">Open settings</button>
           </header>
           <img src="assets/accessibility-permission.png"
             alt="KeyPaws app with a tick next to it inside Settings > Security & Privacy > Accessibility" />
@@ -56,27 +57,24 @@
           <header>
             <p>Once you've granted KeyPaws access to your keyboard, you can go ahead and launch the app:</p>
 
-            <button class="welcome-action" id="confirm-permission">I have granted permission</button>
+            <button class="welcome-action" id="confirm-permission">Launch the app</button>
           </header>
-          
-          <!-- <section>
-            <h2>KeyPaws stats</h2>
-            <p>The Machine Learning model that powers KeyPaws has been trained on 25,000 different key presses. Of
-              these, 12,500 were human and 12,500 were cats</p>
-          </section> -->
         </div>
       </article>
-      <button class="back" id="go-back">Go back</button>
+
     </section>
   </main>
 </body>
+
+
+<script src="./themes/nyan.js"></script>
+<script src="./widgets/theme-switcher.js"></script>
 <script src="./widgets/auto-launch.js"></script>
 <script src="./loading.js"></script>
-<script>
-  let currentSlide = 0
+<script src="./kitty.js"></script>
 
+<script>
   function renderPanel(slide) {
-    currentSlide = slide
     let panels = document.querySelectorAll(".step")
     panels.forEach(panel => {
       panel.classList.add("hidden")
@@ -85,18 +83,8 @@
     visiblePanel.classList.remove("hidden")
   }
 
-  function goBack() {
-    if (currentSlide === 2) renderPanel(1)
-    if (currentSlide === 1) renderPanel(0)
-    if (currentSlide === 0) return false
-    if (currentSlide === 3) return false
-    return
-  }
-
   renderPanel(0)
 
-  const backButton = document.querySelector("#go-back")
-  backButton.addEventListener("click", goBack)
   const beginSetupButton = document.querySelector("#begin-setup")
   beginSetupButton.addEventListener("click", () => renderPanel(1))
 

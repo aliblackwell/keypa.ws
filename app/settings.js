@@ -7,10 +7,10 @@ const defaultSettings = {
   accessibilityGranted: false,
   mood: "friendly",
   mode: "active",
-  palette: "default",
+  theme: "default",
 }
 
-const settingsFile = "my-settings-file55.json"
+const settingsFile = "my-settings-file65.json"
 const settingsPath = path.join(nw.App.dataPath, settingsFile)
 
 function getStartupSettings(handleRegular, handleFirstTime) {
@@ -51,5 +51,5 @@ function saveSettings(s, callback) {
     }
   })
 }
-
+nw.global.saveSettings = saveSettings
 module.exports = { getStartupSettings, saveSettings }

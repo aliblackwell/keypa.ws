@@ -12,7 +12,6 @@ function readyNodeModules() {
 
 function showWelcomeWindow() {
   createStatusMenu("welcome")
-
   openWelcomeWindow()
 }
 

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <title>KeyPaws</title>
-    <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
-    <link rel="stylesheet" href="./style.css"/>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>KeyPaws</title>
+  <link rel="stylesheet" href="https://use.typekit.net/znv5jkt.css">
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./themes/nyan.css">
+</head>
 
-  <body>
-    <main class="container">
-      <pre>
+<body class="cat-detected">
+  <div id="theme-wrapper"></div>
+  <main class="cat-detected">
+    <pre>
  /\___/\
 (  o o  )
 (  =^=  )
@@ -18,29 +20,31 @@
 (         )
 (          )____£$tr2frfgre?
 </pre>
-      <header>
-        <h1>Cat Detected!</h1>
-        <h2>KeyPaws: Cat-proof your keyboard</h2>
-      </header>
-      <section class="welcome">
-        <textarea name="kitty-lit" id="kitty-lit"></textarea>
-        <button type="button" onclick="focusInput()">Click me to focus on the text field!</button>
-      </section>
-      <button id="close-window">Close window</button>
-    </main>
-  </body>
-  <script src="./widgets/theme-switcher.js"></script>
-  <script>const closeWindowButton = document.getElementById("close-window")
-    closeWindowButton.addEventListener("click", closeWindow)
 
-    const { closeCatDetected } = require("./windows")
-    function closeWindow() {
-      closeCatDetected()
-    }
-    function focusInput() {
-      document.getElementById("kitty-lit").focus()
-    }
-    setInterval(focusInput, 100)
-  </script>
+    <div id="content">
+      <h1>Cat Detected!</h1>
+      <button id="close-window">Close window</button>
+    </div>
+    <textarea name="kitty-lit" id="kitty-lit"></textarea>
+
+
+  </main>
+</body>
+<script src="./themes/nyan.js"></script>
+<script src="./widgets/theme-switcher.js"></script>
+<script src="./kitty.js"></script>
+<script>const closeWindowButton = document.getElementById("close-window")
+  closeWindowButton.addEventListener("click", closeWindow)
+
+  const { closeCatDetected } = require("./windows")
+  function closeWindow() {
+    closeCatDetected()
+  }
+  function focusInput() {
+    document.getElementById("kitty-lit").focus()
+  }
+  
+  setInterval(focusInput, 100)
+</script>
 
 </html>
