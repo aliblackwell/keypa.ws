@@ -20,10 +20,12 @@ function updateFileHeaders() {
   Content-Type: application/octet-stream
   Content-Disposition: attachment; filename="KeyPaws${process.env.VERSION_NUMBER}.dmg"
   Content-Length: ${dmgSizeInBytes}
-/KeyPaws0.3.1.zip
+  Cache-Control: max-age=31556926
+/KeyPaws${process.env.VERSION_NUMBER}.zip
   Content-Type: application/octet-stream
   Content-Disposition: attachment; filename="KeyPaws${process.env.VERSION_NUMBER}.zip"
   Content-Length: ${zipSizeInBytes}
+  Cache-Control: max-age=31556926
   `
   fs.writeFile("./downloads/_headers", netlifyConfig, err => {
     if (err) throw err

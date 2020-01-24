@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 {% include 'partials/head.njk' %}
-<body>
+<body class="light">
   <main class="container">
-    <header class="banner">
+    <header class="banner theme">
       <h1 class="logo"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</h1>
       {% include 'partials/nav.njk' %}
       <div class="banner-box">
@@ -23,6 +23,8 @@
 
     </header>
     {% include 'partials/noun_cat paw_1605399.svg' %}
+    {% include 'partials/features.njk' %}
+    {% include 'partials/quote.njk' %}
     {% include 'partials/gift-widget.njk' %}
     {% include 'partials/footer.njk' %}
   </main>

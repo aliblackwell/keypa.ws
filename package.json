@@ -1,7 +1,7 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
@@ -61,13 +61,13 @@
     "build:auto-update": "parcel build ./app/auto-update-server.js --target node --bundle-node-modules",
     "build:app": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && dotenv -- cross-var mv ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64/KeyPaws.app ./ship-mac/KeyPaws.app && dotenv -- cross-var rm -rf ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64",
     "tidy:app": "rm -rf ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/node_modules ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/downloads ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/ship-mac ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/website ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/build && chmod 775 ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger && mv ./dist/auto-update-server.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/auto-update-server.js && mv ./dist/auto-launch-server.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/widgets/auto-launch-server.js",
-    "sign:deep": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libswiftshader_libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.117/Libraries/libswiftshader_libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws",
+    "sign:deep": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libswiftshader_libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libswiftshader_libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws",
     "sign": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app",
     "verify": "codesign --verify --deep --strict --verbose=2 ./ship-mac/KeyPaws.app",
     "is-entitled": "codesign -dvvv --entitlements :- ./ship-mac/KeyPaws.app/",
-    "build:all": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:auto-launch && npm run build:auto-update && npm run build:app && npm run tidy:app && npm run sign:deep && npm run sign && npm run bundle:mac && npm run zip",
     "bundle:mac": "dotenv cross-var appdmg ./ship-mac/appdmg.json ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "zip": "dotenv -- cross-var zip -r ./ship-mac/KeyPaws%VERSION_NUMBER%.zip ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
+    "build:all": "npm run clean && npm run build:keypaws && npm run build:trigger && npm run bundle:python && npm run build:auto-launch && npm run build:auto-update && npm run build:app && npm run tidy:app && npm run sign:deep && npm run sign && npm run bundle:mac && npm run zip",
     "notarize": "dotenv -- cross-var xcrun altool -t osx -f './ship-mac/KeyPaws%VERSION_NUMBER%.zip' --primary-bundle-id com.aliblackwell.KeyPaws --notarize-app --verbose -itc_provider 6B4HNA4Z97 --username aliblackwell@protonmail.com",
     "staple": "dotenv cross-var xcrun stapler staple ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg",
     "release": "mv ./downloads/KeyPaws*.dmg ./archive/ && mv ./downloads/KeyPaws*.zip ./archive/ && dotenv cross-var mv ./ship-mac/KeyPaws%VERSION_NUMBER%.dmg ./downloads/KeyPaws%VERSION_NUMBER%.dmg && mv ./ship-mac/KeyPaws.app ./KeyPaws.app && dotenv -- cross-var zip --symlinks -r ./downloads/KeyPaws%VERSION_NUMBER%.zip ./KeyPaws.app && mv ./KeyPaws.app ./build/KeyPaws.app && dotenv -- cross-var node ./downloads/release.js"
