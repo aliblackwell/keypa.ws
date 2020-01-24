@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% include 'partials/head.njk' %}
+<body class="light">
+  <main class="container">
+    <header class="banner group theme">
+      <h1 class="logo">
+        <a href="/home"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</a>
+      </h1>
+      {% include 'partials/nav.njk' %}
+    </header>
+    {% include 'partials/noun_cat paw_1605399.svg' %}
+    <div class="buy-box">
+      <h2>{{ pagetitle }}</h2>
+      <p>KeyPaws makes the perfect gift.</p>
+      <p>It costs £20 and we will deliver the app via email to your chosen recipient on a date of your chosing.</p>
+      <p>We will send you an email with a page where you can manage your gift, and track its status.</p>
+
+      <button id="checkout-button-sku_GaaAQLDAoayR6V" role="link">
+        Credit/Debit card purchase
+      </button>
+      <div id="error-message"></div>
+    </div>
+    {{ content | safe }}
+    {% include 'partials/give-first-wide.njk' %}
+    {% include 'partials/give-quote.njk' %}
+    {% include 'partials/footer.njk' %}
+
+  </main>
+</body>
+</html>

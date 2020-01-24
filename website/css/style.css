@@ -269,7 +269,7 @@ i {
 blockquote {
   margin: 0 auto;
   position: relative;
-  max-width: 70%;
+  max-width: 90%;
   padding-left: 4rem;
   text-align: left;
   font-size: var(--text-jumbo);
@@ -296,7 +296,7 @@ cite {
   width: 100%;
   display: block;
   max-width: 70%;
-  margin: -1rem auto 3rem;
+  margin: 0rem auto 3rem;
   font-size: var(--text-large);
   line-height: 1;
   font-style: normal;
@@ -586,6 +586,26 @@ header h2.subtitle {
   z-index: 10;
 }
 
+.buy-box {
+  margin: 3rem auto 0;
+  position: relative;
+  width: 30rem;
+  padding: 2.5rem 5rem 8rem;
+  background: var(--bg-dark-content);
+  border: 0.5rem solid var(--bg-dark-content-border);
+  bottom: -2rem;
+  z-index: 1;
+}
+
+.buy-box h2 {
+  margin: 0;
+}
+
+.light .buy-box {
+  background: var(--bg-light-content);
+  border-color: var(--bg-light-content-border);
+}
+
 #Layer_1 {
   position: absolute;
   top: 0;
@@ -647,18 +667,21 @@ nav li a {
   color: var(--text-large-light-theme);
 }
 
-.first-wide {
+.home .first-wide {
   bottom: -2rem;
-  margin-top:0;
 }
-.second-wide {
-  z-index: 1;
-}
-.third-wide {
+
+.first-wide {
   z-index: 2;
 }
-.fourth-wide {
+.second-wide {
   z-index: 3;
+}
+.third-wide {
+  z-index: 4;
+}
+.fourth-wide {
+  z-index: 5;
 }
 
 .fourth-wide .button {
@@ -666,7 +689,7 @@ nav li a {
 }
 
 .final-wide {
-  z-index: 6;
+  z-index: 7;
 }
 
 .wide {
@@ -860,6 +883,10 @@ footer li {
 
 .cat-typing.odd {
   mask-image: url(/img/paw.svg);
+}
+
+.wide.mini-ctas .button {
+  margin-bottom: 3rem;
 }
 
 .feature-list .cta{
