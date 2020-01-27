@@ -35,6 +35,7 @@
   "window": {},
   "dependencies": {
     "@adobe/leonardo-contrast-colors": "^1.0.0-alpha.2",
+    "@sendgrid/mail": "^6.5.1",
     "auto-launch": "^5.0.5",
     "btoa": "^1.2.1",
     "cors": "^2.8.5",
