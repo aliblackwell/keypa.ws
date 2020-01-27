@@ -4,7 +4,7 @@ const app = express()
 const stripe = require("stripe")(`${process.env.STRIPE_SECRET_KEY}`)
 const endpointSecret = `${process.env.STRIPE_SIGNING_SECRET}`
 const cors = require("cors")
-const { CreateLicense } = require("./handlers/create-license.js/index.js");
+const { CreateLicense } = require("./handlers/create-license.js");
 app.use(cors())
 app.use(require("body-parser").raw({ type: "*/*" }))
 
