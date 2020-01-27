@@ -7,7 +7,7 @@ const cors = require("cors")
 app.use(cors())
 app.use(require("body-parser").raw({ type: "*/*" }))
 
-app.get("*", (req, res, next) => {
+app.post("*", (req, res, next) => {
   let sig = req.headers["stripe-signature"]
   try {
     let myEvent = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
