@@ -5,4 +5,4 @@
   # This is where we will look for package.json/.nvmrc/etc.
   command = "npm run site:build"
   publish = "ship-site"
-  functions = "./built-lambda"
+  functions = "./lambda-built"

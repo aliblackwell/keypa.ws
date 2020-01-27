@@ -24,3 +24,4 @@ model/KeyPaws.mlproj/Data Sources/*
 keypaws.spec
 trigger.spec
 downloads/_headers
+lambda-built
