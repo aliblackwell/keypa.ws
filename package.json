@@ -36,14 +36,21 @@
   "dependencies": {
     "@adobe/leonardo-contrast-colors": "^1.0.0-alpha.2",
     "auto-launch": "^5.0.5",
+    "cors": "^2.8.5",
+    "dotenv-webpack": "^1.7.0",
+    "express": "^4.17.1",
     "netlify-cli": "^2.25.0",
+    "netlify-lambda": "^1.6.3",
     "nw": "^0.43.6",
-    "nw-autoupdater": "^1.1.11"
+    "nw-autoupdater": "^1.1.11",
+    "serverless-http": "^2.3.1",
+    "stripe": "^8.7.0"
   },
   "scripts": {
     "test": "mocha",
     "site:serve": "npx eleventy --serve",
-    "site:build": "npx eleventy",
+    "site:build": "npx eleventy && npm run functions:build",
+    "functions:build": "netlify-lambda build --config ./webpack.functions.js ./lambda",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",

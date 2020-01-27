@@ -937,3 +937,7 @@ ul.tick-list li {
   font-weight: 700;
 }
 
+.light ul.tick-list li {
+  background-image: url("/img/tick-white.svg");
+}
+
