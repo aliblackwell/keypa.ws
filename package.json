@@ -50,7 +50,7 @@
     "test": "mocha",
     "site:serve": "npx eleventy --serve",
     "site:build": "npx eleventy && npm run functions:build",
-    "functions:build": "netlify-lambda build --config ./webpack.functions.js ./lambda",
+    "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",
