@@ -10,7 +10,7 @@ function CreateLicense(event, res) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      Authorization: "Basic " + btoa(`keypaws-backend:${process.env.KEYPAWS_BACKEND_PASSWORD}`),
+      Authorization: "Basic " + btoa(`aliblackwell:${process.env.KEYPAWS_BACKEND_PASSWORD}`),
       // "Content-Type": "application/x-www-form-urlencoded",
     },
     body: JSON.stringify(event),
