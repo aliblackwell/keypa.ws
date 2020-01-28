@@ -9,6 +9,7 @@ let isCatDetectedOpen = false
 let isCatDetectedOpening = false
 let settingsWin, welcomeWin, catDetectedWin
 let isSettingsHidden = false
+let isSettingsOpen = false
 let isWelcomeOpen = false
 
 function openCatDetected() {
@@ -60,11 +61,12 @@ function closeWelcomeWin() {
 nw.global.closeWelcomeWin = closeWelcomeWin
 
 function openSettingsWindow() {
-  if (!isSettingsHidden) {
+  if (!isSettingsHidden && !isSettingsOpen) {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
       console.log("opening new window")
       settingsWin = win
       isSettingsHidden = false
+      isSettingsOpen = true
       settingsWin.setShowInTaskbar(true)
       settingsWin.leaveKioskMode()
       settingsWin.on("close", function() {
