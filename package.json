@@ -51,7 +51,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "site:serve": "npx eleventy --serve",
+    "site:serve": "dotenv -- cross-var npx eleventy --serve",
     "site:build": "npx eleventy && npm run functions:build",
     "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",

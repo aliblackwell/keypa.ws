@@ -110,6 +110,7 @@ Core breakpoints
 
 @media (max-width: 600px) {
   :root {
+    --text-jumbo: 2.5rem;
     --text-medium: 16px;
   }
 }
@@ -250,6 +251,15 @@ h6 {
   font-style: normal;
 }
 
+a {
+  color: var(--text-highlight-dark);
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
 p {
   margin-bottom: 1.5em;
 }
@@ -370,7 +380,7 @@ form label {
   margin-bottom: 0.5rem;
 }
 
-form input {
+form input, form textarea {
   padding: 0.5rem 1rem;
   border-radius: 40px;
   margin-right: 10px;
@@ -382,10 +392,27 @@ form input {
   border: 0;
 }
 
-form input,
-form button {
+form textarea {
+  padding: 1rem;
+  min-height: 3rem;
+}
+
+form label {
+  margin-left: 0.5rem;
+  font-family: omnes-cond;
+  font-weight: 700;
   font-size: var(--text-large);
 }
+
+form input,
+form button,
+form textarea {
+  font-size: var(--text-large);
+  width: 100%;
+  display: block;
+  margin-bottom:1.5rem;
+}
+
 
 button,
 a.button {
@@ -448,6 +475,11 @@ button:hover,
   top: 2px;
 }
 
+button.smaller:hover,
+.button.smaller:hover {
+  top: 1px;
+}
+
 button.medium,
 .button.medium {
   padding: 20px 32px;
@@ -457,7 +489,15 @@ button.medium,
 button.smaller,
 .button.smaller {
   padding: 10px 16px;
+  box-shadow: 0px 3px var(--bg-light-theme-border);
   font-size: var(--text-small);
+}
+
+.light button.smaller,
+.light a.button.smaller {
+  background: var(--bg-dark-theme);
+  color: var(--text-large-dark);
+  box-shadow: 0 3px var(--bg-dark-theme-border);
 }
 
 .light button,
@@ -470,7 +510,7 @@ button.smaller,
 .light button:hover,
 .light a.button:hover {
   box-shadow: 0 4px var(--text-highlight-light-shadow);
-  top: 2px;
+  
 }
 
 .nyan button {
@@ -577,6 +617,7 @@ header h2.subtitle {
   font-size: var(--text-large);
   text-align: center;
   width: 65%;
+  line-height: var(--line-height);
   margin: 0rem auto;
 }
 
@@ -636,6 +677,39 @@ pre.homepage-kitty {
   bottom: 0rem;
   left: 2rem;
   transform: rotate(-1deg);
+}
+
+
+@media (max-width: 700px) {
+
+  .buy-box {
+    width: auto;
+    margin: 1rem;
+    padding: 1rem 1rem 3rem;
+  }
+  header h1.logo {
+    margin: 0 0 0 1rem;
+  }
+  header h2.subtitle {
+    margin-top: 0;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .banner-box {
+    padding: 2rem 1rem 2rem;
+  }
+  .banner-box p {
+    width: 100%;
+  }
+  pre.homepage-kitty {
+    font-size: var(--text-large);
+    color: var(--text-large-dark-theme);
+    position: absolute;
+    bottom: 0rem;
+    left: -2rem;
+    transform: rotate(-1deg);
+    opacity: 0.4;
+  }
 }
 
 .light pre.homepage-kitty {
@@ -787,8 +861,11 @@ footer .content {
   z-index: 3;
 }
 
+ 
+
 footer {
   position: relative;
+  min-height: 4rem;
   color: var(--text-medium-light);
   background: var(--bg-light-theme);
   text-align: center;
@@ -916,15 +993,16 @@ footer li {
 
 ul.tick-list {
   position: relative;
-  width: 100%;
+  max-width: 300px;
   margin: 1rem auto 0;
+  padding-left: 1rem;
 }
 
 ul.tick-list li {
   font-size: var(--text-large);
   list-style: none;
   margin-bottom: 0em;
-  max-width: 40em;
+  width: 150%;
   padding: 0em 0 0 2.8em;
   background-image: url("/img/tick.svg");
   background-position: top left;
@@ -932,7 +1010,7 @@ ul.tick-list li {
   min-height: 3em;
   background-size: 2.25em;
   display: inline-block;
-  line-height: 1.2;
+  line-height: 2.1;
   font-family: omnes-cond, sans-serif;
   font-weight: 700;
 }
@@ -941,3 +1019,54 @@ ul.tick-list li {
   background-image: url("/img/tick-white.svg");
 }
 
+@media (max-width: 700px) {
+  .attention-grab {
+    display: block;
+  }
+  ul.tick-list {
+    padding-left: 0.25rem;
+  }
+  .persuader p.subtitle {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .wide.feature-list .words, .wide.feature-list figure {
+    float: none;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .wide.feature-list figure img {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .cat-typing {
+    height: 50vw;
+  }
+
+  blockquote::before {
+    top: -1.8rem;
+    left: -1.5rem;
+    font-size: 4.5rem;
+  }
+
+  blockquote {
+    padding-left: 0;
+    font-size: var(--text-large);
+    margin-bottom: 1rem;
+  }
+
+  cite {
+    max-width: none;
+    line-height: 2;
+    font-weight: 700;;
+  }
+
+  cite img {
+    width: 3rem;
+    border-width: 0.15rem;
+    margin-bottom: -1.2rem;
+  }
+}
