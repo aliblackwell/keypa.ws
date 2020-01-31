@@ -121,6 +121,18 @@ h1 {
   color: var(--text-highlight-nyan);
 }
 
+@font-face {
+  font-family:omnes-cond-bold;
+  src: url("./assets/fonts/OmnesCond-Bold.otf");
+}
+
+@font-face {
+  font-family:omnes-cond;
+  src: url("./assets/fonts/OmnesCond-Regular.otf");
+}
+
+
+
 .body-text {
   font-family: omnes-cond, sans-serif;
   font-weight: 400;
@@ -128,7 +140,7 @@ h1 {
 }
 
 .title-text {
-  font-family: omnes-cond, sans-serif;
+  font-family: omnes-cond-bold, sans-serif;
   font-weight: 700;
   font-style: normal;
 }
@@ -276,7 +288,7 @@ h4,
 h5,
 h6 {
   clear: both;
-  font-family: omnes-cond, sans-serif;
+  font-family: omnes-cond-bold, sans-serif;
   font-weight: 700;
   font-style: normal;
 }
@@ -380,7 +392,7 @@ article h3 {
 }
 
 .wrapper label {
-  font-family: omnes-cond, sans-serif;
+  font-family: omnes-cond-bold, sans-serif;
   font-weight: 700;
   font-style: normal;
   padding-bottom: 0.5rem;
@@ -388,7 +400,7 @@ article h3 {
 }
 
 dd {
-  font-family: omnes-cond, sans-serif;
+  font-family: omnes-cond-bold, sans-serif;
   font-weight: 700;
   font-style: normal;
 }
@@ -456,7 +468,7 @@ button {
   background: var(--text-highlight-dark);
   color: var(--text-large-light);
   border: none;
-  font-family: inherit;
+  font-family: omnes-cond-bold;
   font-size: inherit;
   color: inherit;
   background: none;

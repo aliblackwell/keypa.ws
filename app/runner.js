@@ -14,19 +14,19 @@ let possibleCat = false
 let possibleHuman = false
 let timeouts = []
 
-let previousFive = []
+let previousKeys = []
 
-function checkPreviousFive(mammal) {
-  previousFive.push(mammal)
-  if (previousFive.length > 5) {
-    previousFive.shift()
+function checkPreviousKeys(mammal) {
+  previousKeys.push(mammal)
+  if (previousKeys.length > 4) {
+    previousKeys.shift()
   }
   let c = 0
-  for (let i = 0; i < previousFive.length; i++) {
-    if (previousFive[i] === "c") c++
+  for (let i = 0; i < previousKeys.length; i++) {
+    if (previousKeys[i] === "c") c++
   }
 
-  if (c >= 3) {
+  if (c >= 2) {
     setStatus("TOO MUCH CAT!!")
     openCatDetected()
   }
@@ -34,7 +34,7 @@ function checkPreviousFive(mammal) {
 
 function resetEnvironment() {
   humanTyping = false
-  previousFive = []
+  previousKeys = []
   possibleHuman = false
   possibleCat = false
   probableCat = false
@@ -58,7 +58,7 @@ function startTimeout() {
 }
 
 function gotKeys(mammal) {
-  checkPreviousFive(mammal)
+  checkPreviousKeys(mammal)
   if (mammal === "h" && !humanTyping && !possibleCat) {
     humanTyping = true
     possibleCat = true
@@ -122,8 +122,14 @@ function startKeypawsScript() {
     childProcess.stdout.on("data", data => {
       isScriptRunning = true
       let mammal = data.toString()[0]
-      //setStatus(mammal)
       gotKeys(mammal)
+    })
+    childProcess.on("exit", code => {
+      console.log(`KeyPaws exited with code ${code}`)
+      alert(
+        "KeyPaws encountered a problem and has to quit. If this was unintentional, please open the app again from your Applications folder."
+      )
+      nw.App.quit()
     })
   })
 }
