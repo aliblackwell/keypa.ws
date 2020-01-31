@@ -1,3 +1,5 @@
+const { version } = require("../../package.json")
+
 module.exports = {
-  version_number: process.env.VERSION_NUMBER
+  version_number: version
 };

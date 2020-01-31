@@ -1,7 +1,7 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
