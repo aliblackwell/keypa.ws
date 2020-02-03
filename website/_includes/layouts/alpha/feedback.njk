@@ -12,13 +12,21 @@
       <h2>{{ pagetitle }}</h2>
       <p>Thank you so much for taking the time to give feedback. This will enable us to make KeyPaws the best it possibly can be before being released to the wider public.</p>
       <p>All fields are optional.</p>
-      <form>
+      <form netlify="netlify">
         <label for="name">Your name</label>
-        <input type="text" id="name" name="name" />
+        <input type="text" id="name" name="name"/>
         <label for="email">Your email</label>
-        <input type="email" id="email" name="email" />
-        <label for="how-improve">How could <strong>KeyPaws</strong> be improved?</label>
+        <input type="email" id="email" name="email"/>
+        <label for="how-improve">How could
+          <strong>KeyPaws</strong>
+          be improved?</label>
         <textarea id="how-improve" name="how-improve"></textarea>
+        <label for="testimonial">Testimonial</label>
+        <textarea id="testimonial" name="testimonial"></textarea>
+        <div class="wrapper">
+          <input type="checkbox" name="consent" id="consent"/>        <label for="consent">By ticking the checkbox you allow KeyPaws to publish your testimonial alongside your firstname. Your email will never be published or shared with anyone.</label>
+
+        </div>
         <button>Submit your feedback</button>
       </form>
 
