@@ -22,7 +22,7 @@
   --text-large-light-theme-highlight: #006060;
 
   --bg-dark-content: #003535;
-  --bg-dark-content-border: #2f2f2f;
+  --bg-dark-content-border: #0d6868;
   --bg-dark-mid-content: #444;
   --text-medium-dark-tone: #fff;
   --text-medium-dark-content: #fff;
@@ -31,7 +31,7 @@
   --text-large-dark-content-highlight: #edbec2;
 
   --bg-light-content: #fafafa;
-  --bg-light-content-border: #ffffff;
+  --bg-light-content-border: #e2c4c6;
   --bg-light-mid-content: #ccc;
   --text-medium-light-tone: #111;
   --text-medium-light-content: #111;
@@ -1157,6 +1157,13 @@ ul.tick-list li {
   top: 0;
   width: 40px;
   border-radius: 50%;
+}
+form input, form textarea {
+  border: 2px solid var(--bg-light-theme);
+}
+
+.light form input, .light form textarea {
+  border: 2px solid var(--bg-dark-theme);
 }
 
 /*radio pseudo element styles*/
