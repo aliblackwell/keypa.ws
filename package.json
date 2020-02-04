@@ -1,8 +1,10 @@
 {
   "name": "KeyPaws",
+  "product_string": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
+  "chromium-args" : "--disable-accelerated-video",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
     "nwVersion": "0.43.6",
@@ -55,7 +57,7 @@
     "site:build": "npx eleventy && npm run functions:build",
     "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
-    "start": "nw --enable-logging=stderr",
+    "start": "nw --enable-logging=stderr --disable-gpu --disable-accelerated-video",
     "record:cat": "python3 ./capture/record.py cat",
     "record:human": "python3 ./capture/record.py human",
     "ml:wrangle": "python3 ./capture/wrangle.py",
