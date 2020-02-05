@@ -3,6 +3,7 @@ const { openSettingsWindow, openWelcomeWindow } = require("./app/windows")
 const { startKeypawsScript } = require("./app/runner")
 const { createStatusMenu } = require("./app/tray")
 const { makeAutoLauncher } = require("./app/widgets/auto-launch-server")
+const { startCountdown } = require("./app/widgets/license-server")
 const { handleAutoUpdater } = require("./app/auto-update-server")
 
 function readyNodeModules() {
@@ -24,5 +25,6 @@ function startKeypaws() {
 nw.global.startKeypaws = startKeypaws
 
 // Run the app:
+startCountdown()
 readyNodeModules()
 getStartupSettings(startKeypaws, showWelcomeWindow)

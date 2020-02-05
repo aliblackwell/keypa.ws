@@ -53,6 +53,10 @@
   color: var(--text-highlight-nyan);
 }
 
+.license-explainer {
+  margin-bottom: 0.5rem;
+}
+
 .text-medium,
 p,
 label,
@@ -60,6 +64,10 @@ input,
 h2 {
   color: var(--text-medium-dark);
   font-size: var(--text-medium);
+}
+
+input[type=text] {
+  color: var(--text-medium-light);
 }
 
 .light .text-medium,
