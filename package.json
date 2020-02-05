@@ -1,13 +1,12 @@
 {
   "name": "KeyPaws",
-  "product_string": "KeyPaws",
   "main": "./app/index.js",
   "version": "0.5.1",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
-  "chromium-args" : "--disable-accelerated-video",
+  "chromium-args": "--disable-accelerated-video",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
-    "nwVersion": "0.43.6",
+    "nwVersion": "0.44.0",
     "packed": false,
     "files": [
       "app/**/*",
@@ -46,7 +45,7 @@
     "isomorphic-fetch": "^2.2.1",
     "netlify-cli": "^2.25.0",
     "netlify-lambda": "^1.6.3",
-    "nw": "^0.43.6",
+    "nw": "^0.44.0",
     "nw-autoupdater": "^1.1.11",
     "serverless-http": "^2.3.1",
     "stripe": "^8.7.0"
@@ -73,7 +72,7 @@
     "build:auto-update": "parcel build ./app/auto-update-server.js --target node --bundle-node-modules",
     "build:app": "build --tasks mac-x64 --mirror https://dl.nwjs.io/ . && dotenv -- cross-var mv ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64/KeyPaws.app ./ship-mac/KeyPaws.app && dotenv -- cross-var rm -rf ./dist/KeyPaws\\ %VERSION_NUMBER%\\ mac\\ x64",
     "tidy:app": "rm -rf ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/node_modules ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/downloads ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/capture ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/ship-mac ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/website ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/build && chmod 775 ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger && mv ./dist/auto-update-server.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/auto-update-server.js && mv ./dist/auto-launch-server.js ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/widgets/auto-launch-server.js",
-    "sign:deep": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libswiftshader_libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/79.0.3945.130/Libraries/libswiftshader_libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws",
+    "sign:deep": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/%CHROMIUM_VERSION%/Libraries/libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/%CHROMIUM_VERSION%/Libraries/libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/%CHROMIUM_VERSION%/Libraries/libswiftshader_libEGL.dylib ./ship-mac/KeyPaws.app/Contents/Frameworks/nwjs\\ Framework.framework/Versions/%CHROMIUM_VERSION%/Libraries/libswiftshader_libGLESv2.dylib ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/trigger/trigger ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/background/keypaws/keypaws",
     "sign": "dotenv -- cross-var codesign --options runtime --entitlements ship-mac/entitlements.plist --force --verbose=4 --sign %APPLE_DEVELOPER_ID% --deep ./ship-mac/KeyPaws.app",
     "verify": "codesign --verify --deep --strict --verbose=2 ./ship-mac/KeyPaws.app",
     "is-entitled": "codesign -dvvv --entitlements :- ./ship-mac/KeyPaws.app/",

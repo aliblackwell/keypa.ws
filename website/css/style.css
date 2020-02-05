@@ -334,9 +334,13 @@ cite img {
   display: inline;
   margin-right: 1rem;
   border-radius: 100%;
-  border: solid 0.25rem var(--bg-light-theme-border);
+  border: solid 0.25rem var(--bg-dark-theme-border);
   width: 4rem;
   margin-bottom: -1.8rem;
+}
+
+.light cite img {
+  border: solid 0.25rem var(--bg-light-theme-border);
 }
 
 .holding .container {
@@ -810,7 +814,8 @@ nav li a {
   background: var(--bg-light-theme)
 }
 
-.reverse-theme p, .reverse-theme li, .reverse-theme a {
+.reverse-theme p, .reverse-theme li, .reverse-theme a,
+.reverse-theme blockquote, .reverse-theme cite {
   color: var(--text-medium-light-theme)
 }
 
@@ -820,7 +825,8 @@ nav li a {
   background: var(--bg-dark-theme);
 }
 
-.light .reverse-theme p, .light .reverse-theme li, .light .reverse-theme a {
+.light .reverse-theme p, .light .reverse-theme li, .light .reverse-theme a,
+.light .reverse-theme blockquote, .light .reverse-theme cite {
   color: var(--text-medium-dark-theme)
 }
 

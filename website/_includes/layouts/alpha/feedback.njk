@@ -12,7 +12,7 @@
       <h2>{{ pagetitle }}</h2>
       <p>Thank you so much for taking the time to give feedback. This will enable us to make KeyPaws the best it possibly can be before being released to the wider public.</p>
       <p>All fields are optional.</p>
-      <form netlify="netlify">
+      <form name="feedback" data-netlify="true" method="POST">
         <label for="name">Your name</label>
         <input type="text" id="name" name="name"/>
         <label for="email">Your email</label>
