@@ -7,11 +7,11 @@ function CreateLicense(event, res) {
   const secret = "abcdefg"
   const hash = crypto
     .createHmac("sha256", secret)
-    .update('magiclicense')
+    .update('amazingwonder')
     .digest("hex")
 
   const document = {
-    "id": hash
+    "_id": hash
   }
 
 
