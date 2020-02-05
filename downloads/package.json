@@ -1,9 +1,9 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "packages": {
     "mac64": {
-      "url": "https://keypaws.b-cdn.net/KeyPaws0.5.0.zip",
-      "size": 150804482
+      "url": "https://keypaws.b-cdn.net/KeyPaws0.5.1.zip",
+      "size": 155317528
     }
   }
 }
