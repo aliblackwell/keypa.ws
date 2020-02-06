@@ -1,30 +1,12 @@
-:root {
-  --text-medium: 20px;
-  --text-large: 1.8rem;
-  --text-small: 0.8rem;
-  --line-height: 1.2;
-  --box-width: 30rem;
-  --outline-focus: #fafa00;
-  --bg-dark: #006060;
-  --bg-light: #edbec2;
-  --bg-nyan: #036;
-  --text-small-dark: #fff;
-  --text-small-light: #aaaaaa;
-  --text-small-nyan: #fff;
-  --text-medium-dark: #fff;
-  --text-medium-light: #111;
-  --text-medium-nyan: #fff;
-  --text-large-dark: #fff;
-  --text-large-light: #000000;
-  --text-large-nyan: #fff;
-  --teal-darker: #006060;
-  --pink: #d93b58;
-  --text-highlight-dark: #edbec2;
-  --text-highlight-dark-shadow: #f1d8da;
-  --text-highlight-light: #006060;
-  --text-highlight-light-shadow: #003d3d;
-  --text-highlight-nyan: #dd91dc;
-  --text-highlight-nyan-shadow: #ff3299;
+@import url('./styles/variables.css');
+@import url('./fonts.css');
+@import url('./styles/accessible-foundations.css');
+@import  url('./styles/buttons.css');
+@import url('./styles/forms.css');
+@import url('./styles/typography.css');
+
+.keypaws {
+  color: var(--teal);
 }
 
 .text-small {
@@ -73,43 +55,6 @@ input[type="text"] {
 p, li, label, span, h1, h2, h3, h4, button, pre, img {
   user-select: none;
 }
-
-button.close,
-.nyan button.close,
-.light button.close {
-  user-select: all;
-  -webkit-app-region: no-drag;
-  position: absolute;
-  top: 0.6em;
-  left: 0.6rem;
-  z-index: 999;
-  background: #fc5753;
-  border: 1px solid #df4744;
-  border-radius: 100%;
-  width: 13px;
-  height: 13px;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-  box-shadow: none;
-}
-
-button.close span {
-}
-
-button.close:hover,
-.nyan button.close:hover,
-.light button.close:hover,
-button.close:active,
-button.close:focus {
-  background-image: url("./assets/noun_Delete_629749.svg");
-  background-size: cover;
-  box-shadow: none;
-  top: 0.6rem;
-  outline: none;
-}
-
-
 
 .light .text-medium,
 .light p,
@@ -170,149 +115,7 @@ h1 {
   color: var(--text-highlight-nyan);
 }
 
-@font-face {
-  font-family: omnes-cond-bold;
-  src: url("./assets/fonts/OmnesCond-Bold.otf");
-}
 
-@font-face {
-  font-family: omnes-cond;
-  src: url("./assets/fonts/OmnesCond-Regular.otf");
-}
-
-.body-text {
-  font-family: omnes-cond, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.title-text {
-  font-family: omnes-cond-bold, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.keypaws {
-  color: var(--teal);
-}
-
-/* apply a natural box layout model to all elements, but allowing components to change */
-
-html {
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-img {
-  max-width: 100%;
-}
-
-/*
-Core breakpoints
-*/
-
-/*--------------------------------------------------------------
-# Accessibility
---------------------------------------------------------------*/
-
-/* Text meant only for screen readers. */
-
-.screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
-  word-wrap: normal !important;
-  /* Many screen reader and browser combinations announce broken words as they would appear visually. */
-}
-
-.screen-reader-text:focus {
-  background-color: #f1f1f1;
-  border-radius: 3px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
-  clip: auto !important;
-  clip-path: none;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000;
-  /* Above WP toolbar. */
-}
-
-/* Do not show the outline on the skip link target. */
-
-#content[tabindex="-1"]:focus {
-  outline: 0;
-}
-
-*:focus {
-  outline: 4px solid var(--outline-focus);
-}
-
-/*--------------------------------------------------------------
-# Foundations
---------------------------------------------------------------*/
-
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html {
-  box-sizing: border-box;
-  font-size: var(--text-medium);
-  line-height: var(--line-height);
-  text-rendering: optimizeLegibility;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  line-height: 1.4;
-  overflow: hidden;
-}
-
-*,
-*:before,
-*:after {
-  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
-  box-sizing: inherit;
-}
-
-/*--------------------------------------------------------------
-# Core Typography
---------------------------------------------------------------*/
-
-body,
-button,
-label,
-select,
-option,
-li,
-span,
-optgroup {
-  font-family: omnes-cond, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
 
 .drag-bar {
   -webkit-app-region: drag;
@@ -325,45 +128,6 @@ optgroup {
   z-index: 5;
 }
 
-body {
-  margin: 0;
-  background: var(--bg-dark);
-  overflow-x: hidden;
-  width: 100%;
-  min-height: 100%;
-  color: var(--text-color);
-}
-
-body.light {
-  background: var(--bg-light);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  clear: both;
-  font-family: omnes-cond-bold, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-p {
-  margin-bottom: 1.5em;
-}
-
-dfn,
-cite,
-em,
-i {
-  font-style: italic;
-}
-
-blockquote {
-  margin: 0 1.5em;
-}
 
 .container {
   margin: 0 auto 0;
@@ -449,7 +213,7 @@ article h3 {
 }
 
 .wrapper label {
-  font-family: omnes-cond-bold, sans-serif;
+  font-family: omnes-cond, sans-serif;
   font-weight: 700;
   font-style: normal;
   padding-bottom: 0.5rem;
@@ -457,7 +221,7 @@ article h3 {
 }
 
 dd {
-  font-family: omnes-cond-bold, sans-serif;
+  font-family: omnes-cond, sans-serif;
   font-weight: 700;
   font-style: normal;
 }
@@ -520,82 +284,6 @@ dd {
   text-align: center;
 }
 
-button {
-  font-size: var(--text-large);
-  background: var(--text-highlight-dark);
-  color: var(--text-large-light);
-  border: none;
-  font-family: omnes-cond-bold;
-  font-size: inherit;
-  color: inherit;
-  background: none;
-  cursor: pointer;
-  padding: 25px 40px;
-  display: inline-block;
-  margin: 15px 0px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  outline: none;
-  position: relative;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  cursor: pointer;
-  background: var(--text-highlight-dark);
-  color: var(--text-large-light);
-  box-shadow: 0 6px var(--text-highlight-dark-shadow);
-  -webkit-transition: none;
-  -moz-transition: none;
-  transition: none;
-  border-radius: 40px;
-}
-
-button.medium {
-  padding: 20px 32px;
-  font-size: var(--text-medium);
-}
-
-button.smaller {
-  padding: 10px 16px;
-  font-size: var(--text-small);
-}
-
-.light button {
-  background: var(--text-highlight-light);
-  color: var(--text-large-dark);
-  box-shadow: 0 6px var(--text-highlight-light-shadow);
-}
-
-.light button:hover {
-  box-shadow: 0 4px var(--text-highlight-light-shadow);
-  top: 2px;
-}
-
-.nyan button {
-  background: var(--text-highlight-nyan);
-  color: var(--text-large-light);
-  box-shadow: 0 6px var(--text-highlight-nyan-shadow);
-}
-
-.nyan button:hover {
-  box-shadow: 0 4px var(--text-highlight-nyan-shadow);
-  top: 2px;
-}
-
-button:hover {
-  box-shadow: 0 4px var(--text-highlight-dark-shadow);
-  top: 2px;
-}
-
-button::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
 .cat-detected button {
   text-align: center;
   display: block;
@@ -624,4 +312,12 @@ button::after {
   width: 100%;
   margin-top: -21vh;
   position: absolute;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+html {
+  overflow: hidden;
 }

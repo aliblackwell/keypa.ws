@@ -5,7 +5,7 @@ const AddLicenseHTML = `
   <label for="license-key">Enter your license key</label>
   <input id="license-key" name="license-key" type="text" />
   <button class="smaller">Unlock KeyPaws</button>
-  <a class="button smaller" href="https://www.keypa.ws/get">Get your key</a>
+  <button class="smaller" id="get-key">Get your key</a>
 </form>
 `
 let autoLaunch = document.querySelector("#auto-launch")
@@ -24,12 +24,16 @@ nw.global.toggleLicensePanel = toggleLicensePanel
 
 function initAddLicense() {
   const licenseForm = document.querySelector("#license-form")
-  if (licenseForm) {
+  licenseForm &&
     licenseForm.addEventListener("submit", evt => {
       let license = evt.target[0].value
       nw.global.checkLicense(license)
     })
-  }
+  const getKey = document.querySelector("#get-key")
+  getKey &&
+    getKey.addEventListener("click", () => {
+      nw.Shell.openExternal("https://www.keypa.ws/get")
+    })
 }
 
 let AddLicenseWidget = document.getElementById("add-license")

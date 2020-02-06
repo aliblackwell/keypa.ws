@@ -1,3 +1,4 @@
+
 button,
 a.button {
   font-size: var(--text-large);
@@ -116,4 +117,40 @@ button::after,
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+
+button.close,
+.nyan button.close,
+.light button.close {
+  user-select: all;
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: 0.6em;
+  left: 0.6rem;
+  z-index: 999;
+  background: #fc5753;
+  border: 1px solid #df4744;
+  border-radius: 100%;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+button.close span {
+}
+
+button.close:hover,
+.nyan button.close:hover,
+.light button.close:hover,
+button.close:active,
+button.close:focus {
+  background-image: url("./assets/noun_Delete_629749.svg");
+  background-size: cover;
+  box-shadow: none;
+  top: 0.6rem;
+  outline: none;
 }
