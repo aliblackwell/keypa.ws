@@ -35,9 +35,8 @@
 <script>const closeWindowButton = document.getElementById("close-window")
   closeWindowButton.addEventListener("click", closeWindow)
 
-  const { closeCatDetected } = require("./windows")
   function closeWindow() {
-    closeCatDetected()
+    nw.global.closeCatDetected()
   }
   function focusInput() {
     document.getElementById("kitty-lit").focus()

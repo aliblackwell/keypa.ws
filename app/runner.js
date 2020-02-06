@@ -1,6 +1,6 @@
 const { spawn } = require("child_process")
 const { saveSettings } = require("./settings")
-const { openCatDetected, closeWelcomeWin } = require("./windows")
+const { openCatDetected } = require("./windows")
 const { showWarning, resetWarning, setStatus } = require("./tray")
 const { clearArray } = require("./utils")
 
@@ -163,7 +163,7 @@ function triggerAccessibilityPermissionGranted() {
   }
   settings.accessibilityGranted = true
   saveSettings(settings, () => {
-    closeWelcomeWin()
+    nw.global.closeWelcomeWin()
     nw.global.startKeypaws()
   })
 }

@@ -57,7 +57,7 @@
     "site:build": "npx eleventy && npm run functions:build",
     "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
-    "start": "nw --enable-logging=stderr --disable-gpu --disable-accelerated-video",
+    "start": "nw --enable-logging=stderr --disable-features=nw2",
     "record:cat": "python3 ./capture/record.py cat",
     "record:human": "python3 ./capture/record.py human",
     "ml:wrangle": "python3 ./capture/wrangle.py",

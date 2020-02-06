@@ -5,15 +5,10 @@ const windowSettings = {
   kiosk: false,
 }
 
-let isCatDetectedOpen = false
 let isCatDetectedOpening = false
-let settingsWin, welcomeWin, catDetectedWin
-let isSettingsHidden = false
-let isSettingsOpen = false
-let isWelcomeOpen = false
 
 function openCatDetected() {
-  if (!isCatDetectedOpen && !isCatDetectedOpening) {
+  if (!isCatDetectedOpening) {
     isCatDetectedOpening = true
     nw.Window.open(
       "./app/cat-detected.html",
@@ -21,80 +16,61 @@ function openCatDetected() {
         visible_on_all_workspaces: true,
         position: "center",
       },
-      function(wind) {
-        catDetectedWin = wind
-        wind.focus()
-        wind.show()
-        wind.enterKioskMode()
-        isCatDetectedOpen = true
-        wind.on("close", function() {
-          console.log("closing!")
-        })
+      function(win) {
+        win.focus()
+        win.show()
+        win.enterKioskMode()
+        nw.global.closeCatDetected = function() {
+          isCatDetectedOpening = false
+          win.close()
+          win.hide()
+          win.leaveKioskMode()
+          win.close(true)
+          win = null
+          nw.global.resetWarning()
+          nw.global.resetEnvironment()
+        }
       }
     )
   }
 }
 
-function closeCatDetected() {
-  isCatDetectedOpening = false
-  catDetectedWin.close()
-  catDetectedWin.hide()
-  catDetectedWin.leaveKioskMode()
-  isCatDetectedOpen = false
-  catDetectedWin.close(true)
-  //closeSettingsWin()
-  nw.global.resetWarning()
-  nw.global.resetEnvironment()
-}
-
-function closeSettingsWin() {
-  settingsWin.hide()
-  isSettingsHidden = true
-  settingsWin.setShowInTaskbar(false)
-}
-
-function closeWelcomeWin() {
-  welcomeWin.hide()
-  isWelcomeOpen = false
-}
-
-nw.global.closeWelcomeWin = closeWelcomeWin
-
 function openSettingsWindow() {
-  if (!isSettingsHidden && !isSettingsOpen) {
+  if (nw.global.settingsOpened) {
+    nw.global.openSettings()
+  } else {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
-      console.log("opening new window")
-      settingsWin = win
-      isSettingsHidden = false
-      isSettingsOpen = true
-      settingsWin.setShowInTaskbar(true)
-      settingsWin.leaveKioskMode()
-      settingsWin.on("close", function() {
-        closeSettingsWin()
+      win.setShowInTaskbar(true)
+      win.on("closed", function() {
+        // only used at very end, probably not necessary
+        win = null
+      })
+      win.on("close", function(c) {
+        this.setShowInTaskbar(false)
+        this.hide()
+        nw.global.openSettings = () => {
+          this.setShowInTaskbar(true)
+          this.show()
+        }
+        nw.global.settingsOpened = true
+        if (c === "quit") {
+          nw.App.quit()
+        }
       })
     })
-  } else {
-    console.log("opening same window")
-    isSettingsHidden = false
-    settingsWin.show()
-    settingsWin.restore()
-    settingsWin.leaveKioskMode()
-    settingsWin.setShowInTaskbar(true)
   }
 }
 
 function openWelcomeWindow() {
   nw.Window.open("./app/welcome.html", windowSettings, function(win) {
-    welcomeWin = win
-    isWelcomeOpen = true
-    isWelcomeOpen && welcomeWin.on("close", function() {})
+    nw.global.closeWelcomeWin = function() {
+      win.hide()
+    }
   })
 }
 
 module.exports = {
   openCatDetected,
-  closeCatDetected,
   openSettingsWindow,
   openWelcomeWindow,
-  closeWelcomeWin,
 }
