@@ -4,7 +4,8 @@ const AddLicenseHTML = `
 <form id="license-form">
   <label for="license-key">Enter your license key</label>
   <input id="license-key" name="license-key" type="text" />
-  <button class="smaller">Submit</button>
+  <button class="smaller">Unlock KeyPaws</button>
+  <a class="button smaller" href="https://www.keypa.ws/get">Get your key</a>
 </form>
 `
 let autoLaunch = document.querySelector("#auto-launch")
