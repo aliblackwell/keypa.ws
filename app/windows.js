@@ -1,4 +1,5 @@
 let isCatDetectedOpening = false
+let settingsWindowOpen = false
 
 const windowSettings = {
   width: 1200,
@@ -39,31 +40,44 @@ function openCatDetected() {
 }
 
 function openSettingsWindow() {
-  if (nw.global.settingsOpened) {
-    nw.global.openSettings()
+  if (settingsWindowOpen) {
+    nw.global.focusSettings()
   } else {
-    nw.Window.open("./app/settings.html", windowSettings, function(win) {
-      win.setShowInTaskbar(true)
-      win.leaveKioskMode()
-      win.setResizable(false)
-      nw.global.closeSettingsWin = () => {
-        win.close()
-      }
+    settingsWindowOpen = true
+    if (nw.global.settingsOpened) {
+      nw.global.openSettings()
+    } else {
+      nw.Window.open("./app/settings.html", windowSettings, function(win) {
+        win.setShowInTaskbar(true)
+        win.leaveKioskMode()
+        win.setResizable(false)
 
-      win.on("close", function(c) {
-        this.setShowInTaskbar(false)
-        this.hide()
-        nw.global.openSettings = () => {
-          this.setShowInTaskbar(true)
-          this.show()
-          this.leaveKioskMode()
+        nw.global.closeSettingsWin = () => {
+          win.close()
         }
-        nw.global.settingsOpened = true
-        if (c === "quit") {
-          nw.App.quit()
-        }
+
+        win.on("close", function(c) {
+          settingsWindowOpen = false
+          this.setShowInTaskbar(false)
+          this.hide()
+          nw.global.endNyan()
+
+          nw.global.focusSettings = () => {
+            this.focus()
+          }
+
+          nw.global.openSettings = () => {
+            this.setShowInTaskbar(true)
+            this.show()
+            this.leaveKioskMode()
+          }
+          nw.global.settingsOpened = true
+          if (c === "quit") {
+            nw.App.quit()
+          }
+        })
       })
-    })
+    }
   }
 }
 

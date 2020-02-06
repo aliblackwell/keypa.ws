@@ -1,10 +1,11 @@
 const AddLicenseHTML = `
-<h2>License key</h2>
-<p class="explainer license-explainer">Without a license key, KeyPaws will quit without warning after 2 hours.</p>
 <form id="license-form">
   <label for="license-key">Enter your license key</label>
+  <div class="inline-form">
   <input id="license-key" name="license-key" type="text" />
-  <button class="smaller">Unlock KeyPaws</button>
+  <button class="inline-smaller">Unlock</button>
+  </div>
+  <p class="explainer license-explainer">Without a license key, <strong>KeyPaws</strong> will <strong>quit without warning</strong> after 2 hours.</p>
   <button class="smaller" id="get-key">Get your key</a>
 </form>
 `

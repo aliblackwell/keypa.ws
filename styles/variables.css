@@ -21,6 +21,14 @@
   --text-medium-light-theme-highlight: #006060;
   --text-large-light-theme-highlight: #006060;
 
+  --bg-nyan-theme: #036;
+  --bg-nyan-theme-border: #dd91dc;
+  --text-medium-nyan-theme: #fff;
+  --text-large-nyan-theme: #fff;
+  --text-medium-nyan-content-highlight: #dd91dc;
+  --text-large-nyan-content-highlight:#dd91dc;
+   
+
   --bg-dark-content: #003535;
   --bg-dark-content-border: #0d6868;
   --bg-dark-mid-content: #444;

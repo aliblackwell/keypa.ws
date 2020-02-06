@@ -16,12 +16,15 @@ function getCurrentTheme() {
     settings.theme = "default"
   }
   if (settings.theme === "nyan") {
+    console.log("initting nyan")
     nw.global.initNyan()
-  }
-
-  if (settings.theme === "default") {
+  } else {
     nw.global.endNyan()
   }
+
+  // if (settings.theme === "default") {
+  //   nw.global.endNyan()
+  // }
   nw.global.saveSettings(settings, () => console.log("settings saved"))
 }
 

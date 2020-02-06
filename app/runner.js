@@ -18,7 +18,7 @@ let previousKeys = []
 
 function checkPreviousKeys(mammal) {
   previousKeys.push(mammal)
-  if (previousKeys.length > 4) {
+  if (previousKeys.length > 5) {
     previousKeys.shift()
   }
   let c = 0
@@ -26,7 +26,7 @@ function checkPreviousKeys(mammal) {
     if (previousKeys[i] === "c") c++
   }
 
-  if (c >= 2) {
+  if (c >= 3) {
     setStatus("TOO MUCH CAT!!")
     openCatDetected()
   }

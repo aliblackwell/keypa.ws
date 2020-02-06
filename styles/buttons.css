@@ -28,6 +28,7 @@ a.button {
   transition: none;
   border-radius: 40px;
   text-decoration: none;
+  font-weight: 700;
 }
 
 .opposite button,
@@ -76,6 +77,8 @@ button.smaller,
   padding: 10px 16px;
   box-shadow: 0px 3px var(--bg-light-theme-border);
   font-size: var(--text-small);
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 .light button.smaller,
@@ -98,7 +101,7 @@ button.smaller,
   
 }
 
-.nyan button {
+.nyan button, .nyan button.smaller {
   background: var(--text-highlight-nyan);
   color: var(--text-large-light);
   box-shadow: 0 6px var(--text-highlight-nyan-shadow);

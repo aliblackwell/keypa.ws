@@ -28,16 +28,10 @@ const Nyan = `
 				<div id="face"></div>
 			</div>
 		</div>
-
-		<audio autoplay="true" loop="true">
-			<source src="audio/nyan-cat.ogg" type="audio/ogg" />
-			<source src="audio/nyan-cat.mp3" type="audio/mpeg" />
-		</audio>
   </div>
 `
 
 function initNyan() {
-  const NyanWrapper = document.getElementById("theme-wrapper")
   NyanWrapper.innerHTML = Nyan
 }
 
