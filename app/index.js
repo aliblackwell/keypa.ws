@@ -28,3 +28,7 @@ nw.global.startKeypaws = startKeypaws
 startCountdown()
 readyNodeModules()
 getStartupSettings(startKeypaws, showWelcomeWindow)
+nw.Window.open("./app/welcome.html", {
+  show: false,
+  show_in_taskbar: false,
+})

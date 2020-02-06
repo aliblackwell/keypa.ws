@@ -1,11 +1,12 @@
+let isCatDetectedOpening = false
+
 const windowSettings = {
   width: 1200,
   height: 480,
   position: "center",
+  frame: false,
   kiosk: false,
 }
-
-let isCatDetectedOpening = false
 
 function openCatDetected() {
   if (!isCatDetectedOpening) {
@@ -15,21 +16,23 @@ function openCatDetected() {
       {
         visible_on_all_workspaces: true,
         position: "center",
+        kiosk: true,
       },
       function(win) {
-        win.focus()
-        win.show()
-        win.enterKioskMode()
-        nw.global.closeCatDetected = function() {
-          isCatDetectedOpening = false
+        nw.global.closeCatDetected = () => {
           win.close()
-          win.hide()
-          win.leaveKioskMode()
-          win.close(true)
-          win = null
+        }
+        win.enterKioskMode()
+        win.on("close", function() {
+          this.close(true)
+          this.hide()
+
+          this.leaveKioskMode()
+
+          isCatDetectedOpening = false
           nw.global.resetWarning()
           nw.global.resetEnvironment()
-        }
+        })
       }
     )
   }
@@ -41,16 +44,19 @@ function openSettingsWindow() {
   } else {
     nw.Window.open("./app/settings.html", windowSettings, function(win) {
       win.setShowInTaskbar(true)
-      win.on("closed", function() {
-        // only used at very end, probably not necessary
-        win = null
-      })
+      win.leaveKioskMode()
+      win.setResizable(false)
+      nw.global.closeSettingsWin = () => {
+        win.close()
+      }
+
       win.on("close", function(c) {
         this.setShowInTaskbar(false)
         this.hide()
         nw.global.openSettings = () => {
           this.setShowInTaskbar(true)
           this.show()
+          this.leaveKioskMode()
         }
         nw.global.settingsOpened = true
         if (c === "quit") {

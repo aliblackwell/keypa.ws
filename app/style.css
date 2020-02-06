@@ -66,9 +66,50 @@ h2 {
   font-size: var(--text-medium);
 }
 
-input[type=text] {
+input[type="text"] {
   color: var(--text-medium-light);
 }
+
+p, li, label, span, h1, h2, h3, h4, button, pre, img {
+  user-select: none;
+}
+
+button.close,
+.nyan button.close,
+.light button.close {
+  user-select: all;
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: 0.6em;
+  left: 0.6rem;
+  z-index: 999;
+  background: #fc5753;
+  border: 1px solid #df4744;
+  border-radius: 100%;
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+button.close span {
+}
+
+button.close:hover,
+.nyan button.close:hover,
+.light button.close:hover,
+button.close:active,
+button.close:focus {
+  background-image: url("./assets/noun_Delete_629749.svg");
+  background-size: cover;
+  box-shadow: none;
+  top: 0.6rem;
+  outline: none;
+}
+
+
 
 .light .text-medium,
 .light p,
@@ -130,16 +171,14 @@ h1 {
 }
 
 @font-face {
-  font-family:omnes-cond-bold;
+  font-family: omnes-cond-bold;
   src: url("./assets/fonts/OmnesCond-Bold.otf");
 }
 
 @font-face {
-  font-family:omnes-cond;
+  font-family: omnes-cond;
   src: url("./assets/fonts/OmnesCond-Regular.otf");
 }
-
-
 
 .body-text {
   font-family: omnes-cond, sans-serif;
@@ -161,7 +200,7 @@ h1 {
 
 html {
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 *,
@@ -249,7 +288,6 @@ html {
   height: 100%;
   line-height: 1.4;
   overflow: hidden;
-  overflow-y: scroll;
 }
 
 *,
@@ -274,6 +312,17 @@ optgroup {
   font-family: omnes-cond, sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.drag-bar {
+  -webkit-app-region: drag;
+  width: 100%;
+  height: 5rem;
+  position: absolute;
+  top: 0;
+  left: calc(13px + 0.6rem);
+  right: 0;
+  z-index: 5;
 }
 
 body {
@@ -417,7 +466,7 @@ pre.kitcat {
   position: fixed;
   color: var(--text-highlight-dark);
   bottom: 1rem;
-  left: 4rem;
+  left: 2.5rem;
   z-index: -1;
   font-size: var(--text-medium);
   font-weight: 400;
@@ -493,7 +542,7 @@ button {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
-  background:var(--text-highlight-dark);
+  background: var(--text-highlight-dark);
   color: var(--text-large-light);
   box-shadow: 0 6px var(--text-highlight-dark-shadow);
   -webkit-transition: none;
@@ -513,35 +562,34 @@ button.smaller {
 }
 
 .light button {
-  background:var(--text-highlight-light);
+  background: var(--text-highlight-light);
   color: var(--text-large-dark);
   box-shadow: 0 6px var(--text-highlight-light-shadow);
 }
 
 .light button:hover {
   box-shadow: 0 4px var(--text-highlight-light-shadow);
-top: 2px;
+  top: 2px;
 }
 
 .nyan button {
-  background:var(--text-highlight-nyan);
+  background: var(--text-highlight-nyan);
   color: var(--text-large-light);
   box-shadow: 0 6px var(--text-highlight-nyan-shadow);
 }
 
 .nyan button:hover {
   box-shadow: 0 4px var(--text-highlight-nyan-shadow);
-top: 2px;
+  top: 2px;
 }
 
 button:hover {
   box-shadow: 0 4px var(--text-highlight-dark-shadow);
-top: 2px;
+  top: 2px;
 }
 
 button::after {
-
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
   -webkit-transition: all 0.3s;
