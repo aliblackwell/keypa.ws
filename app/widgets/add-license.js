@@ -23,10 +23,27 @@ function toggleLicensePanel() {
 }
 nw.global.toggleLicensePanel = toggleLicensePanel
 
+function showIncorrectKey() {
+  let licenseExplainer = document.querySelector(".license-explainer")
+  licenseExplainer.innerHTML =
+    'Please check your key and try again, or contact <strong><a href="mailto:miaow@keypa.ws">miaow@keypa.ws</a></strong>'
+}
+
+function resetErrorMessage() {
+  let licenseExplainer = document.querySelector(".license-explainer")
+  licenseExplainer.innerHTML =
+    "Without a license key, <strong>KeyPaws</strong> will <strong>quit without warning</strong> after 2 hours."
+}
+
+nw.global.resetErrorMessage = resetErrorMessage
+
+nw.global.showIncorrectKey = showIncorrectKey
+
 function initAddLicense() {
   const licenseForm = document.querySelector("#license-form")
   licenseForm &&
     licenseForm.addEventListener("submit", evt => {
+      evt.preventDefault()
       let license = evt.target[0].value
       nw.global.checkLicense(license)
     })

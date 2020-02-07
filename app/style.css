@@ -16,7 +16,7 @@
 }
 
 .light .text-small {
-  color: var(--text-small-light);
+  color: var(--text-medium-light-theme);
 }
 
 .nyan .text-small {
@@ -67,9 +67,12 @@ p, li, label, span, h1, h2, h3, h4, button, pre, img {
 .nyan .text-medium,
 .nyan p,
 .nyan label,
-.nyan input,
 .nyan h2 {
   color: var(--text-medium-nyan);
+}
+
+.nyan input {
+  color: var(--text-medium-light);
 }
 
 .text-medium.highlight,

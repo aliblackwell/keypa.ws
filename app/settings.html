@@ -28,7 +28,7 @@
         <article id="theme-switcher"></article>
         <article id="auto-launch"></article>
         <article id="add-license"></article>
-        <article id="show-status"></article>        
+        <article id="show-status"></article>
       </div>
       <div id="auto-update"></div>
 
@@ -38,6 +38,8 @@
   </main>
 
 </body>
+
+
 <script src="./themes/nyan.js"></script>
 <script src="./widgets/theme-switcher.js"></script>
 <script src="./widgets/auto-launch.js"></script>
@@ -47,5 +49,14 @@
 <script src="./kitty.js"></script>
 <script src="./auto-update.js"></script>
 <script src="./close-icon.js"></script>
-
+<script>
+  nw.Window.get().on("close", () => {
+    nw.Window.get().on("focus", () => {
+      nw.global.setCurrentTheme()
+      nw.global.checkUpdates()
+      nw.global.resetErrorMessage()
+      nw.Window.get().removeAllListeners(["focus"])
+    })
+  })
+</script>
 </html>

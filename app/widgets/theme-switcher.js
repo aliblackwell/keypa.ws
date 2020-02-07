@@ -6,32 +6,38 @@ function getSystemTheme() {
   return isDarkMode ? "dark" : "light"
 }
 
-function getCurrentTheme() {
-  let settings = nw.global.settings
-  const currentPalette = settings.palette
-  if (!currentPalette || currentPalette === "dark" || currentPalette === "light") {
-    settings.palette = getSystemTheme()
-  }
-  if (!settings.theme) {
-    settings.theme = "default"
-  }
-  if (settings.theme === "nyan") {
-    console.log("initting nyan")
-    nw.global.initNyan()
-  } else {
-    nw.global.endNyan()
-  }
-
-  // if (settings.theme === "default") {
-  //   nw.global.endNyan()
-  // }
-  nw.global.saveSettings(settings, () => console.log("settings saved"))
-}
-
 const classes = [
   { slug: "default", name: "Default" },
   { slug: "nyan", name: "Nyan Cat" },
 ]
+
+function setCurrentTheme(theme) {
+  let settings = nw.global.settings
+  if (!settings.theme) {
+    settings.theme = "default"
+  }
+  const currentTheme = theme ? theme : settings.theme
+  const currentPalette = settings.palette
+  if (!currentPalette || currentPalette === "dark" || currentPalette === "light") {
+    settings.palette = getSystemTheme()
+  }
+  for (let i = 0; i < classes.length; i++) {
+    body.classList.remove(classes[i].slug)
+  }
+  body.classList.remove("light")
+  body.classList.remove("dark")
+  if (currentTheme === "nyan") {
+    nw.global.initNyan()
+  } else {
+    nw.global.endNyan()
+    body.classList.add(settings.palette)
+  }
+  nw.global.saveSettings(settings, () => {
+    console.log("theme settings saved")
+  })
+}
+
+nw.global.setCurrentTheme = setCurrentTheme
 
 const ThemeSwitcherHTML = `<h2>Theme</h2>
 <p class="explainer">
@@ -49,32 +55,14 @@ function initThemeSwitcherSettings() {
   let ThemeSwitcherRadios = document.querySelectorAll(".theme-switcher-radio")
   ThemeSwitcherRadios.forEach(radio => {
     radio.addEventListener("click", e => {
-      for (let i = 0; i < classes.length; i++) {
-        body.classList.remove(classes[i].slug)
-      }
       const currentTheme = e.target.value.split(":")[1]
-      body.classList.add(currentTheme)
-      if (currentTheme === "nyan") {
-        nw.global.initNyan()
-      }
+      nw.global.setCurrentTheme(currentTheme)
     })
   })
-}
-
-function switchStyles() {
-  body.classList.add(nw.global.settings.palette)
-  if (nw.global.settings.theme === "nyan") {
-    body.classList.add("nyan")
-    body.classList.remove("light")
-    body.classList.add("dark")
-  } else {
-    body.classList.add(nw.global.settings.theme)
-  }
 }
 
 if (ThemeSwitcherWidget) {
   ThemeSwitcherWidget.innerHTML = ThemeSwitcherHTML
   initThemeSwitcherSettings()
 }
-getCurrentTheme()
-switchStyles()
+setCurrentTheme()

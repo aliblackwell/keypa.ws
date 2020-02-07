@@ -11,7 +11,7 @@ const defaultSettings = {
   activeLicense: false,
 }
 
-const settingsFile = "my-settings-file65.json"
+const settingsFile = "my-settings-file66.json"
 const settingsPath = path.join(nw.App.dataPath, settingsFile)
 
 function getStartupSettings(handleRegular, handleFirstTime) {
@@ -41,15 +41,17 @@ function setDefaultSettings(err, handleFirstTime) {
 }
 
 function saveSettings(s, callback) {
-  fs.writeFile(settingsPath, JSON.stringify(s), function(err) {
-    if (err) {
-      console.info("There was an error attempting to save your data.")
-      console.warn(err.message)
-      return
-    } else if (callback) {
-      nw.global.settings = s
-      callback()
-    }
+  fs.truncate(settingsPath, 0, () => {
+    fs.writeFile(settingsPath, JSON.stringify(s), err => {
+      if (err) {
+        console.info("There was an error attempting to save your data.")
+        console.warn(err.message)
+        return
+      } else if (callback) {
+        nw.global.settings = s
+        callback()
+      }
+    })
   })
 }
 nw.global.saveSettings = saveSettings

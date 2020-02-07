@@ -12,7 +12,7 @@ function getUpdate() {
 
 nw.global.getUpdate = getUpdate // only for eslint :(
 
-async function main() {
+async function checkUpdates() {
   AutoUpdateStatus = document.querySelector("#auto-update-status")
   try {
     // Download/unpack update if any available
@@ -33,6 +33,8 @@ async function main() {
   }
 }
 
+nw.global.checkUpdates = checkUpdates
+
 AutoUpdateOutput.innerHTML = AutoUpdateHTML
 
-main()
+checkUpdates()

@@ -1,4 +1,5 @@
 const NyanWrapper = document.getElementById("theme-wrapper")
+const bodyNyan = document.getElementsByTagName("body")[0]
 
 const Nyan = `  
   <div class="nyan-wrapper">
@@ -33,12 +34,14 @@ const Nyan = `
 
 function initNyan() {
   NyanWrapper.innerHTML = Nyan
+  bodyNyan.classList.add("nyan")
 }
 
 nw.global.initNyan = initNyan
 
 function endNyan() {
   NyanWrapper.innerHTML = ""
+  bodyNyan.classList.remove("nyan")
 }
 
 nw.global.endNyan = endNyan

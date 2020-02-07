@@ -33,6 +33,7 @@ function checkLicense(license) {
     })
     .catch(err => {
       console.log("No license found!")
+      nw.global.showIncorrectKey()
       console.log(err)
     })
 }
