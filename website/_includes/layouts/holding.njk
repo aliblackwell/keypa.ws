@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 {% include 'partials/head.njk' %}
-<body class="holding">
+<body class="home">
   <main class="container">
-    <pre class="pre-text">
+    <header class="banner theme">
+      <h1 class="logo"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</h1>
+      <div class="banner-box">
+        <h2 class="subtitle">Cat-proof your keyboard</h2>
+        <p>KeyPaws protects your work from uninvited paw presses. To get a lifetime license key <strong>FOR FREE</strong>, please sign up for our pre-launch trial:</p>
+        <form netlify="netlify" class="inline-form">
+        <label for="email" class="screen-reader-text">Email:</label>
+        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+        <button class="medium title-text inline-smaller"">Sign up meow!</button>
+      </form>
+      </div>
+      <pre class="homepage-kitty" tabindex="-1">
  /\___/\
 (  o o  )
 (  =^=  )
 (        )
 (         )
-(          )____£$tr2frfgre??@£
+(          )
+(           )
+(            )____£$tr2frfgre??@£34r893j4r893j4r30ru430r49u03rtu430jtu4fg308gf389h3f43f43f43f43fr3
 </pre>
-    <header class="holding">
 
-      <h1>KeyPaWs</h1>
-      <h2>Cat-proof your keyboard</h2>
     </header>
-    <section class="welcome">
-      <p>How many times have you found your cat sitting on your keyboard, oblivious to the chaos they're causing onscreen?</p>
-      <p>
-        <strong class="title-text keypaws">KeyPaws</strong>
-        is a clever little tool that runs in the background and pauses your computer whenever kitty takes a nap on your keys.</p>
-      <p class="launching-soon">
-        <strong class="title-text keypaws">KeyPaws</strong>
-        is launching soon. Sign up below to be notified:</p>
-      <form netlify="netlify">
-        <label for="email">Email:</label>
-        <input type="email" required="required" name="email" id="email" labelled-by="email"/>
-        <button class="medium title-text">Sign up meow!</button>
-      </form>
-    </section>
-
+    {% include 'partials/noun_cat paw_1605399.svg' %}
+    {% include 'partials/alpha/features.njk' %}
+    {% include 'partials/alpha/quote.njk' %}
+    {% include 'partials/alpha/footer.njk' %}
   </main>
+  <script src="/js/home-kitty.js"></script>
 </body>
-</html>   
-   
+</html>
+      
+ 

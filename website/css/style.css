@@ -1,8 +1,8 @@
-@import url('../styles/variables.css');
-@import url('../styles/accessible-foundations.css');
-@import url('../styles/buttons.css');
-@import url('../styles/forms.css');
-@import url('../styles/typography.css');
+@import url("../styles/variables.css");
+@import url("../styles/accessible-foundations.css");
+@import url("../styles/buttons.css");
+@import url("../styles/forms.css");
+@import url("../styles/typography.css");
 
 .holding .container {
   margin: 0 auto 0;
@@ -113,7 +113,7 @@ header h2.subtitle {
   position: relative;
   width: 100%;
   text-align: center;
-  
+
   margin: 2rem 0 0;
   z-index: 5;
   line-height: var(--line-height);
@@ -186,6 +186,31 @@ header.banner {
   clear: both;
 }
 
+.banner-box .inline-form input {
+  width: 19rem;
+}
+
+.banner-box .inline-form {
+  max-width: 15rem;
+  margin: 1rem auto 0;
+}
+
+.banner-box .inline-form button {
+  width: 8rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  banner-box .inline-form input {
+    width: 13rem;
+  }
+  .banner-box .inline-form button {
+    width: 5rem;
+    padding-left: 0;
+  }
+}
+
 pre.homepage-kitty {
   font-size: var(--text-large);
   color: var(--text-large-dark-theme);
@@ -194,11 +219,10 @@ pre.homepage-kitty {
   transform: rotate(-0.8deg);
   width: 100%;
   overflow-x: hidden;
+  z-index: -1;
 }
 
-
 @media (max-width: 700px) {
-
   .buy-box {
     width: auto;
     margin: 1rem;
@@ -297,32 +321,38 @@ nav li a {
   background: var(--bg-light-theme);
 }
 
-.theme p, .theme li  {
+.theme p,
+.theme li {
   color: var(--text-medium-dark-theme);
 }
 
-.light .theme p, .light .theme li {
+.light .theme p,
+.light .theme li {
   color: var(--text-medium-light-theme);
 }
 
 .wide.reverse-theme {
-  background: var(--bg-light-theme)
+  background: var(--bg-light-theme);
 }
 
-.reverse-theme p, .reverse-theme li, .reverse-theme a,
-.reverse-theme blockquote, .reverse-theme cite {
-  color: var(--text-medium-light-theme)
+.reverse-theme p,
+.reverse-theme li,
+.reverse-theme a,
+.reverse-theme blockquote,
+.reverse-theme cite {
+  color: var(--text-medium-light-theme);
 }
-
-
 
 .light .wide.reverse-theme {
   background: var(--bg-dark-theme);
 }
 
-.light .reverse-theme p, .light .reverse-theme li, .light .reverse-theme a,
-.light .reverse-theme blockquote, .light .reverse-theme cite {
-  color: var(--text-medium-dark-theme)
+.light .reverse-theme p,
+.light .reverse-theme li,
+.light .reverse-theme a,
+.light .reverse-theme blockquote,
+.light .reverse-theme cite {
+  color: var(--text-medium-dark-theme);
 }
 
 .wide.tone {
@@ -333,11 +363,17 @@ nav li a {
   background: var(--bg-light-mid-content);
 }
 
-.tone p, .tone li, .tone a, .light .tone a.button {
+.tone p,
+.tone li,
+.tone a,
+.light .tone a.button {
   color: var(--text-medium-dark-tone);
 }
 
-.light .tone p, .light .tone li, .light .tone a, .tone a.button {
+.light .tone p,
+.light .tone li,
+.light .tone a,
+.tone a.button {
   color: var(--text-medium-light-tone);
 }
 
@@ -397,8 +433,6 @@ footer .content {
   position: relative;
   z-index: 3;
 }
-
- 
 
 footer {
   position: relative;
@@ -472,9 +506,6 @@ footer li {
   padding-left: 4rem;
 }
 
- 
- 
-
 .wide.feature-list article:nth-child(2n) .words,
 .wide.feature-list article:nth-child(2n) figure {
   float: right;
@@ -508,7 +539,7 @@ footer li {
   margin-bottom: 3rem;
 }
 
-.feature-list .cta{
+.feature-list .cta {
   text-align: center;
   margin-bottom: 2rem;
   clear: both;
@@ -574,7 +605,8 @@ ul.tick-list li {
     margin-bottom: 1rem;
   }
 
-  .wide.feature-list .words, .wide.feature-list figure {
+  .wide.feature-list .words,
+  .wide.feature-list figure {
     float: none;
     width: 100%;
     padding-left: 0;
@@ -604,7 +636,7 @@ ul.tick-list li {
   cite {
     max-width: none;
     line-height: 2;
-    font-weight: 700;;
+    font-weight: 700;
   }
 
   cite img {
@@ -613,4 +645,3 @@ ul.tick-list li {
     margin-bottom: -1.2rem;
   }
 }
-

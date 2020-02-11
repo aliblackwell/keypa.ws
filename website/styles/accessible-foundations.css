@@ -64,7 +64,8 @@ img {
 }
 
 *:focus {
-  outline: 4px solid var(--outline-focus);
+  outline: none;
+  box-shadow: 2px 2px 0px 10px var(--outline-focus) !important;
 }
 
 /*--------------------------------------------------------------

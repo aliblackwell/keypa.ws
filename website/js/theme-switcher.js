@@ -17,6 +17,5 @@ function checkMode() {
 
 checkMode()
 
-setInterval(function() {
-  checkMode()
-}, 1000);
+
+window.matchMedia("(prefers-color-scheme: dark)").addListener(checkMode)

@@ -11,30 +11,31 @@ const classes = [
   { slug: "nyan", name: "Nyan Cat" },
 ]
 
-function setCurrentTheme(theme) {
+function setNewTheme(theme) {
   let settings = nw.global.settings
-  if (!settings.theme) {
-    settings.theme = "default"
-  }
-  const currentTheme = theme ? theme : settings.theme
+  settings.theme = theme
+  nw.global.saveSettings(settings, () => {
+    nw.global.setCurrentTheme()
+  })
+}
+
+function setCurrentTheme() {
+  let settings = nw.global.settings
   const currentPalette = settings.palette
   if (!currentPalette || currentPalette === "dark" || currentPalette === "light") {
     settings.palette = getSystemTheme()
   }
-  for (let i = 0; i < classes.length; i++) {
-    body.classList.remove(classes[i].slug)
-  }
-  body.classList.remove("light")
-  body.classList.remove("dark")
-  if (currentTheme === "nyan") {
+  if (settings.theme === "nyan") {
     nw.global.initNyan()
   } else {
     nw.global.endNyan()
+    for (let i = 0; i < classes.length; i++) {
+      body.classList.remove(classes[i].slug)
+    }
+    body.classList.remove("light")
+    body.classList.remove("dark")
     body.classList.add(settings.palette)
   }
-  nw.global.saveSettings(settings, () => {
-    console.log("theme settings saved")
-  })
 }
 
 nw.global.setCurrentTheme = setCurrentTheme
@@ -56,7 +57,7 @@ function initThemeSwitcherSettings() {
   ThemeSwitcherRadios.forEach(radio => {
     radio.addEventListener("click", e => {
       const currentTheme = e.target.value.split(":")[1]
-      nw.global.setCurrentTheme(currentTheme)
+      setNewTheme(currentTheme)
     })
   })
 }
@@ -66,3 +67,5 @@ if (ThemeSwitcherWidget) {
   initThemeSwitcherSettings()
 }
 setCurrentTheme()
+
+window.matchMedia("(prefers-color-scheme: dark)").addListener(setCurrentTheme)

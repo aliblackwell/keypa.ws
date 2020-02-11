@@ -18,7 +18,7 @@ let previousKeys = []
 
 function checkPreviousKeys(mammal) {
   previousKeys.push(mammal)
-  if (previousKeys.length > 5) {
+  if (previousKeys.length > 10) {
     previousKeys.shift()
   }
   let c = 0
@@ -26,7 +26,7 @@ function checkPreviousKeys(mammal) {
     if (previousKeys[i] === "c") c++
   }
 
-  if (c >= 3) {
+  if (c >= 4) {
     setStatus("TOO MUCH CAT!!")
     openCatDetected()
   }
@@ -67,27 +67,10 @@ function gotKeys(mammal) {
   }
 
   if (mammal === "h" && humanTyping && possibleCat) {
-    humanTyping = true
-    possibleCat = false
+    startTimeout()
     setStatus("human probable human")
     return
   }
-
-  if (mammal === "h" && humanTyping && !possibleCat) {
-    setStatus("human definite human")
-    startTimeout()
-    return
-  }
-
-  if (mammal === "c" && humanTyping) {
-    setStatus("cat definite human")
-    startTimeout()
-    return
-  }
-
-  // if (mammal === "c" && humanTyping && possibleCat) {
-  //   openCatDetected()
-  // }
 
   if (mammal === "c" && !humanTyping && probableCat) {
     setStatus("CAT DEFINITE CAT")
@@ -96,12 +79,12 @@ function gotKeys(mammal) {
   }
 
   if (mammal === "c" && !humanTyping && possibleHuman) {
-    setStatus("probable cat")
+    setStatus("cat probable cat")
     probableCat = true
     return
   }
 
-  if (mammal === "c" && !humanTyping) {
+  if (mammal === "c") {
     setStatus("cat possible human")
     possibleHuman = true
     showWarning()
@@ -118,7 +101,7 @@ function stopScript(callback) {
 
 function startKeypawsScript() {
   stopScript(() => {
-    childProcess = spawn("./background/keypaws/keypaws")
+    childProcess = spawn("./dist/keypaws/keypaws")
     childProcess.stdout.on("data", data => {
       isScriptRunning = true
       let mammal = data.toString()[0]

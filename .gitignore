@@ -12,10 +12,12 @@ ship-mac/*.app
 ship-mac/*.zip
 downloads/*.zip
 model/*
+model/KeyPaws.mlproj/Model\ Containers/*.json
 ship-mac/*.dmg
 keypaws0.1.0.dmg
 .env
-capture/*.csv
+capture/**/*.csv
+capture/**/*.json
 ship-site/*
 archive/*
 model/KeyPaws.mlproj/Data Sources/*
