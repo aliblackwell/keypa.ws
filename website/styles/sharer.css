@@ -6,6 +6,12 @@
   display: inline-block;
 }
 
+@media (max-width: 700px) {
+  .banner-box .sharer {
+    margin-bottom: 5rem;
+  }
+}
+
 .dir-rtl .sharer {
   right: auto;
   left: 3rem;
@@ -23,8 +29,8 @@
 
 .sharer ul {
   border-radius: 40px;
-  box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
-  padding:  1rem 2rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  padding: 1rem 2rem;
   color: white;
   background: var(--bg-light-theme);
   margin: 3rem 0 0 0;
@@ -87,7 +93,7 @@
   background-size: 1rem;
   background-position: center left;
   background-repeat: no-repeat;
-  color: var(--text-medium-light-theme)
+  color: var(--text-medium-light-theme);
 }
 
 .dir-rtl .sharer li a,
