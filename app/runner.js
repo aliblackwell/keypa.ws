@@ -101,7 +101,7 @@ function stopScript(callback) {
 
 function startKeypawsScript() {
   stopScript(() => {
-    childProcess = spawn("./dist/keypaws/keypaws")
+    childProcess = spawn("./background/keypaws/keypaws")
     childProcess.stdout.on("data", data => {
       isScriptRunning = true
       let mammal = data.toString()[0]

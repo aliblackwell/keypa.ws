@@ -3,16 +3,17 @@
 <body class="dark">
   <main class="container">
     <header class="banner theme">
-      <h1 class="logo"><a href="/home"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</a></h1>
+      <h1 class="logo">
+        <a href="/"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</a>
+      </h1>
       {% include 'partials/nav.njk' %}
 
       <div class="banner-box">
-        <h2 class="subtitle">{{ pagetitle }}</h2>
-        <p>KeyPaws is an app that cat-proofs your laptop. It will keep your cat off your keyboard and your work cat paw free.
-        </p>
+        {{ content | safe }}
+        {% include 'partials/sharer.njk' %}
       </div>
-      <pre class="homepage-kitty">
-/\___/\
+      <pre class="homepage-kitty"> 
+ /\___/\
 (  o o  )
 (  =^=  )
 (        )
@@ -24,9 +25,10 @@
 
     </header>
     {% include 'partials/noun_cat paw_1605399.svg' %}
-    {{ content | safe }}
-    {% include 'partials/get-quote.njk' %}
-    {% include 'partials/footer.njk' %}
+    <div class="wide reverse-theme first-wide">
+      {% include 'partials/get-quote.njk' %}◊
+    </div>
+    {% include 'partials/alpha/footer.njk' %}
   </main>
 </body>
 </html>

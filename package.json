@@ -6,7 +6,7 @@
   "chromium-args": "--disable-accelerated-video",
   "build": {
     "appId": "com.aliblackwell.KeyPaws",
-    "nwVersion": "0.44.0",
+    "nwVersion": "0.44.1",
     "packed": false,
     "files": [
       "app/**/*",
@@ -46,7 +46,7 @@
     "nano": "^8.1.0",
     "netlify-cli": "^2.25.0",
     "netlify-lambda": "^1.6.3",
-    "nw": "^0.44.0",
+    "nw": "^0.44.1",
     "nw-autoupdater": "^1.1.11",
     "serverless-http": "^2.3.1",
     "stripe": "^8.7.0"

@@ -4,14 +4,16 @@
   <main class="container">
     <header class="banner theme">
       <h1 class="logo"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</h1>
+
       <div class="banner-box">
         <h2 class="subtitle">Cat-proof your keyboard</h2>
-        <p>KeyPaws protects your work from uninvited paw presses. To get a lifetime license key <strong>FOR FREE</strong>, please sign up for our pre-launch trial:</p>
-        <form netlify="netlify" class="inline-form">
-        <label for="email" class="screen-reader-text">Email:</label>
-        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
-        <button class="medium title-text inline-smaller"">Sign up meow!</button>
-      </form>
+        <p>KeyPaws protects your work from uninvited paw presses. To get a lifetime license key
+          <strong>FOR FREE</strong>, please sign up for our pre-launch trial:</p>
+        <form name="alpha-signup" netlify="netlify" class="inline-form" action="/signup-success">
+          <label for="email" class="screen-reader-text">Email:</label>
+          <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+          <button class="medium title-text inline-smaller" ">Sign up meow!</button>
+        </form>
       </div>
       <pre class="homepage-kitty" tabindex="-1">
  /\___/\
@@ -26,12 +28,17 @@
 
     </header>
     {% include 'partials/noun_cat paw_1605399.svg' %}
-    {% include 'partials/alpha/features.njk' %}
-    {% include 'partials/alpha/quote.njk' %}
+    <div class="wide reverse-theme first-wide">
+      {% include 'partials/alpha/attention-grab.njk' %}
+    </div>
+    <section class="feature-list wide second-wide">
+      {% include 'partials/alpha/features.njk' %}
+    </section>
+    <section class="wide tone third-wide quotes">
+      {% include 'partials/alpha/quote.njk' %}
+    </section>
     {% include 'partials/alpha/footer.njk' %}
   </main>
   <script src="/js/home-kitty.js"></script>
 </body>
 </html>
-      
- 

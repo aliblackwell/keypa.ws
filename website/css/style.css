@@ -3,6 +3,11 @@
 @import url("../styles/buttons.css");
 @import url("../styles/forms.css");
 @import url("../styles/typography.css");
+@import url("../styles/sharer.css");
+
+body {
+  overflow-x: hidden;
+}
 
 .holding .container {
   margin: 0 auto 0;
@@ -192,7 +197,11 @@ header.banner {
 
 .banner-box .inline-form {
   max-width: 15rem;
-  margin: 1rem auto 0;
+  margin: 0 auto;
+}
+
+.banner-box p {
+  margin-bottom: 1rem;
 }
 
 .banner-box .inline-form button {
@@ -282,7 +291,7 @@ nav li a {
   color: var(--text-large-light-theme);
 }
 
-.home .first-wide {
+.first-wide {
   bottom: -2rem;
 }
 
@@ -644,4 +653,8 @@ ul.tick-list li {
     border-width: 0.15rem;
     margin-bottom: -1.2rem;
   }
+}
+
+cite a {
+  text-decoration: underline;
 }
