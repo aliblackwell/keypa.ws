@@ -24,7 +24,7 @@ function setAnalyticsHandlers() {
     els.forEach(el => {
       console.log(el)
       el.addEventListener("click", evt => {
-        evt.preventDefault()
+        //evt.preventDefault()
         let eventType = el.getAttribute("data-analytics")
         sendAnalyticsEvent(eventType)
       })
