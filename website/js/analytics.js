@@ -2,7 +2,7 @@ function sendAnalyticsEvent(endpoint) {
   const post = {
     endpoint: endpoint
   }
-  fetch("https://www.keypa.ws/.functions/analytics/" + endpoint, {
+  fetch("https://www.keypa.ws/.netlify/functions/analytics/" + endpoint, {
     method: "POST", // or 'PUT'
     headers: {
       "Content-Type": "application/json",

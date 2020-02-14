@@ -2,6 +2,10 @@ const express = require("express")
 const serverless = require("serverless-http")
 const app = express()
 const { LogDownload } = require("./handlers/analytics.js");
+
+app.get('/', (req, res, next) => {
+  res.send('hello!')
+})
  
 app.post("/download", (req, res, next) => {
   try {
