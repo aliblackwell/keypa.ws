@@ -1,13 +1,13 @@
 const fetch = require("isomorphic-fetch")
+const btoa = require("btoa")
+const { AnalyticsNotification } = require("./mailer")
 
-function LogDownload(req, res) {
-
-  const document = {
-    timestamp: Date.now(),
-    source: req.url
-  }
-
-  fetch(`https://db.keypa.ws:6984/downloads/`, {
+function LogEvent(req, res) {
+  const db =
+    req.body.hostName.includes("localhost") || req.body.hostName.includes("staging")
+      ? "dev-analytics"
+      : "analytics"
+  fetch(`https://db.keypa.ws:6984/${db}/`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -18,10 +18,11 @@ function LogDownload(req, res) {
       Authorization: "Basic " + btoa(`aliblackwell:${process.env.KEYPAWS_BACKEND_PASSWORD}`),
       // "Content-Type": "application/x-www-form-urlencoded",
     },
-    body: JSON.stringify(document),
+    body: JSON.stringify(req.body),
   })
     .then(response => response.json())
     .then(data => {
+      AnalyticsNotification("download")
       res.send(data)
     })
     .catch(err => {
@@ -30,4 +31,4 @@ function LogDownload(req, res) {
     })
 }
 
-module.exports = { LogDownload }
+module.exports = { LogEvent }

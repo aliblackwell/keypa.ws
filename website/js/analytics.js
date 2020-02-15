@@ -1,20 +1,28 @@
-function sendAnalyticsEvent(endpoint) {
-  const post = {
-    endpoint: endpoint
+function sendAnalyticsEvent(eventType, callback) {
+  const event = {
+    type: eventType,
+    timestamp: Date.now(),
+    url: window.location.pathname,
+    navigator: navigator.userAgent,
+    language: navigator.language,
+    hostName: window.location.hostname,
   }
-  fetch("https://www.keypa.ws/.netlify/functions/analytics/" + endpoint, {
+
+  fetch("/.netlify/functions/analytics/", {
     method: "POST", // or 'PUT'
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(post),
+    body: JSON.stringify(event),
   })
     .then(response => response.json())
     .then(data => {
       console.log("Success:", data)
+      callback()
     })
     .catch(error => {
       console.error("Error:", error)
+      callback()
     })
 }
 
@@ -24,9 +32,11 @@ function setAnalyticsHandlers() {
     els.forEach(el => {
       console.log(el)
       el.addEventListener("click", evt => {
-        //evt.preventDefault()
+        evt.preventDefault()
         let eventType = el.getAttribute("data-analytics")
-        sendAnalyticsEvent(eventType)
+        sendAnalyticsEvent(eventType, () => {
+          window.location = el.getAttribute("href")
+        })
       })
     })
 }

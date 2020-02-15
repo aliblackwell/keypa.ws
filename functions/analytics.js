@@ -1,15 +1,16 @@
 const express = require("express")
 const serverless = require("serverless-http")
 const app = express()
-const { LogDownload } = require("./handlers/analytics.js");
+app.use(express.json())
+const { LogEvent } = require("./handlers/analytics.js");
 
-app.get('/', (req, res, next) => {
+app.get('*', (req, res, next) => {
   res.send('hello!')
 })
  
-app.post("/download", (req, res, next) => {
+app.post("*", (req, res, next) => {
   try {
-    LogDownload(req, res)
+    LogEvent(req, res)
   } catch (err) {
     res.send(err)
   }

@@ -55,6 +55,8 @@
     "test": "mocha",
     "site:serve": "dotenv -- cross-var npx eleventy --serve",
     "site:build": "npx eleventy && npm run functions:build",
+    "netlify-dev": "dotenv -- cross-var netlify dev",
+    "functions:watch": "netlify-lambda watch --config ./webpack.functions.js ./functions",
     "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
     "start": "nw --enable-logging=stderr",
