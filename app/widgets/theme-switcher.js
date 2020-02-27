@@ -2,7 +2,8 @@ const body = document.getElementsByTagName("body")[0]
 const ThemeSwitcherWidget = document.getElementById("theme-switcher")
 
 function getSystemTheme() {
-  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches // could change on mac auto
+  const media = window.matchMedia("(prefers-color-scheme: dark)")
+  const isDarkMode = media ? media.matches : null
   return isDarkMode ? "dark" : "light"
 }
 
@@ -26,9 +27,9 @@ function setCurrentTheme() {
     settings.palette = getSystemTheme()
   }
   if (settings.theme === "nyan") {
-    nw.global.initNyan()
+    initNyan()
   } else {
-    nw.global.endNyan()
+    endNyan()
     for (let i = 0; i < classes.length; i++) {
       body.classList.remove(classes[i].slug)
     }
@@ -38,7 +39,7 @@ function setCurrentTheme() {
   }
 }
 
-nw.global.setCurrentTheme = setCurrentTheme
+!nw.global.setCurrentTheme && (nw.global.setCurrentTheme = setCurrentTheme)
 
 const ThemeSwitcherHTML = `<h2>Theme</h2>
 <p class="explainer">

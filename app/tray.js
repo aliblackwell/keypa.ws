@@ -1,23 +1,13 @@
 const { openSettingsWindow } = require("./windows")
-const { clearArray } = require("./utils")
 let warningIntervals = []
 let current = "white"
 let showStatus = nw.global.settings["show-status"]
-let statusUpdates = []
+
 // Create a tray icon
 let tray = new nw.Tray({
   title: "",
   icon: "./app/assets/paws-menu-bar-white.png",
 })
-
-function setStatus(words) {
-  if (showStatus) {
-    tray.title = words
-    clearArray(statusUpdates, clearTimeout)
-    const clearStatus = setTimeout(() => (tray.title = ""), 500)
-    statusUpdates.push(clearStatus)
-  }
-}
 
 function setShowStatus() {
   showStatus = true
@@ -32,20 +22,24 @@ function setHideStatus() {
 nw.global.setHideStatus = setHideStatus
 
 function showWarning() {
-  const warningInterval = setInterval(() => {
-    tray.icon = `./app/assets/paws-menu-bar-${current}.png`
-    if (current === "white") {
-      current = "invert"
-    } else {
-      current = "white"
-    }
-  }, 333)
-  warningIntervals.push(warningInterval)
+  if (showStatus) {
+    const warningInterval = setInterval(() => {
+      tray.icon = `./app/assets/paws-menu-bar-${current}.png`
+      if (current === "white") {
+        current = "invert"
+      } else {
+        current = "white"
+      }
+    }, 333)
+    warningIntervals.push(warningInterval)
+  }
 }
 
 function resetWarning() {
-  warningIntervals.forEach(warning => clearInterval(warning))
-  warningIntervals = []
+  if (showStatus) {
+    warningIntervals.forEach(warning => clearInterval(warning))
+    warningIntervals = []
+  }
 }
 
 nw.global.resetWarning = resetWarning
@@ -74,4 +68,4 @@ function createStatusMenu(format) {
   tray.menu = menu
 }
 
-module.exports = { createStatusMenu, showWarning, resetWarning, setStatus }
+module.exports = { createStatusMenu, showWarning, resetWarning }

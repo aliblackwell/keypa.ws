@@ -1,5 +1,8 @@
+const { clearArray } = require("./utils")
+let statusUpdates = []
 let isCatDetectedOpening = false
 let settingsWindowOpen = false
+let infoEl = null
 
 const windowSettings = {
   width: 1200,
@@ -9,33 +12,61 @@ const windowSettings = {
   kiosk: false,
 }
 
+const cdSettings = {
+  width: 10,
+  height: 10,
+  kiosk: true,
+  visible_on_all_workspaces: true,
+}
+
+const currentWords = {
+  title: "nothing",
+}
+
+function updateWin(win) {
+  win.currentWords = currentWords
+}
+
+function resetInfo() {
+  infoEl.innerHTML = nw.global.generateCatWithMessage(false)
+}
+
+function setInfo(words) {
+  if (infoEl) {
+    nw.global.shouldCatBlink = false
+    let newCat = nw.global.generateCatWithMessage(words)
+    infoEl.innerHTML = newCat
+    clearArray(statusUpdates, clearTimeout)
+    const clearStatus = setTimeout(() => {
+      infoEl.innerHTML = nw.global.generateCatWithMessage(false)
+    }, 500)
+    statusUpdates.push(clearStatus)
+  }
+}
+
+function setInfoEl(el) {
+  infoEl = el
+}
+
 function openCatDetected() {
   if (!isCatDetectedOpening) {
     isCatDetectedOpening = true
-    nw.Window.open(
-      "./app/cat-detected.html",
-      {
-        visible_on_all_workspaces: true,
-        position: "center",
-        kiosk: true,
-      },
-      function(win) {
-        nw.global.closeCatDetected = () => {
-          win.close()
-        }
-        win.enterKioskMode()
-        win.on("close", function() {
-          this.close(true)
-          this.hide()
-
-          this.leaveKioskMode()
-
-          isCatDetectedOpening = false
-          nw.global.resetWarning()
-          nw.global.resetEnvironment()
-        })
+    nw.Window.open("./app/cat-detected.html", cdSettings, function(win) {
+      nw.global.closeCatDetected = () => {
+        win.close()
       }
-    )
+      win.enterKioskMode()
+      win.on("close", function() {
+        this.close(true)
+        this.hide()
+        resetInfo()
+        this.leaveKioskMode()
+
+        isCatDetectedOpening = false
+        nw.global.resetWarning()
+        nw.global.resetEnvironment()
+      })
+    })
   }
 }
 
@@ -93,4 +124,6 @@ module.exports = {
   openCatDetected,
   openSettingsWindow,
   openWelcomeWindow,
+  setInfo,
+  setInfoEl,
 }

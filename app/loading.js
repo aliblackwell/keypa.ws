@@ -25,7 +25,6 @@ radios.forEach(function(elem) {
 
 function setLoading(clicked) {
   loading = true
-  nw.global.setLoadingCat()
   interval1 = setInterval(() => {
     loading = !loading
   }, 250)
@@ -40,12 +39,8 @@ function setLoading(clicked) {
 function setLoaded() {
   loading = false
   clearInterval(interval1)
-  clearInterval(interval2)
   radioWrappers.forEach(el => {
     el.children[0].removeAttribute("disabled")
     el.classList.remove("disabled")
   })
-  setTimeout(() => {
-    nw.global.setLoadedCat()
-  }, 500)
 }

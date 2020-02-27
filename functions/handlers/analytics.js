@@ -3,10 +3,7 @@ const btoa = require("btoa")
 const { AnalyticsNotification } = require("./mailer")
 
 function LogEvent(req, res) {
-  const db =
-    req.body.hostName.includes("localhost") || req.body.hostName.includes("staging")
-      ? "dev-analytics"
-      : "analytics"
+  const db = !req.body.hostName.includes("www") ? "dev-analytics" : "analytics"
   fetch(`https://db.keypa.ws:6984/${db}/`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin

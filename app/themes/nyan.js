@@ -37,11 +37,9 @@ function initNyan() {
   bodyNyan.classList.add("nyan")
 }
 
-nw.global.initNyan = initNyan
-
 function endNyan() {
   NyanWrapper.innerHTML = ""
   bodyNyan.classList.remove("nyan")
 }
 
-nw.global.endNyan = endNyan
+!nw.global.endNyan && (nw.global.endNyan = endNyan)

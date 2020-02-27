@@ -1,15 +1,15 @@
 const ShowStatusHTML = `
-<h2>Status bar</h2>
+<h2>Cat detected warning</h2>
 <p class="explainer">
-  Typing info in your taskbar.
+  The icon in your taskbar will flash if cat-like typing is detected
 </p>
 <div class="wrapper">
   <input class="show-status-radio" id="show-status:enabled" name="show-status" type="radio" value="show-status:enabled">
-  <label for="show-status:enabled">Show status</label>
+  <label for="show-status:enabled">Show warning</label>
 </div>
 <div class="wrapper">
   <input class="show-status-radio" id="show-status:disabled" name="show-status" type="radio" value="show-status:disabled">
-  <label for="show-status:disabled">Don't show status</label>
+  <label for="show-status:disabled">Don't show warning</label>
 </div>
 `
 

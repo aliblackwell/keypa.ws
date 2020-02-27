@@ -1,7 +1,7 @@
 const { spawn } = require("child_process")
 const { saveSettings } = require("./settings")
-const { openCatDetected } = require("./windows")
-const { showWarning, resetWarning, setStatus } = require("./tray")
+const { openCatDetected, setInfo } = require("./windows")
+const { showWarning, resetWarning } = require("./tray")
 const { clearArray } = require("./utils")
 
 let isTriggerRunning = false
@@ -18,7 +18,7 @@ let previousKeys = []
 
 function checkPreviousKeys(mammal) {
   previousKeys.push(mammal)
-  if (previousKeys.length > 10) {
+  if (previousKeys.length > 7) {
     previousKeys.shift()
   }
   let c = 0
@@ -26,8 +26,8 @@ function checkPreviousKeys(mammal) {
     if (previousKeys[i] === "c") c++
   }
 
-  if (c >= 4) {
-    setStatus("TOO MUCH CAT!!")
+  if (c >= 3) {
+    setInfo("TOO MUCH CAT!!")
     openCatDetected()
   }
 }
@@ -39,7 +39,10 @@ function resetEnvironment() {
   possibleCat = false
   probableCat = false
   resetWarning()
-  setStatus("nothing typing")
+  setInfo("nothing typing")
+  setTimeout(() => {
+    nw.global.shouldCatBlink = true
+  }, 1500)
 }
 
 nw.global.resetEnvironment = resetEnvironment
@@ -62,30 +65,36 @@ function gotKeys(mammal) {
   if (mammal === "h" && !humanTyping && !possibleCat) {
     humanTyping = true
     possibleCat = true
-    setStatus("human possible cat")
+    setInfo("human possible cat")
     return
   }
 
   if (mammal === "h" && humanTyping && possibleCat) {
     startTimeout()
-    setStatus("human probable human")
+    setInfo("human probable human")
+    return
+  }
+
+  if (mammal === "c" && humanTyping) {
+    setInfo("cat probable human")
+    startTimeout()
     return
   }
 
   if (mammal === "c" && !humanTyping && probableCat) {
-    setStatus("CAT DEFINITE CAT")
+    setInfo("CAT DEFINITE CAT")
     openCatDetected()
     return
   }
 
   if (mammal === "c" && !humanTyping && possibleHuman) {
-    setStatus("cat probable cat")
+    setInfo("cat probable cat")
     probableCat = true
     return
   }
 
   if (mammal === "c") {
-    setStatus("cat possible human")
+    setInfo("cat possible human")
     possibleHuman = true
     showWarning()
     return
@@ -106,6 +115,27 @@ function startKeypawsScript() {
       isScriptRunning = true
       let mammal = data.toString()[0]
       gotKeys(mammal)
+    })
+
+    childProcess.stderr.on("close", () => {
+      alert(
+        `KeyPaws exited with error message: "closed". Please inform Ali of the error message via email: miaow@keypa.ws`
+      )
+      nw.App.quit()
+    })
+
+    childProcess.stderr.on("data", data => {
+      let error = data.toString()[0]
+      alert(
+        `KeyPaws exited with error message: "${error}". Please inform Ali of the error message via email: miaow@keypa.ws`
+      )
+      nw.App.quit()
+    })
+    childProcess.on("error", code => {
+      alert(
+        `KeyPaws exited with code "${code}". Please inform Ali of the error code via email: miaow@keypa.ws`
+      )
+      nw.App.quit()
     })
     childProcess.on("exit", code => {
       console.log(`KeyPaws exited with code ${code}`)

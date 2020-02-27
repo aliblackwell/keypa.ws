@@ -1,9 +1,38 @@
 let catContainer = document.getElementsByTagName("pre")[0]
-//let catTail = document.getElementsByTagName("pre")[1]
-let shouldCatBlink = true
+nw.global.shouldCatBlink = true
 
 let catString = catContainer.innerHTML
 let catArray = catString.split("")
+
+function generateGibberish(length) {
+  var result = ""
+  var characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!!!!@@@@@@£££££$$$$%%%%^^^^&&&&****(((())))++++_____))>>>???<<<""":::~~~//****---````~~~~"'
+  var charactersLength = characters.length
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
+}
+
+function generateCatWithMessage(message) {
+  let newCat = ""
+  for (let i = 0; i < catArray.length - 15; i++) {
+    if (message && (i === 12 || i === 14)) {
+      newCat += "-"
+    } else {
+      newCat += catArray[i]
+    }
+  }
+  if (message) {
+    newCat += message
+  } else {
+    newCat += generateGibberish(14)
+  }
+  return newCat
+}
+
+nw.global.generateCatWithMessage = generateCatWithMessage
 
 function generateCat(shouldBlink, eyesShut) {
   let newCat = ""
@@ -24,21 +53,10 @@ function generateCat(shouldBlink, eyesShut) {
   }
 }
 
-function setLoadingCat() {
-  generateCat(false, true)
-}
-
-nw.global.setLoadingCat = setLoadingCat
-
-function setLoadedCat() {
-  generateCat(false, false)
-}
-
-nw.global.setLoadedCat = setLoadedCat
 ;(function loop() {
   var rand = Math.round(Math.random() * (9000 - 1000)) + 500
   setTimeout(function() {
-    if (shouldCatBlink) {
+    if (nw.global.shouldCatBlink) {
       generateCat(true, false)
     }
     loop()

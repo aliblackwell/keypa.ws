@@ -13,7 +13,7 @@
   <div class="drag-bar"></div>
   <div id="theme-wrapper"></div>
   <main class="container dashboard">
-    <pre class="kitcat">
+    <pre class="kitcat" id="settings-kitcat">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -26,9 +26,9 @@
       <h1 class="text-large">Dashpawed</h1>
       <div class="grid">
         <article id="theme-switcher"></article>
+        <article id="show-status"></article>
         <article id="auto-launch"></article>
         <article id="add-license"></article>
-        <article id="show-status"></article>
       </div>
       <div id="auto-update"></div>
 
@@ -49,7 +49,9 @@
 <script src="./kitty.js"></script>
 <script src="./auto-update.js"></script>
 <script src="./close-icon.js"></script>
-<script>
+<script>const { setInfoEl } = require("./windows.js")
+  setInfoEl(catContainer)
+
   nw.Window.get().on("close", () => {
     nw.Window.get().on("focus", () => {
       nw.global.setCurrentTheme()
@@ -59,4 +61,5 @@
     })
   })
 </script>
+
 </html>

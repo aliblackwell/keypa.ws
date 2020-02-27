@@ -20,7 +20,7 @@ function initAutoLaunch() {
       if (e.target.value === "auto-launch:enabled") {
         nw.global.keyPawsAutoLauncher.enable().then(d => console.log(d))
       } else {
-        nw.global.keyPawsAutoLauncher.disable().then(d => console.log(d))
+        nw.global.keyPawsAutoLauncher.disable()
       }
     })
   })
