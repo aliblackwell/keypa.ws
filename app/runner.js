@@ -4,6 +4,19 @@ const { openCatDetected, setInfo } = require("./windows")
 const { showWarning, resetWarning } = require("./tray")
 const { clearArray } = require("./utils")
 
+function handleExit(code, signal, message) {
+  let errorMessage = !message ? "KeyPaws needs to quit" : message
+  if (code) {
+    errorMessage += ` The error code is: ${code}.`
+  }
+  if (signal) {
+    errorMessage += ` The signal that closed KeyPaws is called: ${signal}.`
+  }
+  errorMessage += " Please copy this error message and email it to Ali: miaow@keypa.ws"
+  alert(errorMessage)
+  nw.App.quit()
+}
+
 let isTriggerRunning = false
 let isScriptRunning = false
 let childProcess
@@ -90,6 +103,7 @@ function gotKeys(mammal) {
   if (mammal === "c" && !humanTyping && possibleHuman) {
     setInfo("cat probable cat")
     probableCat = true
+    showWarning()
     return
   }
 
@@ -117,32 +131,19 @@ function startKeypawsScript() {
       gotKeys(mammal)
     })
 
-    childProcess.stderr.on("close", () => {
-      alert(
-        `KeyPaws exited with error message: "closed". Please inform Ali of the error message via email: miaow@keypa.ws`
-      )
-      nw.App.quit()
+    childProcess.stderr.on("close", (code, signal) => {
+      handleExit(code, signal, `KeyPaws has closed.`)
     })
 
     childProcess.stderr.on("data", data => {
       let error = data.toString()[0]
-      alert(
-        `KeyPaws exited with error message: "${error}". Please inform Ali of the error message via email: miaow@keypa.ws`
-      )
-      nw.App.quit()
+      handleExit(null, null, `KeyPaws exited with error message: ${error}`)
     })
-    childProcess.on("error", code => {
-      alert(
-        `KeyPaws exited with code "${code}". Please inform Ali of the error code via email: miaow@keypa.ws`
-      )
-      nw.App.quit()
+    childProcess.on("error", error => {
+      handleExit(null, null, `KeyPaws encountered an error: ${error.name} - ${error.message}`)
     })
-    childProcess.on("exit", code => {
-      console.log(`KeyPaws exited with code ${code}`)
-      alert(
-        "KeyPaws encountered a problem and has to quit. If this was unintentional, please open the app again from your Applications folder."
-      )
-      nw.App.quit()
+    childProcess.on("exit", (code, signal) => {
+      handleExit(code, signal, "KeyPaws encountered a problem.")
     })
   })
 }
