@@ -1,0 +1,154 @@
+.keypaws {
+  color: var(--text-medium-dark);
+}
+
+.body-text {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title-text {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.pre-text {
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*--------------------------------------------------------------
+# Core Typography
+--------------------------------------------------------------*/
+
+body,
+label,
+select,
+option,
+li,
+span,
+optgroup,
+input,
+textarea {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg-dark-theme);
+  color: var(--text-medium-dark-theme);
+}
+
+body.light {
+  background: var(--bg-light-theme);
+  color: var(--text-medium-light-theme);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  font-family: omnes-cond, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+a {
+  color: var(--text-medium-dark-theme-highlight);
+  text-decoration: none;
+}
+
+.light a {
+  color: var(--text-medium-light-theme-highlight);
+}
+
+.nyan a {
+  color: var(--text-medium-nyan-content-highlight);
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+
+.quotes {
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+blockquote {
+  margin: 0 auto;
+  position: relative;
+  max-width: 90%;
+  padding-left: 4rem;
+  text-align: left;
+  font-size: var(--text-jumbo);
+}
+
+.theme blockquote {
+  color: var(--text-large-dark-theme);
+}
+
+.light .theme blockquote {
+  color: var(--text-large-light-theme);
+}
+
+blockquote::before {
+  content: '“';
+  font-family: omnes-cond;
+  line-height: 0.5;
+  font-weight: 700;
+  font-size: 6rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+blockquote pre {
+  font-family: omnes-cond, sans-serif;
+  font-weight: 400;
+} 
+
+cite {
+  text-align: right;
+  width: 100%;
+  display: block;
+  max-width: 70%;
+  margin: 0rem auto 3rem;
+  font-size: var(--text-large);
+  line-height: 1;
+  font-style: normal;
+}
+
+cite img {
+  display: inline;
+  margin-right: 1rem;
+  border-radius: 100%;
+  border: solid 0.25rem var(--bg-dark-theme-border);
+  width: 4rem;
+  margin-bottom: -1.8rem;
+}
+
+.light cite img {
+  border: solid 0.25rem var(--bg-light-theme-border);
+}

@@ -3,14 +3,18 @@
 <body class="home">
   <main class="container">
     <header class="banner theme">
-      <h1 class="logo"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</h1>
       {% include 'partials/nav.njk' %}
-      <div class="banner-box">
+      <div class="banner-box" id="download">
         <h2 class="subtitle">Cat-proof your keyboard</h2>
-        <p>KeyPaws is an app that cat-proofs your laptop. It will keep your cat off your keyboard and your work cat paw free.</p>
-        <a class="button medium" href="/get" title="Get KeyPaws to cat-proof your computer">Get KeyPaws</a>
+        <p>KeyPaws protects your work from uninvited paw presses. To get a lifetime license key
+          <strong>FOR FREE</strong>, please sign up for our pre-launch trial:</p>
+        <form name="alpha-signup" netlify="netlify" class="inline-form" action="/signup-success">
+          <label for="email" class="screen-reader-text">Email:</label>
+          <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+          <button class="medium title-text inline-smaller" ">Sign up meow!</button>
+        </form>
       </div>
-      <pre class="homepage-kitty">
+      <pre class="homepage-kitty" tabindex="-1">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -23,9 +27,18 @@
 
     </header>
     {% include 'partials/noun_cat paw_1605399.svg' %}
-    {% include 'partials/features.njk' %}
-    {% include 'partials/quote.njk' %}
-    {% include 'partials/gift-widget.njk' %}
+    <div class="wide reverse-theme first-wide">
+      {% include 'partials/attention-grab.njk' %}
+    </div>
+    <section class="feature-list wide second-wide">
+      {% include 'partials/features.njk' %}
+    </section>
+    <section class="wide theme third-wide quotes">
+      {% include 'partials/quote.njk' %}
+    </section>
+    <section class="wide tone fourth-wide">
+      {% include 'partials/gift-widget.njk' %}
+    </section>
     {% include 'partials/footer.njk' %}
   </main>
   <script src="/js/home-kitty.js"></script>

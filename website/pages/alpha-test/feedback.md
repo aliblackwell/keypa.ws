@@ -1,7 +1,7 @@
 ---
 title: KeyPaws Alpha Test feedback
 subtitle: Cat-proof your keyboard
-layout: layouts/alpha/feedback.njk 
+layout: layouts/feedback.njk 
 language: 'en'
 permalink: '/alpha-test/feedback/'
 dir: 'ltr'

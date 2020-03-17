@@ -279,6 +279,10 @@ nav li {
   list-style: none;
 }
 
+li.btn-holder {
+  margin: 1.5rem 0;
+}
+
 nav li a {
   display: block;
   padding: 0.6rem 1rem;
@@ -293,9 +297,6 @@ nav li a {
 
 .first-wide {
   bottom: -2rem;
-}
-
-.first-wide {
   z-index: 2;
 }
 .second-wide {
@@ -364,28 +365,6 @@ nav li a {
   color: var(--text-medium-dark-theme);
 }
 
-.wide.tone {
-  background: var(--bg-dark-mid-content);
-}
-
-.light .wide.tone {
-  background: var(--bg-light-mid-content);
-}
-
-.tone p,
-.tone li,
-.tone a,
-.light .tone a.button {
-  color: var(--text-medium-dark-tone);
-}
-
-.light .tone p,
-.light .tone li,
-.light .tone a,
-.tone a.button {
-  color: var(--text-medium-light-tone);
-}
-
 .light .wide {
   background: var(--bg-light-content);
 }
@@ -426,16 +405,8 @@ footer::after {
   background: var(--bg-dark-theme);
 }
 
-.wide.tone::before {
-  background: var(--bg-dark-mid-content);
-}
-
 .light .wide::before {
   background: var(--bg-light-content);
-}
-
-.light .wide.tone::before {
-  background: var(--bg-light-mid-content);
 }
 
 footer .content {
@@ -449,21 +420,10 @@ footer {
   color: var(--text-medium-light);
   background: var(--bg-dark-theme);
   text-align: center;
+  z-index:10;
 }
 
-.light footer {
-  background: var(--bg-light-theme);
-}
 
-footer::after {
-  background: var(--bg-dark-theme);
-  z-index: 0;
-}
-
-.light footer::after {
-  background: var(--bg-light-theme);
-  z-index: 0;
-}
 
 footer p {
   margin: 0;

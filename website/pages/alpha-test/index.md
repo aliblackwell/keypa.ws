@@ -1,7 +1,7 @@
 ---
 title: KeyPaws
 subtitle: Cat-proof your keyboard
-layout: layouts/alpha/try.njk 
+layout: layouts/alpha-test.njk 
 language: 'en'
 permalink: '/alpha-test/'
 dir: 'ltr'

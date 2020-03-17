@@ -1,0 +1,193 @@
+/*style wrapper to give some space*/
+
+.wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  clear: both;
+}
+
+/*style label to give some more space*/
+
+.wrapper label {
+  display: block;
+  padding: 7px 0 0 53px;
+  font-size: var(--text-medium);
+}
+
+/*style and hide original checkbox*/
+
+.wrapper input {
+  height: 40px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 200px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.wrapper.disabled input {
+  cursor: default;
+}
+/*position new box*/
+
+.wrapper input + label::before {
+  border: 2px solid;
+  content: "";
+  height: 40px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 40px;
+  border-radius: 50%;
+}
+form input,
+form textarea {
+  border: 2px solid var(--bg-light-theme);
+}
+
+.light form input,
+.light form textarea {
+  border: 2px solid var(--bg-dark-theme);
+  border-right: none;
+}
+
+/*radio pseudo element styles*/
+
+.wrapper input + label::after {
+  content: "";
+  opacity: 0;
+  border: 10px solid var(--text-highlight-dark);
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.light .wrapper input + label::after {
+  border: 10px solid var(--text-highlight-light);
+}
+
+.nyan .wrapper input + label::after {
+  border: 10px solid var(--text-highlight-nyan);
+}
+
+/*reveal check for 'on' state*/
+
+.wrapper input:checked + label::after {
+  opacity: 1;
+}
+
+/*focus styles*/
+
+.wrapper input:focus + label::before {
+  box-shadow: 0 0 0 3px #ffbf47;
+  outline: 3px solid transparent;
+  /* For Windows high contrast mode. */
+}
+
+form label {
+  display: block;
+  font-size: var(--text-medium);
+  margin-bottom: 0.5rem;
+}
+
+form input,
+form textarea {
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
+  margin-right: 10px;
+  width: 100%;
+  width: 65%;
+  float: left;
+  margin-bottom: 1rem;
+  box-shadow: none;
+  border: 0;
+}
+
+.inline-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.inline-form input {
+  border-right: none;
+  border-radius: 40px 0px 0px 40px;
+  margin-right: 0;
+  box-shadow: 0 6px var(--bg-light-theme);
+  margin-bottom: 0;
+  padding: 0.3rem 1rem;
+}
+
+.light .inline-form input {
+  box-shadow: 0 6px var(--bg-dark-theme);
+}
+
+.nyan .inline-form input {
+  box-shadow: 0 6px var(--text-highlight-nyan);
+}
+
+button.inline-smaller {
+  border-radius: 0 40px 40px 0;
+  font-size: var(--text-small);
+  font-weight: 700;
+  padding: 10px 20px;
+  text-align: right;
+  width: auto;
+  margin: 0;
+}
+
+button.inline-smaller:hover {
+  top: 0;
+  box-shadow: 0 6px var(--bg-light-theme);
+}
+
+.light button.inline-smaller:hover {
+  top: 0;
+  box-shadow: 0 6px var(--bg-dark-theme);
+}
+
+.nyan button.inline-smaller:hover,
+.nyan button.inline-smaller:hover {
+  top: 0;
+  box-shadow: 0 6px var(--text-highlight-nyan);
+}
+
+
+form textarea {
+  padding: 1rem;
+  min-height: 15rem;
+}
+
+form label {
+  margin-left: 0.5rem;
+  font-family: omnes-cond;
+  font-weight: 700;
+  font-size: var(--text-large);
+}
+
+form#license-form label {
+  margin: 0;
+  font-size: var(--text-medium);
+  color: var(--text-highlight-dark);
+  margin-bottom: 1.2rem;
+}
+.light form#license-form label {
+  color: var(--text-highlight-light);
+}
+.nyan form#license-form label,
+.nyan form#license-form label {
+  color: var(--text-highlight-nyan);
+}
+form input,
+form button,
+form textarea {
+  font-size: var(--text-large);
+  width: 100%;
+  display: block;
+  margin-bottom: 1.5rem;
+}

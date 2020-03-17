@@ -3,12 +3,14 @@
 <body class="home">
   <main class="container">
     <header class="banner theme">
-      <h1 class="logo"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</h1>
+      {% include 'partials/nav.njk' %}
       <div class="banner-box">
         <h2 class="subtitle">Cat-proof your keyboard</h2>
         <p>KeyPaws protects your work from uninvited paw presses. Please download and try the app, and send in your feedback.</p>
         <a class="button medium" data-analytics="download" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.dmg" title="Get KeyPaws to cat-proof your computer">Download KeyPaws for Mac</a>
-        <p><a class="button smaller" href="./feedback/">Feedback form</a></p>
+        <p>
+          <a class="button smaller" href="./feedback/">Feedback form</a>
+        </p>
       </div>
       <pre class="homepage-kitty">
  /\___/\
@@ -23,9 +25,9 @@
 
     </header>
     {% include 'partials/noun_cat paw_1605399.svg' %}
-    {% include 'partials/alpha/features.njk' %}
-    {% include 'partials/alpha/quote.njk' %}
-    {% include 'partials/alpha/footer.njk' %}
+    {% include 'partials/features.njk' %}
+    {% include 'partials/quote.njk' %}
+    {% include 'partials/footer.njk' %}
   </main>
   <script src="/js/home-kitty.js"></script>
   <script src="/js/analytics.js"></script>
