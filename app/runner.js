@@ -2,18 +2,10 @@ const { spawn } = require("child_process")
 const { saveSettings } = require("./settings")
 const { openCatDetected, setInfo } = require("./windows")
 const { showWarning, resetWarning } = require("./tray")
-const { clearArray } = require("./utils")
+const { clearArray, getErrorMessage } = require("./utils")
 
-function handleExit(code, signal, message) {
-  let errorMessage = !message ? "KeyPaws needs to quit" : message
-  if (code) {
-    errorMessage += ` The error code is: ${code}.`
-  }
-  if (signal) {
-    errorMessage += ` The signal that closed KeyPaws is called: ${signal}.`
-  }
-  errorMessage += " Please copy this error message and email it to Ali: miaow@keypa.ws"
-  alert(errorMessage)
+function alertErrorMessageAndQuit(message) {
+  alert(message)
   nw.App.quit()
 }
 
@@ -132,18 +124,22 @@ function startKeypawsScript() {
     })
 
     childProcess.stderr.on("close", (code, signal) => {
-      handleExit(code, signal, `KeyPaws has closed.`)
+      const m = getErrorMessage(code, signal, null, `KeyPaws has closed.`)
+      alertErrorMessageAndQuit(m)
     })
 
     childProcess.stderr.on("data", data => {
       let error = data.toString()[0]
-      handleExit(null, null, `KeyPaws exited with error message: ${error}`)
+      const m = getErrorMessage(null, null, null, `KeyPaws exited with error message: ${error}`)
+      alertErrorMessageAndQuit(m)
     })
     childProcess.on("error", error => {
-      handleExit(null, null, `KeyPaws encountered an error: ${error.name} - ${error.message}`)
+      const m = getErrorMessage(null, null, error, `KeyPaws encountered an error.`)
+      alertErrorMessageAndQuit(m)
     })
     childProcess.on("exit", (code, signal) => {
-      handleExit(code, signal, "KeyPaws encountered a problem.")
+      const m = getErrorMessage(code, signal, null, "KeyPaws encountered a problem.")
+      alertErrorMessageAndQuit(m)
     })
   })
 }
@@ -183,6 +179,7 @@ function triggerAccessibilityPermissionGranted() {
 }
 
 module.exports = {
+  getErrorMessage,
   startKeypawsScript,
   startRecordScript,
   stopScript,
