@@ -112,6 +112,10 @@
 .sharer li.wa a {
   background-image: url("../img/whatsapp.svg");
 }
+.sharer li.el a {
+  background-image: url("../img/email.svg");
+}
+
 
 .sharer li a:hover,
 .sharer li a:active {

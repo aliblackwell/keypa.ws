@@ -582,7 +582,8 @@ figure.frame:nth-child(3n), figure.frame:nth-child(3n) img {
 
 
 .feature-list .item:nth-child(2n) .words,
-.feature-list .item:nth-child(2n) figure {
+.feature-list .item:nth-child(2n) figure,
+.feature-list .item:nth-child(2n) figure img {
   float: right;
 }
 
