@@ -2,29 +2,20 @@
 {% include 'partials/head.njk' %}
 <body class="dark">
   <main class="container">
-    <header class="banner theme">
+    <header class="theme">
       {% include 'partials/nav.njk' %}
-      <div class="banner-box">
-        {{ content | safe }}
-        {% include 'partials/sharer.njk' %}
-      </div>
-      <pre role="presentation" class="homepage-kitty"> 
- /\___/\
-(  o o  )
-(  =^=  )
-(        )
-(         )
-(          )
-(           )
-(            )____£$tr2frfgre??@£34r893j4r893j4r30ru430r49u03rtu430jtu4fg308gf389h3f43f43f43f43fr3
-</pre>
-
     </header>
+    
+      {{ content | safe }}
+
+
+
     {% include 'partials/large-paws.svg' %}
-    <div class="wide reverse-theme first-wide quotes">
-      {% include 'partials/get-quote.njk' %}◊
-    </div>
-    {% include 'partials/footer.njk' %}
+    <footer class="wide theme">
+      {% include 'partials/footer.njk' %}
+    </footer>
   </main>
+  <script src="/js/theme-switcher.js"></script>
+  <script src="/js/blinking-kitty.js"></script>
 </body>
 </html>

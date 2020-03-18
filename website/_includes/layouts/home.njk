@@ -14,7 +14,7 @@
           <button class="medium title-text inline-smaller" ">Sign up meow!</button>
         </form>
       </div>
-      <pre role="presentation" class="homepage-kitty">
+      <pre role="presentation" class="blinking-kitty">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -39,8 +39,11 @@
     <section class="wide tone fourth-wide">
       {% include 'partials/gift-widget.njk' %}
     </section>
-    {% include 'partials/footer.njk' %}
+    <footer class="wide reverse-theme">
+      {% include 'partials/footer.njk' %}
+    </footer>
   </main>
-  <script src="/js/home-kitty.js"></script>
+  <script src="/js/theme-switcher.js"></script>
+  <script src="/js/blinking-kitty.js"></script>
 </body>
 </html>

@@ -155,4 +155,5 @@ cite img {
 
 .title-text {
   font-size: var(--text-jumbo);
+  line-height: 1;
 }
