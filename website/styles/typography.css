@@ -152,3 +152,7 @@ cite img {
 .light cite img {
   border: solid 0.25rem var(--bg-light-theme-border);
 }
+
+.title-text {
+  font-size: var(--text-jumbo);
+}
