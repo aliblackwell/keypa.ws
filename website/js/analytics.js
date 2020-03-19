@@ -30,12 +30,13 @@ function setAnalyticsHandlers() {
   const els = document.querySelectorAll("[data-analytics]")
   els &&
     els.forEach(el => {
-      console.log(el)
       el.addEventListener("click", evt => {
         evt.preventDefault()
         let eventType = el.getAttribute("data-analytics")
         sendAnalyticsEvent(eventType, () => {
-          window.location = el.getAttribute("href")
+          el.getAttribute("href") && (
+            window.location = el.getAttribute("href")
+          )
         })
       })
     })
