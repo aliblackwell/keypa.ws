@@ -3,7 +3,8 @@ const btoa = require("btoa")
 const { AnalyticsNotification } = require("./mailer")
 
 function LogEvent(req, res) {
-  const db = !req.body.hostName.includes("www") ? "dev-analytics" : "analytics"
+  const isDev = !req.body.hostName.includes("www")
+  const db = isDev ? "dev-analytics" : "analytics"
   fetch(`https://db.keypa.ws:6984/${db}/`, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, cors, *same-origin
@@ -19,7 +20,7 @@ function LogEvent(req, res) {
   })
     .then(response => response.json())
     .then(data => {
-      AnalyticsNotification("download")
+      !isDev && AnalyticsNotification(req.body.eventType)
       res.send(data)
     })
     .catch(err => {

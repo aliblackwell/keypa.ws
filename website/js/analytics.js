@@ -1,6 +1,6 @@
 function sendAnalyticsEvent(eventType, callback) {
   const event = {
-    type: eventType,
+    eventType: eventType,
     timestamp: Date.now(),
     url: window.location.pathname,
     navigator: navigator.userAgent,

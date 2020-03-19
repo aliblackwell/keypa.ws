@@ -1,6 +1,6 @@
 
 button,
-a.button {
+.button {
   font-size: var(--text-large);
   border: none;
   font-family: inherit;
@@ -32,27 +32,61 @@ a.button {
 }
 
 .opposite button,
-.opposite .button {
+.opposite button.smaller,
+.opposite .button,
+.opposite .button.smaller {
   background: var(--bg-dark-theme);
   color: var(--text-large-dark);
+}
+
+.opposite button,
+.opposite .button {
   box-shadow: 0 6px var(--bg-dark-theme-border);
 }
 
+.opposite button.smaller,
+.opposite .button.smaller {
+  box-shadow: 0 3px var(--bg-dark-theme-border);
+}
 .opposite button:hover,
-.opposite .button:hover {
+
+.opposite .button.button.smaller:hover {
   box-shadow: 0 4px var(--bg-dark-theme-border);
+}
+
+.opposite button.smaller:hover,
+.opposite .button.smaller:hover{
+  box-shadow: 0 2px var(--bg-dark-theme-border);
+}
+
+.light .opposite button,
+.light .opposite button.smaller,
+.light .opposite .button,
+.light .opposite .button.smaller {
+  background: var(--bg-light-theme);
+  color: var(--text-large-light);
 }
 
 .light .opposite button,
 .light .opposite .button {
-  background: var(--bg-light-theme);
-  color: var(--text-large-light);
-  box-shadow: 0 6px var(--bg-light-theme-border);
+box-shadow: 0 6px var(--bg-light-theme-border);
 }
+
+
+.light .opposite button.smaller,
+.light .opposite .button.smaller {
+box-shadow: 0 3px var(--bg-light-theme-border);
+}
+
 
 .light .opposite button:hover,
 .light .opposite .button:hover {
   box-shadow: 0 4px var(--bg-light-theme-border);
+}
+
+.light .opposite button.smaller:hover,
+.light .opposite .button.smaller {
+  box-shadow: 0 2px var(--bg-light-theme-border);
 }
 
 button:hover,
@@ -82,24 +116,23 @@ button.smaller,
 }
 
 .light button.smaller,
-.light a.button.smaller {
+.light .button.smaller {
   background: var(--bg-dark-theme);
   color: var(--text-large-dark);
   box-shadow: 0 3px var(--bg-dark-theme-border);
 }
 
 .light button,
-.light a.button {
+.light .button {
   background: var(--bg-dark-theme);
   color: var(--text-large-dark);
   box-shadow: 0 6px var(--bg-dark-theme-border);
 }
 
 .light button:hover,
-.light a.button:hover {
+.light .button:hover {
   box-shadow: 0 4px var(--text-highlight-light-shadow);
-  
-}
+  }
 
 .nyan button, .nyan button.smaller {
   background: var(--text-highlight-nyan);
@@ -121,7 +154,6 @@ button::after,
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
-
 
 button.close,
 .nyan button.close,
