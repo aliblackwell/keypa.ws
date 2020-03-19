@@ -49,8 +49,7 @@ button,
   box-shadow: 0 3px var(--bg-dark-theme-border);
 }
 .opposite button:hover,
-
-.opposite .button.button.smaller:hover {
+.opposite .button:hover {
   box-shadow: 0 4px var(--bg-dark-theme-border);
 }
 
@@ -91,6 +90,7 @@ box-shadow: 0 3px var(--bg-light-theme-border);
 
 button:hover,
 .button:hover {
+  text-decoration: none;
   box-shadow: 0 4px var(--bg-light-theme-border);
   top: 2px;
 }
