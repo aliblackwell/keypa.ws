@@ -48,8 +48,11 @@ header h2 {
   text-align: left;
 }
 
-.home header {
-  min-height: 40rem;
+@media (max-width: 600px) {
+
+  .home header {
+    min-height: 40rem;
+  }
 }
 
 header,
