@@ -9,19 +9,6 @@ body {
   overflow-x: hidden;
 }
 
-.holding .container {
-  margin: 0 auto 0;
-  position: relative;
-  max-width: 30rem;
-  padding-top: 3rem;
-}
-
-.holding header {
-  position: absolute;
-  top: 4rem;
-  left: 7.5rem;
-}
-
 pre {
   margin: 0;
 }
@@ -59,6 +46,10 @@ header h2 {
   background: white;
   margin: 0 auto;
   text-align: left;
+}
+
+.home header {
+  min-height: 40rem;
 }
 
 header,
@@ -483,6 +474,13 @@ footer li {
   grid-template-columns: 2fr 2fr;
 }
 
+@media (max-width: 700px) {
+  .grid {
+    grid-column-gap: 0rem;
+    grid-template-columns: 1fr;
+  }
+}
+
 #stop-sign {
   width: 250px;
   height: 250px;
@@ -539,47 +537,45 @@ figure.screenshot{
   margin: 0 0 2rem;
 }
 
-figure.frame, figure.border {
+figure.border img {
+  border: solid var(--bg-dark-theme) 0.4rem;
+}
+
+.light figure.border img {
+  border: solid var(--bg-light-theme) 0.4rem;
+}
+
+figure.frame {
   padding: 1rem;
   background: var(--bg-light-theme);
 }
-.light .reverse-theme figure.border,
 .light .reverse-theme figure.frame {
   background: var(--bg-light-theme);
 }
-.light figure.frame, .light figure.border,
-.reverse-theme figure.border,
+.light figure.frame, 
 .reverse-theme figure.frame {
   background: var(--bg-dark-theme);
 }
 @media (max-width: 700px) {
   figure.frame {
-    padding: 0.75rem;
+    padding: 0.4rem;
   }
 }
 
-figure.border {
-  padding: 0.5rem;
-  float: left;
-}
-
-figure.border img {
-  float: left;
-}
-
-figure.frame img, figure.frame {
+figure.frame.one img, figure.frame.one {
+  -webkit-clip-path: polygon(0 0%, 100% 4%, 92% 100%, 0% 95%);
   clip-path: polygon(0 0%, 100% 4%, 92% 100%, 0% 95%);
 }
 
-figure.frame:nth-child(2n), figure.frame:nth-child(2n) img {
+figure.frame.two:nth-of-type(2n), figure.frame.two:nth-of-type(2n) img {
+  -webkit-clip-path: polygon(8% 3%, 98% 0%, 99% 94%, 7% 96%);
   clip-path: polygon(8% 3%, 98% 0%, 99% 94%, 7% 96%);
 }
 
-figure.frame:nth-child(3n), figure.frame:nth-child(3n) img {
+figure.frame.three:nth-of-type(3n), figure.frame.three:nth-of-type(3n) img {
+  -webkit-clip-path: polygon(0% 1%, 96% 2%, 96% 99%, 3% 92%);
   clip-path: polygon(0% 1%, 96% 2%, 96% 99%, 3% 92%);
 }
-
-
 
 .feature-list .item:nth-child(2n) .words,
 .feature-list .item:nth-child(2n) figure,
