@@ -185,7 +185,7 @@ button.close:active,
 button.close:focus {
   background-image: url("./assets/noun_Delete_629749.svg");
   background-size: cover;
-  box-shadow: none;
+  box-shadow: none !important;
   top: 0.6rem;
   outline: none;
 }
