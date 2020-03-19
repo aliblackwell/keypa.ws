@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <head>
-{% include 'partials/head-default.njk' %}
-{% include 'partials/meta-tags-default.njk' %}
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
 </head>
 <body class="home">
   <main class="container">
     <header class="banner theme">
       {% include 'partials/nav.njk' %}
-      <div class="banner-box">
-        <h2 class="subtitle">Cat-proof your keyboard</h2>
-        <p>KeyPaws protects your work from uninvited paw presses. Please download and try the app, and send in your feedback.</p>
+      <div class="download-box banner-box">
+        <h2 class="subtitle">Alpha testers' download page</h2>
+        <p>Please download and try the app, and send in your feedback using the form or by emailing Ali directly.</p>
         <a class="button medium" data-analytics="download" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.dmg" title="Get KeyPaws to cat-proof your computer">Download KeyPaws for Mac</a>
         <p>
           <a class="button smaller" href="./feedback/">Feedback form</a>
         </p>
       </div>
-      <pre role="presentation" class="homepage-kitty">
+<pre role="presentation" class="blinking-kitty">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -28,9 +28,15 @@
 
     </header>
     {% include 'partials/large-paws.svg' %}
-    {% include 'partials/features.njk' %}
-    {% include 'partials/quote.njk' %}
-    {% include 'partials/footer.njk' %}
+    <section class="wide reverse-theme first-wide quotes">
+      {% include 'partials/quote.njk' %}
+    </section>
+    <section class="wide tone fourth-wide">
+      {% include 'partials/gift-widget.njk' %}
+    </section>
+    <footer class="wide theme">
+      {% include 'partials/footer.njk' %}
+    </footer>
   </main>
   <script src="/js/home-kitty.js"></script>
   <script src="/js/analytics.js"></script>

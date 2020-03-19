@@ -185,6 +185,16 @@ header h2.subtitle {
   position: relative;
 }
 
+.download-box {
+  text-align: center;
+  padding: 2rem 4rem;
+  clear: both;
+}
+
+.download-box .button.medium {
+  margin-top: 0;
+}
+
 .banner-box {
   text-align: center;
   padding: 2rem 4rem 8rem;
