@@ -1,6 +1,3 @@
-const NyanWrapper = document.getElementById("theme-wrapper")
-const bodyNyan = document.getElementsByTagName("body")[0]
-
 const Nyan = `  
   <div class="nyan-wrapper">
 		<div class="sparks-combo">
@@ -33,13 +30,13 @@ const Nyan = `
 `
 
 function initNyan() {
-  NyanWrapper.innerHTML = Nyan
-  bodyNyan.classList.add("nyan")
+  document.getElementById("theme-wrapper").innerHTML = Nyan
+  document.getElementsByTagName("body")[0].classList.add("nyan")
 }
 
 function endNyan() {
-  NyanWrapper.innerHTML = ""
-  bodyNyan.classList.remove("nyan")
+  document.getElementById("theme-wrapper").innerHTML = ""
+  document.getElementsByTagName("body")[0].classList.remove("nyan")
 }
-
+!nw.global.initNyan && (nw.global.initNyan = initNyan)
 !nw.global.endNyan && (nw.global.endNyan = endNyan)
