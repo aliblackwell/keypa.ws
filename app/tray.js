@@ -1,5 +1,5 @@
 const { openSettingsWindow } = require("./windows")
-let warningIntervals = []
+let warningInterval = null
 let current = "white"
 let showStatus = nw.global.settings["show-status"]
 
@@ -22,8 +22,8 @@ function setHideStatus() {
 nw.global.setHideStatus = setHideStatus
 
 function showWarning() {
-  if (showStatus) {
-    const warningInterval = setInterval(() => {
+  if (showStatus && !warningInterval) {
+    warningInterval = setInterval(() => {
       tray.icon = `./app/assets/paws-menu-bar-${current}.png`
       if (current === "white") {
         current = "invert"
@@ -31,15 +31,12 @@ function showWarning() {
         current = "white"
       }
     }, 333)
-    warningIntervals.push(warningInterval)
   }
 }
 
 function resetWarning() {
-  if (showStatus) {
-    warningIntervals.forEach(warning => clearInterval(warning))
-    warningIntervals = []
-  }
+  clearInterval(warningInterval)
+  warningInterval = null
 }
 
 nw.global.resetWarning = resetWarning

@@ -85,6 +85,8 @@
 }
 
 .sharer li a,
+.light .reverse-theme .sharer a,
+.light .reverse-theme .sharer a:visited,
 .sharer li a:visited {
   display: block;
   text-decoration: none;

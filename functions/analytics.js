@@ -9,6 +9,7 @@ app.get('*', (req, res, next) => {
 })
  
 app.post("*", (req, res, next) => {
+  
   try {
     LogEvent(req, res)
   } catch (err) {

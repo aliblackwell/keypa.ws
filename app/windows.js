@@ -19,14 +19,6 @@ const cdSettings = {
   visible_on_all_workspaces: true,
 }
 
-const currentWords = {
-  title: "nothing",
-}
-
-function updateWin(win) {
-  win.currentWords = currentWords
-}
-
 function resetInfo() {
   infoEl.innerHTML = nw.global.generateCatWithMessage(false)
 }

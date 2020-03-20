@@ -18,6 +18,7 @@ let probableCat = false
 let possibleCat = false
 let possibleHuman = false
 let timeouts = []
+let definiteReset
 
 let previousKeys = []
 
@@ -44,6 +45,7 @@ function resetEnvironment() {
   possibleCat = false
   probableCat = false
   resetWarning()
+  clearTimeout(definiteReset)
   setInfo("nothing typing")
   setTimeout(() => {
     nw.global.shouldCatBlink = true
@@ -61,11 +63,15 @@ function startTimeout() {
   clearArray(timeouts, clearTimeout)
   const timeout = setTimeout(() => {
     resetEnvironment()
-  }, 2000)
+  }, 3000)
   timeouts.push(timeout)
 }
 
 function gotKeys(mammal) {
+  definiteReset && clearTimeout(definiteReset)
+  definiteReset = setTimeout(() => {
+    nw.global.resetEnvironment()
+  }, 10000)
   checkPreviousKeys(mammal)
   if (mammal === "h" && !humanTyping && !possibleCat) {
     humanTyping = true
