@@ -27,9 +27,11 @@ function setCurrentTheme() {
     settings.palette = getSystemTheme()
   }
   if (settings.theme === "nyan") {
-    initNyan()
+    body.classList.remove("light")
+    body.classList.remove("dark")
+    nw.global.initNyan()
   } else {
-    endNyan()
+    nw.global.endNyan()
     for (let i = 0; i < classes.length; i++) {
       body.classList.remove(classes[i].slug)
     }

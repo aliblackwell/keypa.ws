@@ -34,7 +34,30 @@
 
     </section>
 
-
+    <svg role="presentation" alt="" id="large-paws" data-name="Large Paws" xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 308.48 223.25">
+      <path role="presentation" alt=""
+        d="M239,59c6,2,15,10,15,23,13-1,34,9,30,28-5,20-33,24-44,13-8,7-24,4-29-5-14,3-36-12-32-32,4-18,25-19,37-13C222,62,232,58,239,59Z"
+        transform="translate(-3.15 -5.18)" style="fill-rule:evenodd" />
+      <ellipse role="presentation" alt="" cx="224.17" cy="29.13" rx="17" ry="24"
+        transform="translate(-4.87 15.24) rotate(-5.19)" />
+      <ellipse role="presentation" alt="" cx="265.81" cy="38.35" rx="24" ry="17"
+        transform="translate(95.94 243.71) rotate(-59.84)" />
+      <ellipse role="presentation" alt="" cx="185.41" cy="46.22" rx="15.13" ry="21.78"
+        transform="translate(-8.77 36.53) rotate(-12.65)" />
+      <ellipse role="presentation" alt="" cx="293.73" cy="70.2" rx="21.78" ry="15.13"
+        transform="translate(55.69 254.85) rotate(-52.39)" />
+      <path role="presentation" alt=""
+        d="M74,158c7-2,18,1,25,13,11-8,34-10,40,8,6,20-17,37-32,34-3,10-18,15-27,10-11,9-38,8-44-12-5-17,13-29,25-29C61,169,68,160,74,158Z"
+        transform="translate(-3.15 -5.18)" style="fill-rule:evenodd" />
+      <ellipse role="presentation" alt="" cx="46.6" cy="139.41" rx="17" ry="24"
+        transform="translate(-75.16 47.4) rotate(-35.31)" />
+      <ellipse role="presentation" alt="" cx="84.09" cy="121.32" rx="17" ry="24" />
+      <ellipse role="presentation" alt="" cx="21.65" cy="173.64" rx="15.13" ry="21.78"
+        transform="translate(-115.29 55.67) rotate(-42.76)" />
+      <ellipse role="presentation" alt="" cx="127.38" cy="140.04" rx="21.78" ry="15.13"
+        transform="matrix(0.13, -0.99, 0.99, 0.13, -31.24, 242.87)" />
+    </svg>
   </main>
 
 </body>
@@ -50,7 +73,7 @@
 <script src="./auto-update.js"></script>
 <script src="./close-icon.js"></script>
 <script>const { setInfoEl } = require("./windows.js")
-  setInfoEl(catContainer)
+  setInfoEl(nw.global.catContainer)
 
   nw.Window.get().on("close", () => {
     nw.Window.get().on("focus", () => {

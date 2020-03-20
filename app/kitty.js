@@ -1,7 +1,8 @@
 let catContainer = document.getElementsByTagName("pre")[0]
 nw.global.shouldCatBlink = true
+nw.global.catContainer = catContainer
 
-let catString = catContainer.innerHTML
+let catString = nw.global.catContainer.innerHTML
 let catArray = catString.split("")
 
 function generateGibberish(length) {
@@ -44,7 +45,7 @@ function generateCat(shouldBlink, eyesShut) {
       newCat += catArray[i]
     }
   }
-  catContainer.innerHTML = newCat
+  nw.global.catContainer.innerHTML = newCat
   if (shouldBlink) {
     setTimeout(() => generateCat(false), 300)
   }
