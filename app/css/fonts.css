@@ -1,11 +1,11 @@
 @font-face {
   font-family: omnes-cond;
   font-weight: 700;
-  src: url("./assets/fonts/OmnesCond-Bold.otf");
+  src: url("../assets/fonts/OmnesCond-Bold.otf");
 }
 
 @font-face {
   font-family: omnes-cond;
   font-weight: 400;
-  src: url("./assets/fonts/OmnesCond-Regular.otf");
+  src: url("../assets/fonts/OmnesCond-Regular.otf");
 }

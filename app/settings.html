@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>KeyPaws</title>
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="./themes/nyan.css">
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/nyan.css">
 </head>
 
 <body>
@@ -63,17 +63,25 @@
 </body>
 
 
-<script src="./themes/nyan.js"></script>
+<script src="./js-client/nyan.js"></script>
+<script>
+  /* eslint-disable */
+  const currentPageNyanInstance = NyanInstance("settingsPage")
+  /* eslint-enable */
+</script>
 <script src="./widgets/theme-switcher.js"></script>
+<script>
+  !nw.global.setCurrentTheme && (nw.global.setCurrentTheme = setCurrentTheme)
+</script>
 <script src="./widgets/auto-launch.js"></script>
 <script src="./widgets/show-status.js"></script>
 <script src="./widgets/add-license.js"></script>
-<script src="./loading.js"></script>
-<script src="./kitty.js"></script>
+<script src="./js-client/loading.js"></script>
+<script src="./js-client/kitty.js"></script>
 <script src="./auto-update.js"></script>
-<script src="./close-icon.js"></script>
+<script src="./js-client/close-icon.js"></script>
 <script>const { setInfoEl } = require("./windows.js")
-  setInfoEl(nw.global.catContainer)
+  setInfoEl(catContainer)
 
   nw.Window.get().on("close", () => {
     nw.Window.get().on("focus", () => {

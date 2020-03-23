@@ -1,9 +1,9 @@
-@import url('./styles/variables.css');
+@import url('../styles/variables.css');
 @import url('./fonts.css');
-@import url('./styles/accessible-foundations.css');
-@import  url('./styles/buttons.css');
-@import url('./styles/forms.css');
-@import url('./styles/typography.css');
+@import url('../styles/accessible-foundations.css');
+@import  url('../styles/buttons.css');
+@import url('../styles/forms.css');
+@import url('../styles/typography.css');
 
 #large-paws {
   position: fixed;

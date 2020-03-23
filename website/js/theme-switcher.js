@@ -1,3 +1,5 @@
+/*global currentPageNyanInstance*/
+
 function getSystemTheme() {
   const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches // could change on mac auto
   return isDarkMode ? "dark" : "light"

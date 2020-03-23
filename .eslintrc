@@ -6,15 +6,20 @@
 
   "globals": {
     "nw": "writable",
+    "currentPageNyanInstance": "writable",
+    "setCurrentTheme":"writable",
+    "catContainer":"writable",
     "settings": "writable",
     "describe": "readonly",
     "beforeEach": "readonly",
-    "it":"readonly"
+    "it": "readonly"
   },
 
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 8
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "globalReturn": true
+    }
   },
   "env": {
     "browser": true,

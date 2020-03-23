@@ -29,9 +29,9 @@ function setCurrentTheme() {
   if (settings.theme === "nyan") {
     body.classList.remove("light")
     body.classList.remove("dark")
-    nw.global.initNyan()
+    currentPageNyanInstance.initNyan()
   } else {
-    nw.global.endNyan()
+    currentPageNyanInstance.endNyan()
     for (let i = 0; i < classes.length; i++) {
       body.classList.remove(classes[i].slug)
     }
@@ -40,8 +40,6 @@ function setCurrentTheme() {
     body.classList.add(settings.palette)
   }
 }
-
-!nw.global.setCurrentTheme && (nw.global.setCurrentTheme = setCurrentTheme)
 
 const ThemeSwitcherHTML = `<h2>Theme</h2>
 <p class="explainer">

@@ -3,6 +3,7 @@ let statusUpdates = []
 let isCatDetectedOpening = false
 let settingsWindowOpen = false
 let infoEl = null
+nw.global.endNyans = []
 
 const windowSettings = {
   width: 1200,
@@ -13,8 +14,8 @@ const windowSettings = {
 }
 
 const cdSettings = {
-  width: 1000,
-  height: 1000,
+  width: 10,
+  height: 10,
   kiosk: true,
   visible_on_all_workspaces: true,
 }
@@ -47,8 +48,9 @@ function openCatDetected() {
       nw.global.closeCatDetected = () => {
         win.close()
       }
-      //win.enterKioskMode()
+      win.enterKioskMode()
       win.on("close", function() {
+        nw.global.closePage && nw.global.closePage.endNyan()
         this.close(true)
         this.hide()
         resetInfo()
@@ -83,8 +85,7 @@ function openSettingsWindow() {
           settingsWindowOpen = false
           this.setShowInTaskbar(false)
           this.hide()
-          nw.global.endNyan()
-
+          nw.global.settingsPage && nw.global.settingsPage.endNyan()
           nw.global.focusSettings = () => {
             this.focus()
           }
@@ -104,6 +105,12 @@ function openSettingsWindow() {
   }
 }
 
+function endWhichNyan(pageName, endThisNyan) {
+  const preservedObj = nw.global[pageName] ? nw.global[pageName] : {}
+  nw.global[pageName] = Object.assign({}, preservedObj)
+  nw.global[pageName].endNyan = endThisNyan
+}
+
 function openWelcomeWindow() {
   nw.Window.open("./app/welcome.html", windowSettings, function(win) {
     nw.global.closeWelcomeWin = function() {
@@ -118,4 +125,5 @@ module.exports = {
   openWelcomeWindow,
   setInfo,
   setInfoEl,
+  endWhichNyan,
 }

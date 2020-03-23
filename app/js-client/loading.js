@@ -1,7 +1,6 @@
-const { saveSettings } = require("./settings")
 let radios = document.querySelectorAll('input[type="radio"]')
 let radioWrappers = document.querySelectorAll(".wrapper")
-let interval1, interval2
+let interval1
 let loading = false
 radios.forEach(function(elem) {
   // Lookup key in settings
@@ -17,7 +16,7 @@ radios.forEach(function(elem) {
     setLoading(settingsValue)
     const newSettings = nw.global.settings
     newSettings[settingsKey] = settingsValue
-    saveSettings(newSettings, () => {
+    nw.global.saveSettings(newSettings, () => {
       setTimeout(setLoaded, 500)
     })
   })
