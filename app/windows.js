@@ -13,8 +13,8 @@ const windowSettings = {
 }
 
 const cdSettings = {
-  width: 10,
-  height: 10,
+  width: 1000,
+  height: 1000,
   kiosk: true,
   visible_on_all_workspaces: true,
 }
@@ -47,7 +47,7 @@ function openCatDetected() {
       nw.global.closeCatDetected = () => {
         win.close()
       }
-      win.enterKioskMode()
+      //win.enterKioskMode()
       win.on("close", function() {
         this.close(true)
         this.hide()

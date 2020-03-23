@@ -71,7 +71,7 @@ function gotKeys(mammal) {
   definiteReset && clearTimeout(definiteReset)
   definiteReset = setTimeout(() => {
     nw.global.resetEnvironment()
-  }, 10000)
+  }, 5000)
   checkPreviousKeys(mammal)
   if (mammal === "h" && !humanTyping && !possibleCat) {
     humanTyping = true
