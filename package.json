@@ -65,7 +65,7 @@
     "clear-settings": "rm -rf /Users/aliblackwell/Library/ApplicationSupport/Keypaws/Default/*.json",
     "clean": "rm -rf ./dist/ ./background/ ./build/ ./ship-mac/KeyPaws.app ./ship-mac/*.zip ./ship-mac/*.dmg",
     "update:package": "cp -r ./app/* ./ship-mac/KeyPaws.app/Contents/Resources/app.nw/app/",
-    "update:app": "cp ./app/*.html ./app/*.css ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
+    "update:app": "cp ./app/*.html ./app/css/*.css ./app/**/*.js ./app/*.js /Applications/KeyPaws.app/Contents/Resources/app.nw/app/",
     "build:keypaws": "dotenv -- cross-var pyinstaller --osx-codesign-identity=%APPLE_DEVELOPER_ID% ./capture/keypaws.spec",
     "build:record": "pyinstaller ./capture/record.spec",
     "build:trigger": "dotenv -- cross-var pyinstaller --osx-codesign-identity=%APPLE_DEVELOPER_ID% ./capture/trigger.py",

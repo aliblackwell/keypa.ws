@@ -9,7 +9,6 @@ function alertErrorMessageAndQuit(message) {
   nw.App.quit()
 }
 
-let isTriggerRunning = false
 let isScriptRunning = false
 let childProcess
 
@@ -150,31 +149,31 @@ function startKeypawsScript() {
   })
 }
 
-function startRecordScript(mammal) {
+function triggerAccessibilityPermission(successCb, errorCb) {
   stopScript(() => {
-    childProcess = spawn("./background/keypaws/record", [mammal, `"${nw.App.dataPath}"`])
+    childProcess = spawn("./background/keypaws/keypaws")
+    isScriptRunning = true
+    childProcess.on("exit", () => {
+      isScriptRunning = false
+    })
     childProcess.stdout.on("data", data => {
       isScriptRunning = true
-      let output = data.toString()[0]
-      console.log(output)
+      let mammal = data.toString()[0]
+      successCb(mammal)
+    })
+
+    childProcess.stderr.on("close", () => {
+      isScriptRunning = false
+      settings.accessibilityGranted = false
+      saveSettings(settings, () => {
+        errorCb()
+      })
     })
   })
 }
 
-function triggerAccessibilityPermission() {
-  if (!isTriggerRunning) {
-    childProcess = spawn("./background/trigger/trigger")
-    childProcess.on("exit", () => {
-      isTriggerRunning = false
-    })
-    childProcess.stdout.on("data", () => {
-      isTriggerRunning = true
-    })
-  }
-}
-
 function triggerAccessibilityPermissionGranted() {
-  if (isTriggerRunning) {
+  if (isScriptRunning) {
     childProcess.kill("SIGINT")
   }
   settings.accessibilityGranted = true
@@ -187,7 +186,6 @@ function triggerAccessibilityPermissionGranted() {
 module.exports = {
   getErrorMessage,
   startKeypawsScript,
-  startRecordScript,
   stopScript,
   triggerAccessibilityPermission,
   triggerAccessibilityPermissionGranted,

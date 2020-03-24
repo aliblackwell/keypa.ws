@@ -29,9 +29,9 @@ function setCurrentTheme() {
   if (settings.theme === "nyan") {
     body.classList.remove("light")
     body.classList.remove("dark")
-    currentPageNyanInstance.initNyan()
+    currentPageNyanInstance && currentPageNyanInstance.initNyan()
   } else {
-    currentPageNyanInstance.endNyan()
+    currentPageNyanInstance && currentPageNyanInstance.endNyan()
     for (let i = 0; i < classes.length; i++) {
       body.classList.remove(classes[i].slug)
     }

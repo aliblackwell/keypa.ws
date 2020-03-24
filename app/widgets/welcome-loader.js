@@ -1,5 +1,3 @@
-const body = document.getElementsByTagName("body")[0]
-
 function getSystemTheme() {
   const media = window.matchMedia("(prefers-color-scheme: dark)")
   const isDarkMode = media ? media.matches : null

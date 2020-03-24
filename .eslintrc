@@ -6,6 +6,7 @@
 
   "globals": {
     "nw": "writable",
+    "body": "readonly",
     "currentPageNyanInstance": "writable",
     "setCurrentTheme":"writable",
     "catContainer":"writable",

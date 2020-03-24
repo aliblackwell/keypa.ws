@@ -6,8 +6,8 @@ const AddLicenseHTML = `
   <button class="inline-smaller">Unlock</button>
   </div>
   <p class="explainer license-explainer">Without a license key, <strong>KeyPaws</strong> will <strong>quit without warning</strong> after 2 hours.</p>
-  <button class="smaller" id="get-key">Get your key</a>
 </form>
+<button class="smaller" id="get-key">Get your key</a>
 `
 let autoLaunch = document.querySelector("#auto-launch")
 let addLicense = document.querySelector("#add-license")
