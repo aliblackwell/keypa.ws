@@ -9,9 +9,9 @@
 </head>
 
 <body class="cat-detected">
-  <div id="theme-wrapper"></div>
+  <div id="theme-wrapper" role="presentation" aria-hidden="true"></div>
   <main class="cat-detected">
-    <pre class="kitcat">
+    <pre class="kitcat" role="presentation" aria-hidden="true">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -20,11 +20,12 @@
 (          )____£$tr2frfgre?
 </pre>
 
-    <div id="content">
-      <h1>Cat Detected!</h1>
+    <section id="content" role="alertdialog"
+    aria-labelledby="dialog1Title" aria-describedby="dialog1Title">>
+      <h1 id="dialog1Title">Cat Detected!</h1>
       <button id="close-window">Close window</button>
-    </div>
-    <textarea name="kitty-lit" id="kitty-lit"></textarea>
+    </section>
+    <textarea name="kitty-lit" id="kitty-lit" aria-hidden="true"></textarea>
 
     <svg role="presentation" alt="" id="large-paws" data-name="Large Paws" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 308.48 223.25">
