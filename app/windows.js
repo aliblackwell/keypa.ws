@@ -3,6 +3,7 @@ let statusUpdates = []
 let isCatDetectedOpening = false
 let settingsWindowOpen = false
 let infoEl = null
+let a11yInfoEl = null
 nw.global.endNyans = []
 
 const windowSettings = {
@@ -25,7 +26,8 @@ function resetInfo() {
 }
 
 function setInfo(words) {
-  if (infoEl) {
+  if (infoEl && a11yInfoEl) {
+    a11yInfoEl.querySelector("p").innerHTML = words
     nw.global.shouldCatBlink = false
     let newCat = nw.global.generateCatWithMessage(words)
     infoEl.innerHTML = newCat
@@ -37,8 +39,9 @@ function setInfo(words) {
   }
 }
 
-function setInfoEl(el) {
+function setInfoEl(el, a11yEl) {
   infoEl = el
+  a11yInfoEl = a11yEl
 }
 
 function openCatDetected() {

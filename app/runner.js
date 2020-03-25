@@ -128,13 +128,14 @@ function startKeypawsScript() {
       gotKeys(mammal)
     })
 
-    childProcess.stderr.on("close", (code, signal) => {
-      const m = getErrorMessage(code, signal, null, `KeyPaws has closed.`)
+    childProcess.stderr.on("close", data => {
+      let error = data.toString()
+      const m = getErrorMessage(null, null, null, `KeyPaws has closed. ${error}`)
       alertErrorMessageAndQuit(m)
     })
 
     childProcess.stderr.on("data", data => {
-      let error = data.toString()[0]
+      let error = data.toString()
       const m = getErrorMessage(null, null, null, `KeyPaws exited with error message: ${error}`)
       alertErrorMessageAndQuit(m)
     })
@@ -162,12 +163,14 @@ function triggerAccessibilityPermission(successCb, errorCb) {
       successCb(mammal)
     })
 
+    childProcess.on("error", () => {
+      isScriptRunning = false
+      errorCb()
+    })
+
     childProcess.stderr.on("close", () => {
       isScriptRunning = false
-      settings.accessibilityGranted = false
-      saveSettings(settings, () => {
-        errorCb()
-      })
+      errorCb()
     })
   })
 }

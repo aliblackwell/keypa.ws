@@ -9,11 +9,10 @@
 
 <body>
   <button class="close" id="welcome-close"><span class="screen-reader-text">close window</span></button>
-  <div id="theme-wrapper"></div>
-  <div class="drag-bar"></div>
-  <div id="theme-wrapper"></div>
+  <div id="theme-wrapper" role="presentation"></div>
+  <div class="drag-bar" role="presentation"></div>
   <main class="container">
-    <pre class="kitcat">
+    <pre class="kitcat" role="presentation">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -24,69 +23,76 @@
     <section id="welcome">
 
       <h1>Setup KeyPaws</h1>
-      <article class="step" data-panel="panel-0">
+      <article class="step" aria-hidden="false" data-panel="panel-0">
         <div class="welcome-grid">
           <header>
             <h2>Thanks for installing</h2>
             <p>For KeyPaws to run, you need to grant the app permission to access your keyboard.</p>
             <button class="stepper smaller" id="begin-setup">Show miaow</button>
           </header>
-          <div class="security-reassure">
+          <aside class="security-reassure">
             <h2><span role="img" alt="Weary cat">🙀</span> Don't worry</h2>
             <p>Keypaws checks what's being typed every second and decides whether it's a cat or a human. It then
               instantly forgets what you typed. Nothing is sent over the network.</p>
-          </div>
+          </aside>
         </div>
-
       </article>
-      <article class="step hidden" data-panel="panel-1">
+
+      <article class="step hidden" aria-hidden="true" data-panel="panel-1">
         <div class="welcome-grid grid-img">
-          <header>
+          <section>
             <h2>Grant purrmission</h2>
             <p>Please add KeyPaws to your accessibility settings:
               <span class="hidden more-help">
                 <strong>System Preferences</strong> > <strong>Security & Privacy</strong> > <strong>Privacy</strong> >
-                <strong>Accessibility</strong></p>
-            </span>
+                <strong>Accessibility</strong>
+              </span>
             </p>
             <button class="welcome-action smaller" id="grant-permission">Open settings</button>
 
 
-          </header>
-          <section>
+          </section>
+          <aside>
             <img src="assets/accessibility-permission.png"
-              alt="KeyPaws app with a tick next to it inside Settings > Security & Privacy > Accessibility" />
+              alt="KeyPaws app with a tick next to it inside Settings > Security & Privacy > Privacy > Accessibility" />
             <div class="hidden more-help" aria-hidden="true">
               <p style="text-align: center;">Open System Preferences and search "<strong>Allow computer</strong>" to go
                 straight there</p>
             </div>
-          </section>
+          </aside>
         </div>
       </article>
 
-      <article class="step hidden" data-panel="panel-2">
+      <article class="step hidden" aria-hidden="true" data-panel="panel-2">
         <div class="welcome-grid">
 
           <header>
             <h2>Test the KeyPaws AI</h2>
-            <p label-for="tester">Please type into the box to check that the <strong>KeyPaws A.N.I.M.A.L.
-                System*</strong> is sentient.</p>
-            <p><small>*A.I. Neural Intelligence Machine/Animal Learning System</small></p>
-            <button class="not-working smaller" id="check-permission">Go back</button>
+            <p id="tester-label">Please type into the box to check that the <strong>KeyPaws A.N.I.M.A.L.
+                System*</strong> is sentient.<br />
+              <small>*A.I. Neural Intelligence Machine/Animal Learning System</small></p>
+            <div class="check-permission hidden should-hide" aria-hidden="true" role="alertdialog"
+              aria-labelledby="dialog1Title" aria-describedby="dialog1Title">
+              <p><span id="dialog1Title"><strong>KeyPaws</strong> hasn't got the permission it requires. Please go back
+                  and check the settings.</span> <button class="not-working smaller" id="check-permission">Go
+                  back</button></p>
+            </div>
           </header>
-          <setion>
-            <textarea id="tester" name="tester"></textarea>
-            <p class="typing hidden" aria-hidden="true">You are typing like a <span class="test-prediction">____</span>
+          <section>
+            <textarea aria-labelledby="tester-label" id="tester" name="tester"></textarea>
+            <p class="typing" aria-hidden="true">You are typing like a <span class="test-prediction">____</span>
             </p>
-            <div class="confirm-step hidden" aria-hidden="true">
-              <button class="welcome-action smaller" id="final-confirm">Continue</button>
+            <div class="confirm-step hidden should-hide" aria-hidden="true" role="alertdialog"
+              aria-labelledby="dialog2Title" aria-describedby="dialog2Title">
+              <p><span id="dialog2Title"><strong>KeyPaws</strong> is working correctly.</span>
+                <button class="welcome-action smaller" id="final-confirm">Jolly Good</button></p>
             </div>
 
-          </setion>
+          </section>
         </div>
       </article>
 
-      <article class="step hidden" data-panel="panel-3">
+      <article class="step hidden" aria-hidden="true" data-panel="panel-3">
         <div class="welcome-grid">
 
 
@@ -128,7 +134,7 @@
     </svg>
   </main>
 </body>
-
+<script src="./js-client/dom-utils.js"></script>
 <script src="./js-client/nyan.js"></script>
 <script>
   /* eslint-disable */
@@ -143,77 +149,6 @@
 <script src="./js-client/kitty.js"></script>
 <script src="./js-client/close-icon.js"></script>
 
-<script>
-  function renderPanel(slide) {
-    let panels = document.querySelectorAll(".step")
-    panels.forEach(panel => {
-      panel.classList.add("hidden")
-    })
-    let visiblePanel = document.querySelector(`.step[data-panel="panel-${slide}"]`)
-    visiblePanel.classList.remove("hidden")
-  }
-
-  renderPanel(0)
-  const typingP = document.querySelector(".typing")
-  const tester = document.querySelector("#tester")
-  tester.addEventListener("focus", () => {
-    typingP.setAttribute("aria-hidden", "false")
-    typingP.classList.remove("hidden")
-  })
-  const beginSetupButton = document.querySelector("#begin-setup")
-  beginSetupButton.addEventListener("click", () => renderPanel(1))
-
-  const grantPermissionButton = document.querySelector("#grant-permission")
-  grantPermissionButton.addEventListener("click", grantPermission)
-  const confirmPermissionButton = document.querySelector("#confirm-permission")
-  confirmPermissionButton.addEventListener("click", confirmPermission)
-
-  const checkPermissionButton = document.querySelector("#check-permission")
-  checkPermissionButton.addEventListener("click", () => renderPanel(1))
-
-  const finalConfirmButton = document.querySelector("#final-confirm")
-  finalConfirmButton.addEventListener("click", () => renderPanel(3))
-
-  const {
-    triggerAccessibilityPermission,
-    triggerAccessibilityPermissionGranted,
-  } = require("./runner.js")
-
-  function grantPermission() {
-    let helpers = document.querySelectorAll(".more-help")
-    helpers.forEach(helper => {
-      helper.classList.remove("hidden")
-      helper.setAttribute("aria-hidden", "false")
-    })
-    grantPermissionButton.innerHTML = "Looking purrfect"
-    renderPanel(2)
-    triggerAccessibilityPermission(
-      m => {
-        // got mammal
-        let mammal = m === "c" ? "cat" : "human"
-
-        let confirmStep = document.querySelector(".confirm-step")
-        document.querySelector(".test-prediction").innerHTML = mammal
-        let testerTimeout = null
-        confirmStep.classList.remove("hidden")
-        confirmStep.setAttribute("aria-hidden", "false")
-        checkPermissionButton.classList.add("hidden")
-        checkPermissionButton.setAttribute("aria-hidden", "true")
-
-        clearTimeout(testerTimeout)
-        testerTimeout = setTimeout(() => {
-          document.querySelector(".test-prediction").innerHTML = "_____"
-        }, 500)
-      },
-      () => {
-        renderPanel(1)
-      }
-    )
-  }
-
-  function confirmPermission() {
-    triggerAccessibilityPermissionGranted()
-  }
-</script>
+<script src="js-client/welcome.js"></script>
 
 </html>

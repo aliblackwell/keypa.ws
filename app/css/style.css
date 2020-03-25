@@ -5,6 +5,11 @@
 @import url("../styles/forms.css");
 @import url("../styles/typography.css");
 
+body, #theme-wrapper, .container {
+  min-width: 900px;
+  min-height: 480px !important;
+}
+
 .hidden {
   display: none;
 }
@@ -26,10 +31,6 @@ textarea#tester {
 
 .light #large-paws {
   fill: rgba(0, 0, 0, 0.035);
-}
-
-#add-license {
-  display: none;
 }
 
 .keypaws {
@@ -264,7 +265,7 @@ dd {
 }
 
 pre.kitcat {
-  position: fixed;
+  position: absolute;
   color: var(--text-highlight-dark);
   bottom: 1rem;
   left: 2.5rem;

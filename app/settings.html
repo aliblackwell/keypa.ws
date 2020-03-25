@@ -10,10 +10,10 @@
 
 <body>
   <button class="close" id="settings-close"><span class="screen-reader-text">close window</span></button>
-  <div class="drag-bar"></div>
-  <div id="theme-wrapper"></div>
+  <div class="drag-bar" role="presentation" aria-hidden="true"></div>
+  <div id="theme-wrapper" role="presentation" aria-hidden="true"></div>
   <main class="container dashboard">
-    <pre class="kitcat" id="settings-kitcat">
+    <pre class="kitcat" id="settings-kitcat" role="presentation" aria-hidden="true">
  /\___/\
 (  o o  )
 (  =^=  )
@@ -25,12 +25,16 @@
     <section id="settings">
       <h1 class="text-large">Dashpawed</h1>
       <div class="grid">
-        <article id="theme-switcher"></article>
-        <article id="show-status"></article>
+        <article id="theme-switcher" aria-hidden="true"></article>
+        <article id="status" class="screen-reader-text">
+          <h1>KeyPaws status:</h1>
+          <p>nothing typing</p>
+        </article>
+        <article id="show-status" aria-hidden="true"></article>
         <article id="auto-launch"></article>
-        <article id="add-license"></article>
+        <article id="add-license" class="hidden" aria-hidden="true"></article>
       </div>
-      <div id="auto-update"></div>
+      <aside id="auto-update"></aside>
 
     </section>
 
@@ -62,7 +66,7 @@
 
 </body>
 
-
+<script src="./js-client/dom-utils.js"></script>
 <script src="./js-client/nyan.js"></script>
 <script>
   /* eslint-disable */
@@ -81,7 +85,8 @@
 <script src="./auto-update.js"></script>
 <script src="./js-client/close-icon.js"></script>
 <script>const { setInfoEl } = require("./windows.js")
-  setInfoEl(catContainer)
+  const a11yInfoEl = document.querySelector("#status")
+  setInfoEl(catContainer, a11yInfoEl)
 
   nw.Window.get().on("close", () => {
     nw.Window.get().on("focus", () => {

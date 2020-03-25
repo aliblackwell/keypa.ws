@@ -9,16 +9,14 @@ const AddLicenseHTML = `
 </form>
 <button class="smaller" id="get-key">Get your key</a>
 `
-let autoLaunch = document.querySelector("#auto-launch")
-let addLicense = document.querySelector("#add-license")
 
 function toggleLicensePanel() {
   if (!nw.global.settings.licensed) {
-    autoLaunch.style.display = "none"
-    addLicense.style.display = "block"
+    showHideEl("hide", "#auto-launch")
+    showHideEl("show", "#add-license")
   } else {
-    addLicense.style.display = "none"
-    autoLaunch.style.display = "block"
+    showHideEl("show", "#auto-launch")
+    showHideEl("hide", "#add-license")
   }
 }
 nw.global.toggleLicensePanel = toggleLicensePanel

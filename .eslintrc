@@ -7,6 +7,8 @@
   "globals": {
     "nw": "writable",
     "body": "readonly",
+    "showHideEl":"readonly",
+    "showHideEls":"readonly",
     "currentPageNyanInstance": "writable",
     "setCurrentTheme":"writable",
     "catContainer":"writable",
