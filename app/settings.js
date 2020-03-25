@@ -11,7 +11,7 @@ const defaultSettings = {
   activeLicense: false,
 }
 
-const settingsFile = "my-settings-file66.json"
+const settingsFile = "my-settings-file69.json"
 const settingsPath = path.join(nw.App.dataPath, settingsFile)
 
 function getStartupSettings(handleRegular, handleFirstTime) {

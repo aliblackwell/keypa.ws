@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
-{% include 'partials/head-default.njk' %}
-{% include 'partials/meta-tags-default.njk' %}
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
 </head>
 <body class="dark">
   <main class="container">
@@ -20,6 +20,12 @@
         <input type="text" id="name" name="name"/>
         <label for="email">Your email</label>
         <input type="email" id="email" name="email"/>
+        <label for="version">KeyPaws Version</label>
+        <input type="version" id="version" name="version"/>
+        <label for="mac-version">Mac OSX Version</label>
+        <input type="mac-version" id="mac-version" name="mac-version"/>
+        <label for="files">Files (please zip for multiple files)</label>
+        <input type="files" id="files" name="files"/>
         <label for="how-improve">How could
           <strong>KeyPaws</strong>
           be improved?</label>
@@ -27,7 +33,8 @@
         <label for="testimonial">Testimonial</label>
         <textarea id="testimonial" name="testimonial"></textarea>
         <div class="wrapper">
-          <input type="checkbox" name="consent" id="consent"/>        <label for="consent">By ticking the checkbox you allow KeyPaws to publish your testimonial alongside your firstname. Your email will never be published or shared with anyone.</label>
+          <input type="checkbox" name="consent" id="consent"/>
+          <label for="consent">By ticking the checkbox you allow KeyPaws to publish your testimonial alongside your firstname. Please leave blank if no testimonial. Your email will never be published or shared with anyone. We are collecting any information you provide for the sole purpose of improving the app.</label>
 
         </div>
         <button>Submit your feedback</button>

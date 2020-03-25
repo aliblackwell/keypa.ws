@@ -48,7 +48,7 @@ function initAddLicense() {
   const getKey = document.querySelector("#get-key")
   getKey &&
     getKey.addEventListener("click", () => {
-      nw.Shell.openExternal("https://www.keypa.ws/get")
+      nw.Shell.openExternal("https://www.keypa.ws/alpha-test/feedback")
     })
 }
 
