@@ -15,6 +15,14 @@ confirmPermissionButton.addEventListener("click", confirmPermission)
 const checkPermissionButton = document.querySelector("#check-permission")
 checkPermissionButton.addEventListener("click", () => renderPanel(1))
 
+const shouldBeWorkingButton = document.querySelector("#should-be-working")
+shouldBeWorkingButton.addEventListener("click", () => {
+  renderPanel(2)
+  triggerAccessibilityPermission(gotTyping, () => {
+    showHideEl("show", ".check-permission")
+  })
+})
+
 const finalConfirmButton = document.querySelector("#final-confirm")
 finalConfirmButton.addEventListener("click", () => renderPanel(3))
 
@@ -23,25 +31,24 @@ const {
   triggerAccessibilityPermissionGranted,
 } = require("./runner.js")
 
+const gotTyping = m => {
+  let mammal = m === "c" ? "cat" : "human"
+  document.querySelector(".test-prediction").innerHTML = mammal
+  let testerTimeout = null
+  showHideEl("show", ".confirm-step")
+  clearTimeout(testerTimeout)
+  testerTimeout = setTimeout(() => {
+    document.querySelector(".test-prediction").innerHTML = "_____"
+  }, 500)
+}
+
 function grantPermission() {
   showHideEls("show", ".more-help")
   grantPermissionButton.innerHTML = "Looking purrfect"
   renderPanel(2)
-  triggerAccessibilityPermission(
-    m => {
-      let mammal = m === "c" ? "cat" : "human"
-      document.querySelector(".test-prediction").innerHTML = mammal
-      let testerTimeout = null
-      showHideEl("show", ".confirm-step")
-      clearTimeout(testerTimeout)
-      testerTimeout = setTimeout(() => {
-        document.querySelector(".test-prediction").innerHTML = "_____"
-      }, 500)
-    },
-    () => {
-      showHideEl("show", ".check-permission")
-    }
-  )
+  triggerAccessibilityPermission(gotTyping, () => {
+    showHideEl("show", ".check-permission")
+  })
 }
 
 function confirmPermission() {

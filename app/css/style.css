@@ -13,6 +13,11 @@ body, #theme-wrapper, .container {
 .hidden {
   display: none;
 }
+
+#welcome p {
+  margin-bottom: 1rem;
+}
+
 textarea#tester {
   width: 100%;
   height: 7.5rem;
