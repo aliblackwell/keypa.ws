@@ -14,8 +14,8 @@
   --text-medium-dark-theme-highlight: #edbec2;
   --text-large-dark-theme-highlight: #edbec2;
 
-  --bg-light-theme: #eecfd1;
-  --bg-light-theme-border: #f1d8da;
+  --bg-light-theme: #FFC0CB;
+  --bg-light-theme-border: #fad8de;
   --text-medium-light-theme: #003131; /* acc */
   --text-large-light-theme: #013c3c;
   --text-medium-light-theme-highlight: #006060;
@@ -38,7 +38,7 @@
   --text-medium-dark-content-highlight: #edbec2;
   --text-large-dark-content-highlight: #edbec2;
 
-  --bg-light-content: #fafafa;
+  --bg-light-content: #eecfd1;
   --bg-light-content-border: #e2c4c6;
   --bg-light-mid-content: #ccc;
   --text-medium-light-tone: #111;
@@ -84,13 +84,5 @@ Core breakpoints
   :root {
     --text-jumbo: 2.5rem;
     --text-medium: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --default-20px: 16px;
-    --pt-title: 1.8rem;
-    --pt-subtitle: 1.2rem;
   }
 }
