@@ -8,7 +8,6 @@ const defaultSettings = {
   mood: "friendly",
   mode: "active",
   theme: "default",
-  activeLicense: false,
 }
 
 const settingsFile = "my-settings-file69.json"

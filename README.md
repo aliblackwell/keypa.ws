@@ -23,6 +23,32 @@ Clone the repository and run `npm install`.
 
 It's important you then run `npm install nw --nwjs_build_type=sdk` as otherwise it won't work.
 
+
+### Building
+
+Building for Mac:
+
+On old computer:
+
+`npm run clean:python`
+`npm run build:keypaws`
+`npm run bundle:python`
+
+On new computer:
+
+`npm run clean:python`
+
+Copy './background' from old computer to new computer.
+
+On new computer:
+
+`npm run build:bundle`
+
+
+
+
+
+
 Edit:
 ```
 /Users/aliblackwell/.virtualenvs/keypa.ws/lib/python3.7/site-packages/keyboard/_darwinkeyboard.py
