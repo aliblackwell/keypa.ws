@@ -1,9 +1,9 @@
 {
-  "version": "0.6.3",
+  "version": "0.6.5",
   "packages": {
     "mac64": {
-      "url": "https://downloads.keypa.ws/KeyPaws0.6.3.zip",
-      "size": 154245610
+      "url": "https://downloads.keypa.ws/KeyPaws0.6.5.zip",
+      "size": 154755970
     }
   }
 }
