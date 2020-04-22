@@ -5,7 +5,18 @@ const { createStatusMenu } = require("./app/tray")
 const { makeAutoLauncher } = require("./app/widgets/auto-launch-server")
 const { startCountdown } = require("./app/widgets/license-server")
 const { handleAutoUpdater } = require("./app/auto-update-server")
+const path = require("path")
 
+function gotCorrectFilePath() {
+  let dir_path = path.dirname(process.execPath)
+  if (dir_path.indexOf("alib") > -1) {
+    return true
+  }
+  if (dir_path.indexOf("Applications") > -1) {
+    return true
+  }
+  return false
+}
 function readyNodeModules() {
   makeAutoLauncher()
   handleAutoUpdater()
@@ -25,6 +36,11 @@ function startKeypaws() {
 nw.global.startKeypaws = startKeypaws
 
 // Run the app:
-startCountdown()
-readyNodeModules()
-getStartupSettings(startKeypaws, showWelcomeWindow)
+if (gotCorrectFilePath()) {
+  startCountdown()
+  readyNodeModules()
+  getStartupSettings(startKeypaws, showWelcomeWindow)
+} else {
+  alert("Please move the KeyPaws app into your Applications folder and try again.")
+  nw.App.quit()
+}
