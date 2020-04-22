@@ -15,6 +15,9 @@ confirmPermissionButton.addEventListener("click", confirmPermission)
 const checkPermissionButton = document.querySelector("#check-permission")
 checkPermissionButton.addEventListener("click", () => renderPanel(1))
 
+const quitKeyPawsButton = document.querySelector("#quit-keypaws")
+quitKeyPawsButton.addEventListener("click", () => nw.App.quit())
+
 const shouldBeWorkingButton = document.querySelector("#should-be-working")
 shouldBeWorkingButton.addEventListener("click", () => {
   renderPanel(2)
@@ -55,4 +58,8 @@ function confirmPermission() {
   triggerAccessibilityPermissionGranted()
 }
 
-renderPanel(0)
+if (nw.global.gotCorrectPath) {
+  renderPanel(0)
+} else {
+  renderPanel(999)
+}
