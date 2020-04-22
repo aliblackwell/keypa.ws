@@ -1,25 +1,10 @@
 const { clearArray } = require("./utils")
-const path = require("path")
 let statusUpdates = []
 let isCatDetectedOpening = false
 let settingsWindowOpen = false
 let infoEl = null
 let a11yInfoEl = null
 nw.global.endNyans = []
-
-function gotCorrectFilePath() {
-  let dir_path = path.dirname(process.execPath)
-  if (dir_path.indexOf("Applications") > -1) {
-    return true
-  }
-  return false
-}
-
-if (gotCorrectFilePath() || process.env.CONTEXT === "developmentt") {
-  nw.global.gotCorrectPath = true
-} else {
-  nw.global.gotCorrectPath = false
-}
 
 const windowSettings = {
   width: 1200,

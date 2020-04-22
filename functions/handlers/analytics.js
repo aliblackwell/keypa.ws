@@ -19,11 +19,19 @@ function LogEvent(req, res) {
       // "Content-Type": "application/x-www-form-urlencoded",
     },
     body: JSON.stringify(req.body),
-  }).catch(err => {
-    console.log("err", err)
-    //res.send(err)
   })
-  res.send("success")
+    .then(response => {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server")
+      }
+      return response.json()
+    })
+    .then(stories => {
+      res.send(stories)
+    })
+    .catch(error => {
+      res.send(error)
+    })
 }
 
 module.exports = { LogEvent }

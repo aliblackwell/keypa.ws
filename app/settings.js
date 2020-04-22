@@ -26,7 +26,7 @@ function getStartupSettings(handleRegular, handleFirstTime) {
 
 function checkAccessibilityGranted(s, handleRegular, handleFirstTime) {
   nw.global.settings = s
-  if (s.accessibilityGranted) {
+  if (s.accessibilityGranted && nw.global.gotCorrectPath) {
     handleRegular()
   } else {
     handleFirstTime()

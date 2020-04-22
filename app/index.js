@@ -5,6 +5,20 @@ const { createStatusMenu } = require("./app/tray")
 const { makeAutoLauncher } = require("./app/widgets/auto-launch-server")
 const { startCountdown } = require("./app/widgets/license-server")
 const { handleAutoUpdater } = require("./app/auto-update-server")
+const path = require("path")
+function gotCorrectFilePath() {
+  let dir_path = path.dirname(process.execPath)
+  if (dir_path.indexOf("Applications") > -1) {
+    return true
+  }
+  return false
+}
+
+if (gotCorrectFilePath() || process.env.CONTEXT === "development") {
+  nw.global.gotCorrectPath = true
+} else {
+  nw.global.gotCorrectPath = false
+}
 
 function readyNodeModules() {
   makeAutoLauncher()
