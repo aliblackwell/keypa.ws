@@ -1,7 +1,7 @@
 {
   "name": "KeyPaws",
   "main": "./app/index.js",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "manifestUrl": "https://downloads.keypa.ws/package.json",
   "chromium-args": "--disable-accelerated-video",
   "build": {
