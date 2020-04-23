@@ -62,10 +62,24 @@ img {
   outline: 0;
 }
 
-*:focus {
-  outline: none;
-  box-shadow: 2px 2px 0px 10px var(--outline-focus) !important;
+[href] {
+  outline:none
+ }
+
+* {
+  outline: 2px solid transparent;
+  outline-offset: 50px;
+  transition: 0.5s ease all;
 }
+
+*:focus:not(:active) {
+  outline:.125rem solid var(--outline-focus   );
+  outline-offset: 10px;
+  -moz-focus-inner: none;
+ }
+
+
+
 
 /*--------------------------------------------------------------
 # Foundations
@@ -92,6 +106,10 @@ html {
 *:after {
   /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
   box-sizing: inherit;
+}
+
+img::before {
+  color: black;
 }
 
 .group:after {

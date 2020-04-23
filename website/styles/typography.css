@@ -44,11 +44,11 @@ body {
   color: var(--text-medium-dark-theme);
 }
 
-body.dark {
+body.dark, body.light {
   background: var(--bg-dark-theme);
 }
 
-body.light {
+body.app.light {
   background: var(--bg-light-theme);
   color: var(--text-medium-light-theme);
 }
@@ -70,7 +70,7 @@ a {
   text-decoration: none;
 }
 
-.light a {
+.app.light a {
   color: var(--text-medium-light-theme-highlight);
 }
 
@@ -112,7 +112,7 @@ blockquote {
   color: var(--text-large-dark-theme);
 }
 
-.light .theme blockquote {
+.app.light .theme blockquote {
   color: var(--text-large-light-theme);
 }
 
@@ -152,7 +152,7 @@ cite img {
   margin-bottom: -1.8rem;
 }
 
-.light cite img {
+.app.light cite img {
   border: solid 0.25rem var(--bg-light-theme-border);
 }
 

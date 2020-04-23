@@ -58,33 +58,33 @@ button,
   box-shadow: 0 2px var(--bg-dark-theme-border);
 }
 
-.light .opposite button,
-.light .opposite button.smaller,
-.light .opposite .button,
-.light .opposite .button.smaller {
+.app.light .opposite button,
+.app.light .opposite button.smaller,
+.app.light .opposite .button,
+.app.light .opposite .button.smaller {
   background: var(--bg-light-theme);
   color: var(--text-large-light);
 }
 
-.light .opposite button,
-.light .opposite .button {
+.app.light .opposite button,
+.app.light .opposite .button {
 box-shadow: 0 6px var(--bg-light-theme-border);
 }
 
 
-.light .opposite button.smaller,
-.light .opposite .button.smaller {
+.app.light .opposite button.smaller,
+.app.light .opposite .button.smaller {
 box-shadow: 0 3px var(--bg-light-theme-border);
 }
 
 
-.light .opposite button:hover,
-.light .opposite .button:hover {
+.app.light .opposite button:hover,
+.app.light .opposite .button:hover {
   box-shadow: 0 4px var(--bg-light-theme-border);
 }
 
-.light .opposite button.smaller:hover,
-.light .opposite .button.smaller {
+.app.light .opposite button.smaller:hover,
+.app.light .opposite .button.smaller {
   box-shadow: 0 2px var(--bg-light-theme-border);
 }
 
@@ -115,22 +115,22 @@ button.smaller,
   margin-bottom: 0;
 }
 
-.light button.smaller,
-.light .button.smaller {
+.app.light button.smaller,
+.app.light .button.smaller {
   background: var(--bg-dark-theme);
   color: var(--text-large-dark);
   box-shadow: 0 3px var(--bg-dark-theme-border);
 }
 
-.light button,
-.light .button {
+.app.light button,
+.app.light .button {
   background: var(--bg-dark-theme);
   color: var(--text-large-dark);
   box-shadow: 0 6px var(--bg-dark-theme-border);
 }
 
-.light button:hover,
-.light .button:hover {
+.app.light button:hover,
+.app.light .button:hover {
   box-shadow: 0 4px var(--text-highlight-light-shadow);
   }
 
@@ -157,7 +157,7 @@ button::after,
 
 button.close,
 .nyan button.close,
-.light button.close {
+.app.light button.close {
   user-select: all;
   -webkit-app-region: no-drag;
   position: absolute;
@@ -180,7 +180,7 @@ button.close span {
 
 button.close:hover,
 .nyan button.close:hover,
-.light button.close:hover,
+.app.light button.close:hover,
 button.close:active,
 button.close:focus {
   background-image: url("./assets/noun_Delete_629749.svg");

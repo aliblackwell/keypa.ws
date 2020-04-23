@@ -48,8 +48,8 @@ form textarea {
   border: 2px solid var(--bg-light-theme);
 }
 
-.light form input,
-.light form textarea {
+.app.light form input,
+.app.light form textarea {
   border: 2px solid var(--bg-dark-theme);
   border-right: none;
 }
@@ -67,7 +67,7 @@ form textarea {
   transition: opacity 0.2s ease-in-out;
 }
 
-.light .wrapper input + label::after {
+.app.light .wrapper input + label::after {
   border: 10px solid var(--text-highlight-light);
 }
 
@@ -123,7 +123,7 @@ form textarea {
   padding: 0.3rem 1rem;
 }
 
-.light .inline-form input {
+.app.light .inline-form input {
   box-shadow: 0 6px var(--bg-dark-theme);
 }
 
@@ -146,7 +146,7 @@ button.inline-smaller:hover {
   box-shadow: 0 6px var(--bg-light-theme);
 }
 
-.light button.inline-smaller:hover {
+.app.light button.inline-smaller:hover {
   top: 0;
   box-shadow: 0 6px var(--bg-dark-theme);
 }
@@ -176,7 +176,7 @@ form#license-form label {
   color: var(--text-highlight-dark);
   margin-bottom: 1.2rem;
 }
-.light form#license-form label {
+.app.light form#license-form label {
   color: var(--text-highlight-light);
 }
 .nyan form#license-form label,

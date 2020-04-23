@@ -96,10 +96,6 @@ header h1.logo {
   color: var(--text-large-dark-theme-highlight);
 }
 
-.light .theme h1.logo {
-  color: var(--text-large-light-theme-highlight);
-}
-
 h1.logo a {
   text-decoration: none;
   color: inherit;
@@ -127,11 +123,6 @@ header h2.subtitle {
   font-size: var(--text-jumbo);
   width: 100%;
   text-align: center;
-}
-
-.light .subtitle,
-.light .main-title {
-  color: var(--text-large-light-theme-highlight);
 }
 
 .banner-box p, .page p {
@@ -163,11 +154,6 @@ header h2.subtitle {
   margin: 0;
 }
 
-.light .buy-box {
-  background: var(--bg-light-content);
-  border-color: var(--bg-light-content-border);
-}
-
 #large-paws {
   position: fixed;
   top: 0;
@@ -175,10 +161,6 @@ header h2.subtitle {
   width: 75%;
   z-index: -2;
   fill: rgba(255, 255, 255, 0.05);
-}
-
-.light #large-paws {
-  fill: rgba(0, 0, 0, 0.04);
 }
 
 .banner {
@@ -280,10 +262,6 @@ pre.blinking-kitty {
   }
 }
 
-.light pre.blinking-kitty {
-  color: var(--text-large-light-theme);
-}
-
 nav {
   float: right;
   z-index: 10;
@@ -307,10 +285,6 @@ nav li a {
   font-size: var(--text-large);
   color: var(--text-large-dark-theme);
   margin: 1rem;
-}
-
-.light nav li a {
-  color: var(--text-large-light-theme);
 }
 
 .first-wide {
@@ -351,18 +325,9 @@ nav li a {
   background: var(--bg-dark-theme);
 }
 
-.light .wide.theme {
-  background: var(--bg-light-theme);
-}
-
 .theme p,
 .theme li {
   color: var(--text-medium-dark-theme);
-}
-
-.light .theme p,
-.light .theme li {
-  color: var(--text-medium-light-theme);
 }
 
 .wide.reverse-theme {
@@ -381,29 +346,6 @@ nav li a {
 .reverse-theme h2,
 .reverse-theme h3 {
   color: var(--text-medium-light-theme);
-}
-
-.light .wide.reverse-theme {
-  background: var(--bg-dark-theme);
-}
-
-.light .reverse-theme p,
-.light .reverse-theme li,
-.light .reverse-theme a,
-.light .reverse-theme blockquote,
-.light .reverse-theme cite {
-  color: var(--text-medium-dark-theme);
-}
-
-
-.light .reverse-theme h1,
-.light .reverse-theme h2,
-.light .reverse-theme h3 {
-  color: var(--text-medium-dark-theme);
-}
-
-.light .wide {
-  background: var(--bg-light-content);
 }
 
 .wide .content {
@@ -432,18 +374,6 @@ footer::after {
 
 .wide.reverse-theme::before {
   background: var(--bg-light-theme);
-}
-
-.light .wide.theme::before {
-  background: var(--bg-light-theme);
-}
-
-.light .wide.reverse-theme::before {
-  background: var(--bg-dark-theme);
-}
-
-.light .wide::before {
-  background: var(--bg-light-content);
 }
 
 footer .content {
@@ -501,11 +431,6 @@ footer li {
   z-index: 10;
   fill: var(--text-medium-dark-content-highlight);
 }
-
-.light #stop-sign {
-  fill: var(--text-medium-light-content-highlight);
-}
-
 div.content > .item:nth-child(2n) .words {
   padding: 0 0 0 2rem;
 }
@@ -554,18 +479,11 @@ figure.border img {
   border: solid var(--bg-dark-theme) 0.4rem;
 }
 
-.light figure.border img {
-  border: solid var(--bg-light-theme) 0.4rem;
-}
-
 figure.frame {
   padding: 1rem;
   background: var(--bg-light-theme);
 }
-.light .reverse-theme figure.frame {
-  background: var(--bg-light-theme);
-}
-.light figure.frame, 
+
 .reverse-theme figure.frame {
   background: var(--bg-dark-theme);
 }
@@ -599,10 +517,6 @@ figure.frame.three:nth-of-type(3n), figure.frame.three:nth-of-type(3n) img {
 .feature-list .item:nth-child(2n) figure.paw {
   text-align: right;
   padding-right: 4rem;
-}
-
-.light .paw {
-  background: var(--bg-light-theme);
 }
 
 .paw {
@@ -699,10 +613,6 @@ ul.tick-list li {
   line-height: 2.1;
   font-family: omnes-cond, sans-serif;
   font-weight: 700;
-}
-
-.light ul.tick-list li {
-  background-image: url("/img/tick-white.svg");
 }
 
 @media (max-width: 700px) {
