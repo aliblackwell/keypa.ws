@@ -66,19 +66,23 @@ img {
   outline:none
  }
 
-* {
+[href], button, input {
   outline: 2px solid transparent;
   outline-offset: 50px;
   transition: 0.5s ease all;
 }
 
-*:focus:not(:active) {
-  outline:.125rem solid var(--outline-focus   );
+[href]:focus:not(:active),
+button:focus,
+input:focus {
+  outline:.125rem solid var(--outline-focus);
   outline-offset: 10px;
-  -moz-focus-inner: none;
  }
 
-
+ button:active,
+ a:active {
+  transition: none;
+}
 
 
 /*--------------------------------------------------------------

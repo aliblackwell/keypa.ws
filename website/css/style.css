@@ -163,6 +163,14 @@ header h2.subtitle {
   fill: rgba(255, 255, 255, 0.05);
 }
 
+@media (max-width: 600px) {
+  #large-paws {
+    position: absolute;
+    right: -13%;
+    width: 130%;
+  }
+}
+
 .banner {
   position: relative;
 }

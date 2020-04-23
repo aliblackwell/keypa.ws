@@ -14,18 +14,11 @@ button,
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
-  outline: none;
   position: relative;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
   cursor: pointer;
   background: var(--bg-light-theme);
   color: var(--text-large-light);
   box-shadow: 0 6px var(--bg-light-theme-border);
-  -webkit-transition: none;
-  -moz-transition: none;
-  transition: none;
   border-radius: 40px;
   text-decoration: none;
   font-weight: 700;
@@ -173,9 +166,6 @@ button.close,
   margin: 0;
   padding: 0;
   box-shadow: none;
-}
-
-button.close span {
 }
 
 button.close:hover,
