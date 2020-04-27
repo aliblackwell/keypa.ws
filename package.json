@@ -58,7 +58,7 @@
     "functions:watch": "netlify-lambda watch --config ./webpack.functions.js ./functions",
     "functions:build": "netlify-lambda build --config ./webpack.functions.js ./functions",
     "lint": "eslint --fix './test/*.test.js' './app/*.js' './downloads/*.js' './app/*.html'",
-    "start": "CONTEXT=development nw --enable-logging=stderr",
+    "start": "dotenv -- cross-var nw --enable-logging=stderr",
     "record:cat": "python3 ./capture/record.py cat",
     "record:human": "python3 ./capture/record.py human",
     "ml:wrangle": "python3 ./capture/wrangle.py",

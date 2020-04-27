@@ -4,6 +4,7 @@ module.exports = function(config) {
   config.addPassthroughCopy("./website/styles")
   config.addPassthroughCopy("./website/img")
   config.addPassthroughCopy("./website/js")
+  config.addPassthroughCopy("./website/.well-known")
   config.addPassthroughCopy("./website/_redirects")
   config.addPassthroughCopy("./website/humans.txt")
   config.addPassthroughCopy("./website/favicon.png")

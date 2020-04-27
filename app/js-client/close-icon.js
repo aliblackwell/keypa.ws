@@ -8,3 +8,6 @@ closeWelcome &&
   closeWelcome.addEventListener("click", () => {
     nw.App.quit()
   })
+
+closeSettings && closeSettings.classList.add(nw.global.os)
+closeWelcome && closeWelcome.classList.add(nw.global.os)

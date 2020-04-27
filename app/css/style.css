@@ -8,6 +8,7 @@
 body, #theme-wrapper, .container {
   min-width: 900px;
   min-height: 480px !important;
+  overflow-y:hidden;
 }
 
 .hidden {
