@@ -31,6 +31,7 @@ li,
 span,
 optgroup,
 input,
+#card-element,
 textarea {
   font-family: omnes-cond, sans-serif;
   font-weight: 400;

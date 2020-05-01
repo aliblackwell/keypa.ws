@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
-{% include 'partials/head-default.njk' %}
-{% include 'partials/meta-tags-default.njk' %}
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
+  <script src="https://js.stripe.com/v3/?advancedFraudSignals=false"></script>
 </head>
 <body class="dark">
   <main class="container">
@@ -11,20 +12,42 @@
     {% include 'partials/large-paws.svg' %}
     <div class="buy-box">
       <h2>{{ pagetitle }}</h2>
-      <p>KeyPaws costs £5 and includes lifetime updates.</p>
-      <p>Enjoy peace of mind with our <strong>60 day money-back guarantee</strong></p>
-      <button id="checkout-button-sku_GaanU4XSaEAL0L" role="link">
-        Credit/Debit card purchase
-      </button>
-      <div id="error-message"></div>
+      <p>KeyPaws costs £8 and includes lifetime updates.</p>
+
+      
+
+      {% include 'partials/loading.njk' %}
+
+      <form id="payment-form">
+        <label class="screen-reader-text" for="card-element">
+          Credit or debit card
+        </label>
+        <div id="card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+ 
+
+        <button class="smaller">Submit Payment</button>
+        <!-- Used to display form errors. -->
+
+      </form>
+
+      <div id="payment-request-button">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+      <div class="general-errors" id="error-message" role="alert" aria-hidden="true"></div>
+
     </div>
     {{ content | safe }}
-    {% include 'partials/get-first-wide.njk' %}
-    {% include 'partials/get-quote.njk' %}
-    {% include 'partials/footer.njk' %}
+    <section class="wide reverse-theme third-wide quotes">
+      {% include 'partials/quote.njk' %}
+    </section>
+    <footer class="wide theme">
+      {% include 'partials/footer.njk' %}
+    </footer>
 
   </main>
-  <script src="/js/theme-switcher.js"></script>
-  <script src="/js/analytics.js"></script>
 </body>
+{%include 'partials/scripts.njk' %}
+<script src="/js/stripe.js"></script>
 </html>

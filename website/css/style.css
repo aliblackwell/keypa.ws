@@ -4,6 +4,7 @@
 @import url("../styles/forms.css");
 @import url("../styles/typography.css");
 @import url("../styles/sharer.css");
+@import url("../styles/loading.css");
 
 body {
   overflow-x: hidden;
@@ -699,4 +700,20 @@ cite a {
 
 .main-title {
   margin:5rem 0 2rem;
+}
+
+p.license {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid white;
+  color: var(--text-medium-light-theme);
+  background: var(--bg-light-theme)
+}
+
+.hidden {
+  display: none;
+}
+
+.loading {
+  text-align: center;
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    {% include 'partials/head-default.njk' %}
+    {% include 'partials/meta-tags-default.njk' %}
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body class="dark">
+    <main class="container">
+        <header class="banner group theme">
+            {% include 'partials/nav.njk' %}
+        </header>
+        {% include 'partials/large-paws.svg' %}
+
+        <div class="buy-box">
+      <h2>{{ pagetitle }}</h2>
+      <p>Thank you for your payment.</p>
+      <p>Your license key is: </p>
+      <p class="license"><strong></strong></p>
+      </div>
+
+        {{ content | safe }}
+
+ 
+    <section class="wide reverse-theme third-wide quotes">
+      {% include 'partials/quote.njk' %}
+    </section>
+    <section class="wide tone fourth-wide">
+      {% include 'partials/gift-widget.njk' %}
+    </section>
+    <footer class="wide reverse-theme">
+      {% include 'partials/footer.njk' %}
+    </footer>
+    </main>
+
+   <script>
+
+        function getUrlParameter(name) {
+            name = name
+                .replace(/[\[]/, '\\[')
+                .replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null
+                ? ''
+                : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+
+        (function () {
+
+            let licenseId = getUrlParameter('id')
+
+      
+                fetch(`/.netlify/functions/license?id=${licenseId}`)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data)
+                    document.querySelector('.license strong').innerHTML = data.license
+                });
+
+     
+
+        })();
+    </script>
+
+  </body>
+  {%include 'partials/scripts.njk' %}
+</html>
