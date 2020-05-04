@@ -1,12 +1,12 @@
 const crypto = require("crypto")
 const nano = require('nano')(`https://aliblackwell:${process.env.KEYPAWS_BACKEND_PASSWORD}@db.keypa.ws:6984`);
 
-async function CreateLicense(recordedPayment) {
+async function CreateLicense(newLicense) {
   const licenseDb = nano.db.use('licenses')
   const secret = "abcdefg"
   const hash = crypto
     .createHmac("sha256", secret)
-    .update(recordedPayment.license)
+    .update(newLicense)
     .digest("hex")
 
   const document = {

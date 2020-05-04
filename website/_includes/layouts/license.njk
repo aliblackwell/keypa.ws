@@ -1,69 +1,119 @@
 <!DOCTYPE html>
 <head>
-    {% include 'partials/head-default.njk' %}
-    {% include 'partials/meta-tags-default.njk' %}
-    <script src="https://js.stripe.com/v3/"></script>
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="dark">
-    <main class="container">
-        <header class="banner group theme">
-            {% include 'partials/nav.njk' %}
-        </header>
-        {% include 'partials/large-paws.svg' %}
+  <main class="container">
+    <header class="banner group theme">
+      {% include 'partials/nav.njk' %}
+    </header>
+    {% include 'partials/large-paws.svg' %}
 
-        <div class="buy-box">
+    <div class="license-box">
       <h2>{{ pagetitle }}</h2>
-      <p>Thank you for your payment.</p>
-      <p>Your license key is: </p>
-      <p class="license"><strong></strong></p>
+
+      {% include 'partials/loading.njk' %}
+      <div class="slowly">
+        <p>We are confirming your payment. Thank you for your patience.</p>
       </div>
+      <div class="error">
+        <p>Something has gone wrong. Please <a style="color: black;" href="mailto:miaow@keypa.ws">contact us</a> using the email address you used on the previous page.</p>
+        <p>Sincerest apologies,</p>
+        <p>Ali & Merlin</p>
+      </div>
+      <div class="success">
+        <p>Thank you for your payment.</p>
 
-        {{ content | safe }}
+        <p>Your license key is:
+        </p>
+        <p class="license">
+          <strong></strong>
+        </p>
+      </div>
+    </div>
+    {{ content | safe }}
 
- 
-    <section class="wide reverse-theme third-wide quotes">
+    <section class="wide tone third-wide quotes">
       {% include 'partials/quote.njk' %}
     </section>
-    <section class="wide tone fourth-wide">
+    <section class="wide reverse-theme fourth-wide opposite">
       {% include 'partials/gift-widget.njk' %}
     </section>
-    <footer class="wide reverse-theme">
+    <footer class="wide theme">
       {% include 'partials/footer.njk' %}
     </footer>
-    </main>
+  </main>
 
-   <script>
+</body>
+{%include 'partials/scripts.njk' %}
 
-        function getUrlParameter(name) {
-            name = name
-                .replace(/[\[]/, '\\[')
-                .replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null
-                ? ''
-                : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        };
+<script>
+  var successEl = document.querySelector('.success')
+  var errorEl = document.querySelector('.error')
+  var slowEl = document.querySelector('.slowly')
+  var loadingEl = document.querySelector('.loading')
+  hideEl(successEl)
+  hideEl(errorEl)
+  hideEl(slowEl)
+  showEl(loadingEl)
+  function getUrlParameter(name) {
+    name = name
+      .replace(/[\[]/, '\\[')
+      .replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null
+      ? ''
+      : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
 
-        (function () {
+  (function () {
 
-            let licenseId = getUrlParameter('id')
+    let licenseId = getUrlParameter('id')
 
-      
-                fetch(`https://3e5700cc.ngrok.io/license?id=${licenseId}`)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data)
-                    document.querySelector('.license strong').innerHTML = data.license
-                });
+    function displayLicense(name, email, licenseKey, receiptUrl) {
+      document
+        .querySelector('.license strong')
+        .innerHTML = licenseKey
+    }
 
-     
+    var counter = 0
 
-        })();
-    </script>
-
-  </body>
-  {%include 'partials/scripts.njk' %}
+    function getPaymentConfirmation() {
+      fetch(`/.netlify/functions/license?id=${licenseId}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+        counter++
+        if (counter===3) {
+          showEl(errorEl)
+          hideEl(loadingEl)
+          hideEl(slowEl)
+          return false;
+        }
+          if (data.message === "missing") {
+            throw "No record in database of your payment yet. "
+          }
+          let charge = data
+            .event
+            .data
+            .object
+            .charges
+            .data[0]
+          displayLicense(charge.billing_details.name, charge.billing_detailsemail, data.license, charge.receipt_url)
+          hideEl(loadingEl)
+          hideEl(slowEl)
+          showEl(successEl)
+        })
+        .catch(error => {
+          showEl(slowEl)
+          setTimeout(getPaymentConfirmation, 2000)
+        })
+      }
+    getPaymentConfirmation()
+  })();
+</script>
 </html>

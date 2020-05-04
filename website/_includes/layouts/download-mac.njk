@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    {% include 'partials/head-default.njk' %}
+    {% include 'partials/meta-tags-default.njk' %}
+
+</head>
+<body class="home">
+    <main class="container">
+        <header class="banner theme">
+            {% include 'partials/nav.njk' %}
+            <div class="banner-box">
+                <h1 class="title">
+                    <a class="button medium" data-analytics="download" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip" title="Get KeyPaws to cat-proof your computer">Download for Mac</a>
+
+                </h1>
+            </div>
+            <pre role="presentation" class="blinking-kitty" tabindex="-1">
+ /\___/\
+(  o o  )
+(  =^=  )
+(        )
+(         )
+(          )
+(           )
+(            )____£$tr2frfgre??@£34r893j4r893j4r30ru430r49u03rtu430jtu4fg308gf389h3f43f43f43f43fr3
+</pre>
+
+        </header>
+
+        {% include 'partials/large-paws.svg' %}
+        <section class="wide reverse-theme">
+            <div class="content group opposite">
+                <h2 style="margin: 2rem 0 0 0">1. Download and unzip the app</h2>
+                <p>Use the button above if it doesn't happen automatically.</p>
+                <h2>2. Move it to your Applications folder</h2>
+                <p>Once the download has finished you need to drag it into your Applications folder.</p>
+                <h2>3. Enter a license key</h2>
+                <p>The app will quit after two hours if you don't enter a license key.</p>
+                <a class="button" data-analytics="buy-license-click" href="/buy-license" title="Get KeyPaws to cat-proof your computer">Buy your license</a>
+
+            </div>
+
+        </section>
+        <section class="wide tone second-wide">
+            {% include 'partials/gift-widget.njk' %}
+        </section>
+        <footer class="wide theme">
+            {% include 'partials/footer.njk' %}
+        </footer>
+    </main>
+</body>
+{%include 'partials/scripts.njk' %}
+<script>
+    window.location = "https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip"
+</script>
+</html>

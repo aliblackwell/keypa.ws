@@ -8,7 +8,7 @@ function getSystemTheme() {
 function checkMode() {
   var mode = getSystemTheme()
   var body = document.getElementsByTagName("body")[0]
-  if (mode === "light") {    
+  if (mode === "light") {
     body.classList.remove("dark")
     body.classList.add("light")
   } else {
@@ -20,11 +20,13 @@ function checkMode() {
 checkMode()
 
 
+
+
 window.matchMedia("(prefers-color-scheme: dark)").addListener(checkMode)
 
-let sharer = document.querySelector(".share-section ul")
-sharer && sharer.classList.add("hidden")
+let sharer = document.querySelectorAll(".share-section ul")
 
+sharer && sharer.forEach(el => el.classList.add("hidden"))
 
 function sharePage() {
   let isVisible = sharer.classList.contains("hidden")
@@ -43,3 +45,5 @@ function sharePage() {
   }
   sharer.classList.toggle("hidden")
 }
+
+console.log(sharer.classList)

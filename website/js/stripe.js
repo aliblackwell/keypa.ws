@@ -19,7 +19,7 @@
         window.location = '/license?id=' + client_secret
       }
 
-      fetch(`https://3e5700cc.ngrok.io/stripe`)
+      fetch(`/.netlify/functions/stripe`)
         .then((response) => {
           return response.json();
         })
@@ -50,7 +50,7 @@
           color: "#111",
           fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
           fontSmoothing: "antialiased",
-          fontSize: "16px",
+          fontSize: "20px",
           "::placeholder": {
             color: "#444"
           }
@@ -77,7 +77,8 @@
             payment_method: {
               card: card,
               billing_details: {
-                name: 'Jenny Rosen'
+                name: document.querySelector('input[name="name"]').value,
+                email: document.querySelector('input[name="email"]').value,
               }
             }
           })

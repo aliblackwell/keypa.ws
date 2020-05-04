@@ -11,7 +11,7 @@ app.use(require("body-parser").raw({ type: "*/*" }))
 
 app.get("*", async (req, res) => {
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 8000,
+    amount: 800,
     currency: 'gbp',
     // Verify your integration in this guide by including this parameter
     metadata: { integration_check: 'accept_a_payment' },
@@ -24,11 +24,12 @@ app.post("*", async (req, res, next) => {
   try {
     let myEvent = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
     console.log("success yeah")
-    let recordedPayment = await CreatePayment(myEvent)
-    if (!recordedPayment.error) {
+    let newLicense = await CreatePayment(myEvent)
+    console.log(newLicense)
+    if (!newLicense.error) {
       console.log('no error')
-      let newLicense = await CreateLicense(recordedPayment)
-      res.send(newLicense)
+      let licenseReceipt = await CreateLicense(newLicense)
+      res.send(licenseReceipt)
     }
   } catch (err) {
     res.send({"error": err})

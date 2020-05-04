@@ -5,7 +5,6 @@
 @import url("../styles/typography.css");
 @import url("../styles/sharer.css");
 @import url("../styles/loading.css");
-
 body {
   overflow-x: hidden;
 }
@@ -14,8 +13,7 @@ pre {
   margin: 0;
 }
 
-header h1,
-header h2 {
+header h1, header h2 {
   margin: 0;
 }
 
@@ -50,14 +48,12 @@ header h2 {
 }
 
 @media (max-width: 600px) {
-
   .home header {
     min-height: 40rem;
   }
 }
 
-header,
-.content {
+header, .content {
   max-width: 1200px;
   margin: 0px auto;
 }
@@ -109,18 +105,17 @@ header h1.logo img {
   top: 1rem;
 }
 
-header h2.subtitle {
+header .title {
   color: var(--text-large-dark-theme-highlight);
   position: relative;
   width: 100%;
   text-align: center;
-
   margin: 2rem 0 0;
   z-index: 5;
   line-height: var(--line-height);
 }
 
-.subtitle {
+.title {
   font-size: var(--text-jumbo);
   width: 100%;
   text-align: center;
@@ -155,8 +150,19 @@ header h2.subtitle {
   margin: 0;
 }
 
+.license-box {
+  margin: 3rem auto 9rem;
+  position: relative;
+  width: 30rem;
+  padding: 2.5rem 5rem;
+  background: var(--bg-light-content);
+  border: 0.5rem solid var(--bg-light-content-border);
+  z-index: 1;
+  color: var(--text-medium-light-theme);
+}
+
 #large-paws {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   width: 75%;
@@ -276,8 +282,7 @@ nav {
   z-index: 10;
 }
 
-nav ul,
-nav li {
+nav ul, nav li {
   float: left;
   margin: 0;
   padding: 0;
@@ -306,12 +311,15 @@ nav li a {
   clear: both;
   bottom: -3.3rem;
 }
+
 .second-wide {
   z-index: 3;
 }
+
 .third-wide {
   z-index: 4;
 }
+
 .fourth-wide {
   z-index: 5;
 }
@@ -328,14 +336,14 @@ nav li a {
   width: 100%;
   position: relative;
   background: var(--bg-dark-content);
+  padding-bottom: 2rem;
 }
 
 .wide.theme {
   background: var(--bg-dark-theme);
 }
 
-.theme p,
-.theme li {
+.theme p, .theme li {
   color: var(--text-medium-dark-theme);
 }
 
@@ -343,17 +351,20 @@ nav li a {
   background: var(--bg-light-theme);
 }
 
-.reverse-theme p,
-.reverse-theme li,
-.reverse-theme a,
-.reverse-theme blockquote,
-.reverse-theme cite {
+.reverse-theme p, .reverse-theme li, .reverse-theme a, .reverse-theme blockquote, .reverse-theme cite {
   color: var(--text-medium-light-theme);
 }
 
-.reverse-theme h1,
-.reverse-theme h2,
-.reverse-theme h3 {
+.reverse-theme a {
+  text-decoration: underline;
+}
+
+.reverse-theme a.button {
+  text-decoration: none;
+}
+
+
+.reverse-theme h1, .reverse-theme h2, .reverse-theme h3 {
   color: var(--text-medium-light-theme);
 }
 
@@ -361,8 +372,7 @@ nav li a {
   padding: 0rem 2rem 2rem;
 }
 
-.wide::before,
-footer::after {
+.wide::before, footer::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -396,17 +406,15 @@ footer {
   color: var(--text-medium-light);
   background: var(--bg-dark-theme);
   text-align: center;
-  z-index:10;
+  z-index: 10;
 }
-
-
 
 footer p {
   margin: 0;
+  float: left;
 }
 
-footer ul,
-footer li {
+footer ul, footer li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -440,7 +448,8 @@ footer li {
   z-index: 10;
   fill: var(--text-medium-dark-content-highlight);
 }
-div.content > .item:nth-child(2n) .words {
+
+div.content>.item:nth-child(2n) .words {
   padding: 0 0 0 2rem;
 }
 
@@ -448,7 +457,7 @@ div.content > .item:nth-child(2n) .words {
   padding: 0 1rem 0 3rem;
 }
 
-figure.screenshot{
+figure.screenshot {
   margin: 0 0 2rem;
 }
 
@@ -464,8 +473,7 @@ figure.screenshot{
   margin-bottom: 4rem;
 }
 
-.feature-list .words,
-.feature-list figure {
+.feature-list .words, .feature-list figure {
   float: left;
   margin: 0;
   width: 50%;
@@ -496,6 +504,7 @@ figure.frame {
 .reverse-theme figure.frame {
   background: var(--bg-dark-theme);
 }
+
 @media (max-width: 700px) {
   figure.frame {
     padding: 0.4rem;
@@ -517,9 +526,7 @@ figure.frame.three:nth-of-type(3n), figure.frame.three:nth-of-type(3n) img {
   clip-path: polygon(0% 1%, 96% 2%, 96% 99%, 3% 92%);
 }
 
-.feature-list .item:nth-child(2n) .words,
-.feature-list .item:nth-child(2n) figure,
-.feature-list .item:nth-child(2n) figure img {
+.feature-list .item:nth-child(2n) .words, .feature-list .item:nth-child(2n) figure, .feature-list .item:nth-child(2n) figure img {
   float: right;
 }
 
@@ -636,40 +643,33 @@ ul.tick-list li {
     margin-top: 0;
     margin-bottom: 1rem;
   }
-
-  .feature-list .words,
-  .feature-list figure {
+  .feature-list .words, .feature-list figure {
     float: none;
     width: 100%;
     padding-left: 0;
   }
-   .feature-list figure img {
+  .feature-list figure img {
     width: 100%;
     margin-bottom: 2rem;
   }
-
   .cat-typing {
     height: 50vw;
   }
-
   blockquote::before {
     top: -1.8rem;
     left: -1.5rem;
     font-size: 4.5rem;
   }
-
   blockquote {
     padding-left: 0;
     font-size: var(--text-large);
     margin-bottom: 1rem;
   }
-
   cite {
     max-width: none;
     line-height: 2;
     font-weight: 700;
   }
-
   cite img {
     width: 3rem;
     border-width: 0.15rem;
@@ -687,7 +687,6 @@ cite a {
   padding: 2rem 4rem;
 }
 
-
 .ali-merlin {
   display: grid;
   grid-column-gap: 1.5rem;
@@ -699,7 +698,7 @@ cite a {
 }
 
 .main-title {
-  margin:5rem 0 2rem;
+  margin: 5rem 0 2rem;
 }
 
 p.license {
@@ -717,3 +716,10 @@ p.license {
 .loading {
   text-align: center;
 }
+
+.thirds {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-gap: 1.5rem;
+}
+

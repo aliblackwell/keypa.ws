@@ -1,0 +1,34 @@
+
+<p><a aria-hidden="true" class="smart-el mac button medium" href="/download-mac">Download for Mac</a></p>
+
+<div class="smart-el windows" aria-hidden="true">
+    <p>KeyPaws is coming soon for Windows. Signup below to be notified:</p>
+    <form name="windows" class='inline-form' action='/signup-success' method='post'><input type='hidden' name='form-name' value='pre-launch-trial'/>
+        <label for="email" class="screen-reader-text">Email:</label>
+        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+        <button class="medium title-text inline-smaller">Sign up meow!</button>
+    </form>
+</div>
+<div class="smart-el linux" aria-hidden="true">
+    <p>KeyPaws is coming soon for Linux. Signup below to be notified:</p>
+    <form name="linux" class='inline-form' action='/signup-success' method='post'><input type='hidden' name='form-name' value='pre-launch-trial'/>
+        <label for="email" class="screen-reader-text">Email:</label>
+        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+        <button class="medium title-text inline-smaller">Sign up meow!</button>
+    </form>
+</div>
+
+<div class="smart-el mob" aria-hidden="true">
+    <form>
+        <label>My desktop computer is:</label>
+        <select>
+            <option>Mac</option>
+            <option>Windows</option>
+            <option>Linux</option>
+        </select>
+    </form>
+</div>
+
+
+<p>or, if you know someone who'd love it:</p>
+{% include 'partials/sharer.njk' %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
+  <script src="https://js.stripe.com/v3/?advancedFraudSignals=false"></script>
+</head>
+<body class="dark">
+  <main class="container">
+    <header class="banner group theme">
+      {% include 'partials/nav.njk' %}
+    </header>
+    {% include 'partials/large-paws.svg' %}
+    <div class="buy-box">
+      <h2>{{ pagetitle }}</h2>
+      <p>KeyPaws costs £8 and includes lifetime updates.</p>
+
+      {% include 'partials/loading.njk' %}
+
+      <form id="payment-form">
+        <div class="form-row inline">
+          <div class="col">
+            <label for="name">
+              Name
+            </label>
+            <input id="name" name="name" required="required">
+          </div>
+          <div class="col">
+            <label for="email">
+              Email Address
+            </label>
+            <input id="email" name="email" type="email"  required="required">
+          </div>
+        </div>
+        <label for="card-element">
+          Credit or debit card
+        </label>
+        <div id="card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <button class="medium">Submit Payment</button>
+        <!-- Used to display form errors. -->
+
+      </form>
+
+      <div id="payment-request-button">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+      <div class="general-errors" id="error-message" role="alert" aria-hidden="true"></div>
+
+    </div>
+    {{ content | safe }}
+    <section class="wide reverse-theme third-wide">
+      <div class="content thirds">
+        <aside>
+          <h2>Money-back guarantee</h2>
+          <p>Enjoy peace of mind with our no quibble money-back guarantee</p>
+        </aside>
+        <aside>
+          <h2>Secure payments provider</h2>
+          <p>We have chosen Stripe as our payments processer. Your payment will be processed by their secure infrastructure.</p>
+          <a href="https://stripe.com" target="_blank"><img src="/img/stripe/Big/powered_by_stripe.png" alt="Powered by Stripe" /></a>
+        </aside>
+        <aside>
+          <h2>Have a question?</h2>
+          <p>Please don't hesitate to <a href="mailto:miaow@keypa.ws">contact us</a>.</p>
+        </aside>
+
+    </div>
+  </section>
+  <footer class="wide theme">
+    {% include 'partials/footer.njk' %}
+  </footer>
+
+</main>
+</body>
+{%include 'partials/scripts.njk' %}
+<script src="/js/stripe.js"></script>
+</html>

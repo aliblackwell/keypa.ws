@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <head>
-{% include 'partials/head-default.njk' %}
-{% include 'partials/meta-tags-default.njk' %}
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
 </head>
 <body class="home">
   <main class="container">
     <header class="banner theme">
       {% include 'partials/nav.njk' %}
       <div class="banner-box" id="download">
-        <h2 class="subtitle">Cat-proof your keyboard</h2>
-        <p>KeyPaws protects your work from uninvited paw presses. To get a lifetime license key
-          <strong>FOR FREE</strong>, please sign up for our pre-launch trial:</p>
-        <form name="pre-launch-trial" netlify="netlify" class="inline-form" action="/signup-success">
-          <label for="email" class="screen-reader-text">Email:</label>
-          <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
-          <button class="medium title-text inline-smaller">Sign up meow!</button>
-        </form>
+        <h1 class="title">Cat-proof your keyboard</h1>
+        {% include 'partials/smart-signup.njk' %}
       </div>
       <pre role="presentation" class="blinking-kitty" tabindex="-1">
  /\___/\
@@ -39,13 +33,13 @@
     <section class="wide theme third-wide quotes">
       {% include 'partials/quote.njk' %}
     </section>
-    <section class="wide tone fourth-wide">
+    <section class="wide reverse-theme opposite fourth-wide">
       {% include 'partials/gift-widget.njk' %}
     </section>
-    <footer class="wide reverse-theme">
+    <footer class="wide theme">
       {% include 'partials/footer.njk' %}
     </footer>
   </main>
-  </body>
-  {%include 'partials/scripts.njk' %}
+</body>
+{%include 'partials/scripts.njk' %}
 </html>
