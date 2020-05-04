@@ -27,3 +27,5 @@ keypaws.spec
 trigger.spec
 downloads/_headers
 lambda-built
+keypaws.onnx
+kp.onnx

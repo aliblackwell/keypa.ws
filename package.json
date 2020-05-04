@@ -127,10 +127,6 @@
     "./test/*.test.js": [
       "eslint --fix",
       "git add"
-    ],
-    "./capture/*.{py}": [
-      "pylint",
-      "git add"
     ]
   }
 }

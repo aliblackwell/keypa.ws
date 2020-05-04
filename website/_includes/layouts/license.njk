@@ -50,7 +50,7 @@
             let licenseId = getUrlParameter('id')
 
       
-                fetch(`/.netlify/functions/license?id=${licenseId}`)
+                fetch(`https://3e5700cc.ngrok.io/license?id=${licenseId}`)
                 .then((response) => {
                     return response.json();
                 })
