@@ -1,44 +1,50 @@
 <!DOCTYPE html>
-<head>
-  {% include 'partials/head-default.njk' %}
-  {% include 'partials/meta-tags-default.njk' %}
-  <script src="https://js.stripe.com/v3/"></script>
-</head>
-<body class="dark">
-  <main class="container">
-    <header class="banner group theme">
-      {% include 'partials/nav.njk' %}
-    </header>
-    {% include 'partials/large-paws.svg' %}
+<html lang="en">
+  <head>
+    {% include 'partials/head-default.njk' %}
+    {% include 'partials/meta-tags-default.njk' %}
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body class="dark">
+    <main class="container">
+      <header class="banner group theme">
+        {% include 'partials/nav.njk' %}
+      </header>
+      <div class="banner reverse-theme first-narrow content">
+        <div class="license-box">
+          <h2>{{ pagetitle }}</h2>
 
-    <div class="license-box">
-      <h2>{{ pagetitle }}</h2>
+          {% include 'partials/loading.njk' %}
+          <div class="slowly">
+            <p>We are confirming your payment. Thank you for your patience.</p>
+          </div>
+          <div class="error">
+            <p>Something has gone wrong. Please
+              <a style="color: black;" href="mailto:miaow@keypa.ws">contact us</a>
+              using the email address you used on the previous page.</p>
+            <p>Sincerest apologies,</p>
+            <p>Ali & Merlin</p>
+          </div>
+          <div class="success">
+            <p>Thank you for your payment.</p>
 
-      {% include 'partials/loading.njk' %}
-      <div class="slowly">
-        <p>We are confirming your payment. Thank you for your patience.</p>
-      </div>
-      <div class="error">
-        <p>Something has gone wrong. Please <a style="color: black;" href="mailto:miaow@keypa.ws">contact us</a> using the email address you used on the previous page.</p>
-        <p>Sincerest apologies,</p>
-        <p>Ali & Merlin</p>
-      </div>
-      <div class="success">
-        <p>Thank you for your payment.</p>
+            <p>Your license key is:
+            </p>
+            <p class="license">
+              <strong></strong>
+            </p>
 
-        <p>Your license key is:
-        </p>
-        <p class="license">
-          <strong></strong>
-        </p>
+          </div>
+        </div>
+        {% include 'partials/blinking-kitty.njk' %}
       </div>
     </div>
     {{ content | safe }}
-
-    <section class="wide tone third-wide quotes">
+    {% include 'partials/large-paws.svg' %}
+    <section class="wide tone first-wide quotes">
       {% include 'partials/quote.njk' %}
     </section>
-    <section class="wide reverse-theme fourth-wide opposite">
+    <section class="wide reverse-theme third-wide opposite">
       {% include 'partials/gift-widget.njk' %}
     </section>
     <footer class="wide theme">
@@ -82,18 +88,18 @@
     var counter = 0
 
     function getPaymentConfirmation() {
-      fetch(`/.netlify/functions/license?id=${licenseId}`)
+      fetch(`https://3e5700cc.ngrok.io/license?id=${licenseId}`)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-        counter++
-        if (counter===3) {
-          showEl(errorEl)
-          hideEl(loadingEl)
-          hideEl(slowEl)
-          return false;
-        }
+          counter++
+          if (counter === 3) {
+            showEl(errorEl)
+            hideEl(loadingEl)
+            hideEl(slowEl)
+            return false;
+          }
           if (data.message === "missing") {
             throw "No record in database of your payment yet. "
           }

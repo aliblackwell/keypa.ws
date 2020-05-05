@@ -46,4 +46,4 @@ function sharePage() {
   sharer.classList.toggle("hidden")
 }
 
-console.log(sharer.classList)
+ 

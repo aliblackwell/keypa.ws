@@ -1,21 +1,33 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-{% include 'partials/head-default.njk' %}
-{% include 'partials/meta-tags-default.njk' %}
+  {% include 'partials/head-default.njk' %}
+  {% include 'partials/meta-tags-default.njk' %}
 </head>
-<body class="dark">
+<body class="dark {{pageClass}}">
   <main class="container">
+
     <header class="theme">
       {% include 'partials/nav.njk' %}
     </header>
     
-      {{ content | safe }}
+    <div class="banner theme first-narrow content">
+      <div class="page narrow">
+        <h1 class="title-text subtitle">{{title}}</h1>
+        {{ content | safe }}
+      </div>
+{% include 'partials/blinking-kitty.njk' %}
+    </div>
+
 
     {% include 'partials/large-paws.svg' %}
+    <section class="wide reverse-theme opposite first-last-wide">
+      {% include 'partials/gift-widget.njk' %}
+    </section>
     <footer class="wide theme">
       {% include 'partials/footer.njk' %}
     </footer>
   </main>
-  </body>
-  {%include 'partials/scripts.njk' %}
+</body>
+{%include 'partials/scripts.njk' %}
 </html>

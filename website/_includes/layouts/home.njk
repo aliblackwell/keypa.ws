@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   {% include 'partials/head-default.njk' %}
   {% include 'partials/meta-tags-default.njk' %}
@@ -7,31 +8,25 @@
   <main class="container">
     <header class="banner theme">
       {% include 'partials/nav.njk' %}
+    </header>
+
+    <div class="first-narrow">
       <div class="banner-box" id="download">
         <h1 class="title">Cat-proof your keyboard</h1>
         {% include 'partials/smart-signup.njk' %}
       </div>
-      <pre role="presentation" class="blinking-kitty" tabindex="-1">
- /\___/\
-(  o o  )
-(  =^=  )
-(        )
-(         )
-(          )
-(           )
-(            )____£$tr2frfgre??@£34r893j4r893j4r30ru430r49u03rtu430jtu4fg308gf389h3f43f43f43f43fr3
-</pre>
+{% include 'partials/blinking-kitty.njk' %}
 
-    </header>
+    </div>
     {% include 'partials/large-paws.svg' %}
     <div class="wide reverse-theme first-wide">
       {% include 'partials/attention-grab.njk' %}
     </div>
-    <section class="feature-list wide second-wide">
+    {# <section class="feature-list wide second-wide">
       {% include 'partials/features.njk' %}
-    </section>
-    <section class="wide theme third-wide quotes">
-      {% include 'partials/quote.njk' %}
+    </section> #}
+    <section class="wide theme second-wide quotes">
+      {% include 'partials/home-quote.njk' %}
     </section>
     <section class="wide reverse-theme opposite fourth-wide">
       {% include 'partials/gift-widget.njk' %}

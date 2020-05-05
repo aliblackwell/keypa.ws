@@ -105,8 +105,8 @@ header h1.logo img {
   top: 1rem;
 }
 
-header .title {
-  color: var(--text-large-dark-theme-highlight);
+.banner-box .title {
+  color: var(--text-medium-dark-theme);
   position: relative;
   width: 100%;
   text-align: center;
@@ -124,9 +124,13 @@ header .title {
 .banner-box p, .page p {
   font-size: var(--text-large);
   text-align: center;
-  width: 65%;
+  width: 70%;
   line-height: var(--line-height);
   margin: 0rem auto;
+}
+
+.banner-box p {
+  color: white;
 }
 
 .banner-box a.button {
@@ -139,7 +143,7 @@ header .title {
   margin: 3rem auto 0;
   position: relative;
   width: 30rem;
-  padding: 2.5rem 5rem 8rem;
+  padding: 2.5rem 5rem 4rem;
   background: var(--bg-dark-content);
   border: 0.5rem solid var(--bg-dark-content-border);
   bottom: -2rem;
@@ -151,7 +155,7 @@ header .title {
 }
 
 .license-box {
-  margin: 3rem auto 9rem;
+  margin: 3rem auto 0rem;
   position: relative;
   width: 30rem;
   padding: 2.5rem 5rem;
@@ -235,7 +239,7 @@ pre.blinking-kitty {
   font-size: var(--text-large);
   color: var(--text-large-dark-theme);
   position: absolute;
-  bottom: 0.2rem;
+  bottom: 0rem;
   transform: rotate(-0.8deg);
   width: 100%;
   overflow-x: hidden;
@@ -255,7 +259,7 @@ pre.blinking-kitty {
   header h1.logo {
     margin: 0 0 0 1rem;
   }
-  header h2.subtitle {
+  header h2.title {
     margin-top: 0;
     line-height: 1;
     margin-bottom: 1rem;
@@ -295,21 +299,34 @@ li.btn-holder {
 
 nav li a {
   display: block;
-  padding: 0.6rem 1rem;
-  font-size: var(--text-large);
+  padding: 0.8rem 1rem;
   color: var(--text-large-dark-theme);
   margin: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: var(--text-medium);
+  letter-spacing: 1px;
 }
 
-.first-wide {
+.about .story {
+  text-decoration: underline;
+}
+
+.wide.first-wide {
   bottom: -2rem;
   z-index: 2;
+  padding-bottom: 4rem;
+}
+
+.wide.first-last-wide {
+  bottom: -2rem;
+  z-index: 2;
+  padding-bottom: 6rem;
 }
 
 .first-narrow {
   position: relative;
   clear: both;
-  bottom: -3.3rem;
 }
 
 .second-wide {
@@ -336,7 +353,14 @@ nav li a {
   width: 100%;
   position: relative;
   background: var(--bg-dark-content);
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+.narrow {
+  width: 100%;
+  position: relative;
+  background: var(--bg-dark-content);
+  padding-bottom: 2.5rem;
 }
 
 .wide.theme {
@@ -363,16 +387,19 @@ nav li a {
   text-decoration: none;
 }
 
-
 .reverse-theme h1, .reverse-theme h2, .reverse-theme h3 {
   color: var(--text-medium-light-theme);
 }
 
 .wide .content {
-  padding: 0rem 2rem 2rem;
+  padding: 0rem 2rem 0rem;
 }
 
-.wide::before, footer::after {
+.content h1 {
+  margin-top: 0;
+}
+
+.wide::before, footer::after, .narrow::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -383,7 +410,7 @@ nav li a {
   right: 0;
 }
 
-.wide::before {
+.wide::before, .narrow::before {
   background: var(--bg-dark-content);
 }
 
@@ -395,9 +422,10 @@ nav li a {
   background: var(--bg-light-theme);
 }
 
-footer .content {
+footer.wide .content {
   position: relative;
   z-index: 3;
+  padding-bottom: 0;
 }
 
 footer {
@@ -405,13 +433,24 @@ footer {
   min-height: 4rem;
   color: var(--text-medium-light);
   background: var(--bg-dark-theme);
-  text-align: center;
+  text-align: right;
   z-index: 10;
 }
 
+.footer-content {
+  position: relative;
+}
+
 footer p {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   margin: 0;
-  float: left;
+}
+
+footer img {
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 footer ul, footer li {
@@ -426,6 +465,11 @@ footer ul {
 
 footer li {
   display: block;
+}
+
+
+footer li a{
+  color: white;
 }
 
 .grid {
@@ -485,7 +529,10 @@ figure.screenshot {
 }
 
 .page.narrow {
-  padding: 0rem 2rem 5rem 2rem;
+  position: relative;
+  bottom: -1rem;
+  padding: 0.3rem 2rem 5rem 2rem;
+  margin-top: 3rem;
 }
 
 .page figure {
@@ -591,15 +638,14 @@ figure.frame.three:nth-of-type(3n), figure.frame.three:nth-of-type(3n) img {
 .attention-grab {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 3rem;
 }
 
 .persuader {
   text-align: center;
 }
 
-.persuader p.subtitle {
-  margin-top: 2rem;
+.persuader p.title {
+  margin: 2rem 0 1rem;
   line-height: 1;
 }
 
@@ -610,7 +656,7 @@ figure.frame.three:nth-of-type(3n), figure.frame.three:nth-of-type(3n) img {
 ul.tick-list {
   position: relative;
   max-width: 250px;
-  margin: 1rem auto 0;
+  margin: 0 auto;
   padding-left: 0;
 }
 
@@ -639,7 +685,7 @@ ul.tick-list li {
   ul.tick-list {
     padding-left: 0.25rem;
   }
-  .persuader p.subtitle {
+  .persuader p.title {
     margin-top: 0;
     margin-bottom: 1rem;
   }
@@ -675,6 +721,10 @@ ul.tick-list li {
     border-width: 0.15rem;
     margin-bottom: -1.2rem;
   }
+}
+
+cite {
+  margin-top: 1rem;
 }
 
 cite a {
@@ -723,3 +773,9 @@ p.license {
   grid-gap: 1.5rem;
 }
 
+.privacy .privacy,
+.accessibility .accessibility,
+.terms .terms,
+.contact .contact {
+  text-decoration: underline;
+}

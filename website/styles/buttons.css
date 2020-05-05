@@ -77,6 +77,8 @@ box-shadow: 0 3px var(--bg-light-theme-border);
 }
 
 .app.light .opposite button.smaller:hover,
+button.smaller:hover,
+.button.smaller:hover,
 .app.light .opposite .button.smaller {
   box-shadow: 0 2px var(--bg-light-theme-border);
 }
@@ -136,6 +138,10 @@ button.smaller,
 .nyan button:hover {
   box-shadow: 0 4px var(--text-highlight-nyan-shadow);
   top: 2px;
+}
+
+button, .button {
+  transition: none;
 }
 
 button::after,

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include 'partials/head-default.njk' %}
+{% include 'partials/meta-tags-default.njk' %}
+</head>
+<body class="dark {{pageClass}}">
+  <main class="container">
+    <header class="theme">
+      {% include 'partials/nav.njk' %}
+    </header>
+    
+      {{ content | safe }}
+
+    {% include 'partials/large-paws.svg' %}
+    <footer class="wide theme">
+      {% include 'partials/footer.njk' %}
+    </footer>
+  </main>
+  </body>
+  {%include 'partials/scripts.njk' %}
+</html>

@@ -119,7 +119,7 @@ img::before {
   color: black;
 }
 
-.group:after {
+.group:after, header:after {
   content: "";
   display: table;
   clear: both;
