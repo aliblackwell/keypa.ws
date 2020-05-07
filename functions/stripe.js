@@ -25,14 +25,10 @@ app.post("*", async (req, res, next) => {
     let myEvent = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
     console.log("success yeah")
     let newLicense = await CreatePayment(myEvent)
-    console.log(newLicense)
-    if (!newLicense.error) {
-      console.log('no error')
-      let licenseReceipt = await CreateLicense(newLicense)
-      res.send(licenseReceipt)
-    }
+    let licenseReceipt = await CreateLicense(newLicense)
+    res.send(licenseReceipt)
   } catch (err) {
-    res.send({"error": err})
+    res.send(err)
   }
 })
 

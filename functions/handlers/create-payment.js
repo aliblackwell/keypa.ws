@@ -21,7 +21,7 @@ async function CreatePayment(event) {
     return document.license
   }
   catch (error) {
-    return error
+    throw error
   }
 
 }

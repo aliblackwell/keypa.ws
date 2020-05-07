@@ -74,11 +74,14 @@
 Core breakpoints
 */
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   :root {
     --text-medium: 18px;
+    --text-jumbo: 2.6rem;
   }
 }
+
+
 
 @media (max-width: 600px) {
   :root {
