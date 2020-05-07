@@ -30,7 +30,9 @@
    
 
   --bg-dark-content: #003535;
+  --bg-dark-content-trans: #003535c4;
   --bg-dark-content-border: #0d6868;
+  --bg-dark-content-border-trans: #0d6868c4;
   --bg-dark-mid-content: #444;
   --text-medium-dark-tone: #fff;
   --text-medium-dark-content: #fff;
@@ -85,7 +87,7 @@ Core breakpoints
 
 @media (max-width: 600px) {
   :root {
-    --text-jumbo: 2.5rem;
+    --text-jumbo: 2.2rem;
     --text-medium: 16px;
   }
 }

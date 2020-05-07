@@ -1,5 +1,6 @@
-
-<p><a aria-hidden="true" class="smart-el hidden mac button medium" href="/download-mac">Download for Mac</a></p>
+<p aria-hidden="true" class="smart-el hidden mac">
+    <a class="button medium" href="/download-mac">Download for Mac</a>
+</p>
 
 <div class="smart-el hidden windows" aria-hidden="true">
     <p>KeyPaws is coming soon for Windows. Signup below to be notified:</p>
@@ -19,16 +20,21 @@
 </div>
 
 <div class="smart-el hidden mob" aria-hidden="true">
-    <form>
-        <label>My desktop computer is:</label>
-        <select>
-            <option>Mac</option>
-            <option>Windows</option>
-            <option>Linux</option>
-        </select>
-    </form>
+    <p class="spacer">What kind of computer do you use?</p>
+    <div class="os-radios">
+        <div class="wrapper">
+            <input class="computer-switcher-radio" id="computer:mac" name="computer" type="radio" value="computer:mac">
+            <label for="computer:mac">Mac</label>
+        </div>
+        <div class="wrapper">
+            <input class="computer-switcher-radio" id="computer:linux" name="computer" type="radio" value="computer:linux">
+            <label for="computer:linux">Linux</label>
+        </div>
+        <div class="wrapper">
+            <input class="computer-switcher-radio" id="computer:windows" name="computer" type="radio" value="computer:windows">
+            <label for="computer:windows">Windows</label>
+        </div>
+    </div>
 </div>
-
-
 <p>or, if you know someone who'd love it:</p>
 {% include 'partials/sharer.njk' %}

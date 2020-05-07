@@ -10,8 +10,8 @@
       <header class="banner group theme">
         {% include 'partials/nav.njk' %}
       </header>
-      <div class="banner reverse-theme first-narrow content">
-        <div class="license-box">
+      <div class="banner theme first-narrow content">
+        <div class="buy-box">
           <h2>{{ pagetitle }}</h2>
 
           {% include 'partials/loading.njk' %}
@@ -20,19 +20,32 @@
           </div>
           <div class="error">
             <p>Something has gone wrong. Please
-              <a style="color: black;" href="mailto:miaow@keypa.ws">contact us</a>
+              <a href="mailto:miaow@keypa.ws">contact us</a>
               using the email address you used on the previous page.</p>
             <p>Sincerest apologies,</p>
             <p>Ali & Merlin</p>
           </div>
           <div class="success">
             <p>Thank you for your payment.</p>
+            <article id="license" class="reverse-theme license-box">
+              <h1 class="text-medium"><img src="/img/keypaws-icon-64.png" alt="" role="presentation"/>
+                KeyPaws License</h1>
+              <p>This license conpurrs upon the bearer the right to use and enjoy KeyPaws in pawpetuity.</p>
+              <dl>
+                <dt>License holder</dt>
+                <dd id="license-name" class="title-text"></dd>
+                <dt>Licensee's email</dt>
+                <dd id="license-email" class="title-text"></dd>
 
-            <p>Your license key is:
-            </p>
-            <p class="license">
-              <strong></strong>
-            </p>
+                <dt>License key</dt>
+                <dd id="license-license" class="title-text"></dd>
+
+              </dl>
+              <div class="signed">
+                <p>Signed,<br/>
+                Ali & Merlin</p>
+              </div>
+            </article>
 
           </div>
         </div>
@@ -41,10 +54,10 @@
     </div>
     {{ content | safe }}
     {% include 'partials/large-paws.svg' %}
-    <section class="wide tone first-wide quotes">
+    <section class="wide reverse-theme first-wide quotes">
       {% include 'partials/quote.njk' %}
     </section>
-    <section class="wide reverse-theme third-wide opposite">
+    <section class="wide tone third-wide opposite">
       {% include 'partials/gift-widget.njk' %}
     </section>
     <footer class="wide theme">
@@ -55,71 +68,5 @@
 </body>
 {%include 'partials/scripts.njk' %}
 
-<script>
-  var successEl = document.querySelector('.success')
-  var errorEl = document.querySelector('.error')
-  var slowEl = document.querySelector('.slowly')
-  var loadingEl = document.querySelector('.loading')
-  hideEl(successEl)
-  hideEl(errorEl)
-  hideEl(slowEl)
-  showEl(loadingEl)
-  function getUrlParameter(name) {
-    name = name
-      .replace(/[\[]/, '\\[')
-      .replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null
-      ? ''
-      : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  };
-
-  (function () {
-
-    let licenseId = getUrlParameter('id')
-
-    function displayLicense(name, email, licenseKey, receiptUrl) {
-      document
-        .querySelector('.license strong')
-        .innerHTML = licenseKey
-    }
-
-    var counter = 0
-
-    function getPaymentConfirmation() {
-      fetch(`/.netlify/functions/license?id=${licenseId}`)
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          counter++
-          if (counter === 3) {
-            showEl(errorEl)
-            hideEl(loadingEl)
-            hideEl(slowEl)
-            return false;
-          }
-          if (data.message === "missing") {
-            throw "No record in database of your payment yet. "
-          }
-          let charge = data
-            .event
-            .data
-            .object
-            .charges
-            .data[0]
-          displayLicense(charge.billing_details.name, charge.billing_detailsemail, data.license, charge.receipt_url)
-          hideEl(loadingEl)
-          hideEl(slowEl)
-          showEl(successEl)
-        })
-        .catch(error => {
-          showEl(slowEl)
-          setTimeout(getPaymentConfirmation, 2000)
-        })
-      }
-    getPaymentConfirmation()
-  })();
-</script>
+<script src="/js/license.js"></script>
 </html>

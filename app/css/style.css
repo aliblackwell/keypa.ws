@@ -4,11 +4,10 @@
 @import url("../styles/buttons.css");
 @import url("../styles/forms.css");
 @import url("../styles/typography.css");
-
 body, #theme-wrapper, .container {
   min-width: 900px;
   min-height: 480px !important;
-  overflow-y:hidden;
+  overflow-y: hidden;
 }
 
 .hidden {
@@ -26,6 +25,7 @@ textarea#tester {
   padding: 1rem;
   border-radius: 40px;
 }
+
 #large-paws {
   position: absolute;
   top: 0;
@@ -73,11 +73,7 @@ textarea#tester {
   margin: 1rem 0rem;
 }
 
-.text-medium,
-p,
-label,
-input,
-h2 {
+.text-medium, p, label, input, h2 {
   color: var(--text-medium-dark);
   font-size: var(--text-medium);
 }
@@ -86,32 +82,15 @@ input[type="text"] {
   color: var(--text-medium-light);
 }
 
-p,
-li,
-label,
-span,
-h1,
-h2,
-h3,
-h4,
-button,
-pre,
-img {
+p, li, label, span, h1, h2, h3, h4, button, pre, img {
   user-select: none;
 }
 
-.light .text-medium,
-.light p,
-.light label,
-.light input,
-.light h2 {
+.light .text-medium, .light p, .light label, .light input, .light h2 {
   color: var(--text-medium-light);
 }
 
-.nyan .text-medium,
-.nyan p,
-.nyan label,
-.nyan h2 {
+.nyan .text-medium, .nyan p, .nyan label, .nyan h2 {
   color: var(--text-medium-nyan);
 }
 
@@ -119,34 +98,28 @@ img {
   color: var(--text-medium-light);
 }
 
-.text-medium.highlight,
-h2 {
+.text-medium.highlight, h2 {
   color: var(--text-highlight-dark);
 }
 
-.light .text-medium.highlight,
-.light h2 {
+.light .text-medium.highlight, .light h2 {
   color: var(--text-highlight-light);
 }
 
-.nyan .text-medium.highlight,
-.nyan h2 {
+.nyan .text-medium.highlight, .nyan h2 {
   color: var(--text-highlight-nyan);
 }
 
-.text-large,
-h1 {
+.text-large, h1 {
   color: var(--text-large-dark);
   font-size: var(--text-large);
 }
 
-.light .text-large,
-.light h1 {
+.light .text-large, .light h1 {
   color: var(--text-large-light);
 }
 
-.nyan .text-large,
-.nyan h1 {
+.nyan .text-large, .nyan h1 {
   color: var(--text-large-nyan);
 }
 
@@ -187,8 +160,7 @@ pre {
   margin: 0;
 }
 
-h1,
-h2 {
+h1, h2 {
   margin: 0;
 }
 
@@ -240,6 +212,10 @@ main.container {
   margin-right: 0rem;
 }
 
+.grid>article {
+  padding-bottom: 2rem;
+}
+
 .step.hidden {
   display: none;
 }
@@ -278,6 +254,14 @@ pre.kitcat {
   z-index: -1;
   font-size: var(--text-medium);
   font-weight: 400;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
 }
 
 .light pre.kitcat {
@@ -288,9 +272,7 @@ pre.kitcat {
   color: var(--text-highlight-nyan);
 }
 
-dl,
-dt,
-dd {
+dl, dt, dd {
   margin: 0;
   padding: 0;
 }
