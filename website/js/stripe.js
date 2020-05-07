@@ -19,7 +19,7 @@
         window.location = '/license?id=' + client_secret
       }
 
-      fetch(`https://3e5700cc.ngrok.io/stripe`)
+      fetch(`/.netlify/functions/stripe`)
         .then((response) => {
           return response.json();
         })

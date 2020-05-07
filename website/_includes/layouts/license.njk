@@ -88,7 +88,7 @@
     var counter = 0
 
     function getPaymentConfirmation() {
-      fetch(`https://3e5700cc.ngrok.io/license?id=${licenseId}`)
+      fetch(`/.netlify/functions/license?id=${licenseId}`)
         .then((response) => {
           return response.json();
         })

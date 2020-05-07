@@ -9,7 +9,6 @@ app.get("*", async (req, res) => {
 
     try {
         const paymentsDb = nano.db.use('payments')
-
         const payment = await paymentsDb.get(req.query.id)
         res.send(payment)
     } catch (error) {
