@@ -128,7 +128,7 @@ header h1.logo img, #license h1 img {
   text-align: center;
   width: 70%;
   line-height: var(--line-height);
-  margin: 0rem auto;
+  margin: 1rem auto;
 }
 
 .banner-box p {
@@ -369,7 +369,16 @@ nav li a {
   letter-spacing: 1px;
 }
 
-.about .story {
+nav li:first-child  a {
+  margin-right: 0;
+}
+
+nav li:nth-child(2)  a {
+  margin-left: 0;
+}
+
+.about .story,
+.download .download {
   text-decoration: underline;
 }
 
@@ -892,13 +901,29 @@ p.license {
   text-align: left;
   display: inline;
 }
- 
+
+.smart-el.mob {
+  max-width: 23rem;
+  margin: 0 auto;
+}
+
 .banner-box p.spacer {
-  margin: 1rem 0 0 0;
+  margin: 1rem auto
 }
 
 .os-radios .wrapper label {
   padding: 0.45rem 0 0 2.8rem;
   display: inline;
   position: relative;
+}
+
+p.copy {
+  background: white;
+  padding: 0.5rem 1.5rem;
+  color: var(--text-large-light-content);
+  width: auto;
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 40px;
+  margin: 0;
 }

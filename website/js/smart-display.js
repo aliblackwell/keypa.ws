@@ -21,11 +21,15 @@ function getOS() {
     return os;
 }
 
-var smartEls = document.querySelectorAll('.smart-el')
-var windowsContents = document.querySelectorAll('.windows')
-var macContents = document.querySelectorAll('.mac')
-var linuxContents = document.querySelectorAll('.linux')
-var mobContents = document.querySelectorAll('.mob')
+const smartEls = document.querySelectorAll('.smart-el')
+const windowsContents = document.querySelectorAll('.windows')
+const macContents = document.querySelectorAll('.mac')
+const linuxContents = document.querySelectorAll('.linux')
+const mobContents = document.querySelectorAll('.mob')
+const winSignup = document.querySelector('#win-signup')
+const linuxSignup = document.querySelector('#linux-signup')
+const macMessage = document.querySelector('#mac-message')
+const shareIt = document.querySelector('#share-it')
 
 smartEls.forEach(el => {
     hideEl(el)
@@ -47,3 +51,40 @@ switch (os) {
         mobContents.forEach(el => showEl(el))
 
 }
+
+
+let radios = document.querySelectorAll('input[type="radio"]')
+let radioWrappers = document.querySelectorAll(".wrapper")
+radios.forEach(function (elem) {
+    // Lookup key in settings
+    let key = elem
+        .value
+        .split(":")[0]
+    let value = elem
+        .value
+        .split(":")[1]
+    elem.addEventListener("click", function (e) {
+        let settingsDetails = e
+            .target
+            .value
+            .split(":")
+        let settingsKey = settingsDetails[0]
+        let settingsValue = settingsDetails[1]
+        console.log(settingsValue)
+        hideEl(winSignup)
+        hideEl(linuxSignup)
+        hideEl(macMessage)
+        showEl(shareIt)
+        if (settingsValue === 'windows') {
+            showEl(winSignup)
+        }
+        if (settingsValue === 'mac') {
+            showEl(macMessage)
+        }
+        if (settingsValue === 'linux') {
+            showEl(linuxSignup)
+        }
+
+
+    })
+})

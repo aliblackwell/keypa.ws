@@ -1,24 +1,3 @@
-<p aria-hidden="true" class="smart-el hidden mac">
-    <a class="button medium" href="/download-mac">Download for Mac</a>
-</p>
-
-<div class="smart-el hidden windows" aria-hidden="true">
-    <p>KeyPaws is coming soon for Windows. Signup below to be notified:</p>
-    <form name="windows" class='inline-form' action='/signup-success' method='post'><input type='hidden' name='form-name' value='pre-launch-trial'/>
-        <label for="email" class="screen-reader-text">Email:</label>
-        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
-        <button class="medium title-text inline-smaller">Sign up meow!</button>
-    </form>
-</div>
-<div class="smart-el hidden linux" aria-hidden="true">
-    <p>KeyPaws is coming soon for Linux. Signup below to be notified:</p>
-    <form name="linux" class='inline-form' action='/signup-success' method='post'><input type='hidden' name='form-name' value='pre-launch-trial'/>
-        <label for="email" class="screen-reader-text">Email:</label>
-        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
-        <button class="medium title-text inline-smaller">Sign up meow!</button>
-    </form>
-</div>
-
 <div class="smart-el hidden mob" aria-hidden="true">
     <p class="spacer">What kind of computer do you use?</p>
     <div class="os-radios">
@@ -36,5 +15,33 @@
         </div>
     </div>
 </div>
-<p>or, if you know someone who'd love it:</p>
-{% include 'partials/sharer.njk' %}
+
+<p aria-hidden="true" class="smart-el hidden mac">
+    <a class="button medium" href="/download-mac">Download for Mac</a>
+</p>
+
+<div id="mac-message" class="smart-el hidden linux" aria-hidden="true">
+    <p>KeyPaws is available now for Mac. Please visit this site on your desktop to donwload:</p>
+    <p class="copy">https://www.keypa.ws</p>
+</div>
+<div id="win-signup" class="smart-el hidden windows" aria-hidden="true">
+    <p>KeyPaws is coming soon for Windows. Sign up below to be notified:</p>
+    <form name="windows" class='inline-form' action='/signup-success' method='post'><input type='hidden' name='form-name' value='pre-launch-trial'/>
+        <label for="email" class="screen-reader-text">Email:</label>
+        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+        <button class="medium title-text inline-smaller">Sign up meow!</button>
+    </form>
+</div>
+<div id="linux-signup" class="smart-el hidden linux" aria-hidden="true">
+    <p>KeyPaws is coming soon for Linux. Sign up below to be notified:</p>
+    <form name="linux" class='inline-form' action='/signup-success' method='post'><input type='hidden' name='form-name' value='pre-launch-trial'/>
+        <label for="email" class="screen-reader-text">Email:</label>
+        <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
+        <button class="medium title-text inline-smaller">Sign up meow!</button>
+    </form>
+</div>
+
+<div id="share-it" class="smart-el hidden mac windows linux" aria-hidden="true">
+    <p>Or, if you know someone who'd love it:</p>
+    {% include 'partials/sharer.njk' %}
+</div>

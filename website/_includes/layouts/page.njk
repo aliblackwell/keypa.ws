@@ -10,13 +10,15 @@
     <header class="theme">
       {% include 'partials/nav.njk' %}
     </header>
-    
+           
+
     <div class="banner theme first-narrow content">
+     {% include 'partials/blinking-kitty.njk' %}
       <div class="page narrow">
         <h1 class="title-text subtitle">{{title}}</h1>
         {{ content | safe }}
       </div>
-{% include 'partials/blinking-kitty.njk' %}
+
     </div>
 
 
