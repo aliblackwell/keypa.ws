@@ -1,6 +1,68 @@
+const sgMail = require("@sendgrid/mail")
+
+async function SendEmailReceipt(licenseReceipt, clientSecret) {
+ 
+  try {
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    let charge = licenseReceipt
+      .event
+      .data
+      .object
+      .charges
+      .data[0]
+    const toName = charge.billing_details.name
+    const toEmail = charge.billing_details.email
+    const license = licenseReceipt.license
+    const firstName = toName.split(' ')[0]
+    const addressee = firstName ? firstName : toName
+    const msg = {
+      personalizations: [
+        {
+         
+          to: [
+            {
+              email: toEmail,
+              name: toName,
+            },
+          ],
+          dynamic_template_data: {
+            subject: "Your KeyPaws receipt and license",
+            title: "KeyPaws License",
+            salutation: "Hi " + addressee + ",",
+            first_para: "Thanks for your purchase.",
+            license: license, 
+            final_para: "We hope you enjoy using KeyPaws as much as we enjoyed making it!",
+            receipt_url: charge.receipt_url,   
+            download_url:  `https://www.keypa.ws/license/?id=${clientSecret}`,        
+            signoff: "Miaow for now",
+            signed: "Ali & Merlin"
+          },
+        },
+      ],
+      from: {
+        email: "miaow@keypa.ws",
+        name: `KeyPaws`,
+      },
+      template_id: "d-e5616d03914d46b4955b57eb74d2fc40",
+    }
+    let result = await sgMail.send(msg)
+    console.log(result)
+    licenseReceipt.sendgrid = result
+    console.log(JSON.stringify({ status: "message sent successfully" }))
+    return licenseReceipt
+  } catch (e) {
+    console.log(JSON.stringify({ status: "message not sent", ...e }))
+    throw e
+  }
+
+}
+
 async function AnalyticsNotification(event_type) {
-  const sgMail = require("@sendgrid/mail")
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+  
+  try {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
   const msg = {
     personalizations: [
       {
@@ -25,7 +87,6 @@ async function AnalyticsNotification(event_type) {
     },
     template_id: "d-e5616d03914d46b4955b57eb74d2fc40",
   }
-  try {
     let result = await sgMail.send(msg)
     console.log(JSON.stringify({ status: "message sent successfully" }))
     return {
@@ -52,7 +113,7 @@ async function AnalyticsNotification(event_type) {
 }
 
 async function handler(event, context, cb) {
-  const sgMail = require("@sendgrid/mail")
+
 
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
@@ -106,4 +167,4 @@ async function handler(event, context, cb) {
   }
 }
 
-module.exports = { handler, AnalyticsNotification }
+module.exports = { handler, AnalyticsNotification, SendEmailReceipt }

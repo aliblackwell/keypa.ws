@@ -8,10 +8,11 @@
     <body class="download">
         <main class="container">
             <header class="banner theme">
+            {% include 'partials/logo.njk' %}
                 {% include 'partials/nav.njk' %}
                 <div class="banner-box">
                     <h1 class="title">
-                        <a class="button medium" data-analytics="download" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip" title="Get KeyPaws to cat-proof your computer">Download for Mac</a>
+                        <a class="button medium" data-analytics="manual-download" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip" title="Get KeyPaws to cat-proof your computer">Download for Mac</a>
 
                     </h1>
                 </div>
@@ -30,14 +31,14 @@
 
             {% include 'partials/large-paws.svg' %}
             <section class="wide reverse-theme">
-                <div class="content group opposite">
+                <div class="content group opposite padding-bottom">
                     <h2 style="margin: 2rem 0 0 0">1. Download and unzip the app</h2>
                     <p>Use the button above if it doesn't happen automatically.</p>
                     <h2>2. Move it to your Applications folder</h2>
                     <p>Once the download has finished you need to drag it into your Applications folder.</p>
                     <h2>3. Enter a license key</h2>
                     <p>The app will quit after two hours if you don't enter a license key.</p>
-                    <a class="button" data-analytics="buy-license-click" href="/buy-license" title="Get KeyPaws to cat-proof your computer">Buy your license</a>
+                    <a class="button medium" data-analytics="buy-license-click" href="/buy-license" title="Get KeyPaws to cat-proof your computer">Buy your license</a>
 
                 </div>
 
@@ -53,7 +54,8 @@
     {%include 'partials/scripts.njk' %}
     <script>
         setTimeout(() => {
-            window.location = "https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip"
+            //window.location = "https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip"
+            sendAnalyticsEvent('download', () => console.log('event-recorded'))
         }, 1000)
     </script>
 </html>

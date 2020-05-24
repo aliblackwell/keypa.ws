@@ -24,7 +24,6 @@ function getUrlParameter(name) {
 let licenseId = getUrlParameter('id')
 
 function displayLicense(lName, email, licenseKey, receiptUrl) {
-    console.log(lName, email, licenseKey)
     licenseEl.innerHTML = licenseKey
     licenseNameEl.innerHTML = lName
     licenseEmailEl.innerHTML = email
@@ -38,6 +37,7 @@ function getPaymentConfirmation() {
             return response.json();
         })
         .then((data) => {
+            console.log(data)
             counter++
             if (counter === 12) {
                 showEl(errorEl)

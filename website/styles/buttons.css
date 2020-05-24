@@ -97,7 +97,7 @@ button.smaller:hover,
 
 button.medium,
 .button.medium {
-  padding: 20px 32px;
+  padding: 1rem 2rem;
   font-size: var(--text-medium);
 }
 

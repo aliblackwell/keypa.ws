@@ -8,7 +8,7 @@ function sendAnalyticsEvent(eventType, callback) {
     hostName: window.location.hostname,
   }
 
-  fetch("/.netlify/functions/analytics/", {
+   fetch("/.netlify/functions/analytics/", {
     method: "POST", // or 'PUT'
     headers: {
       "Content-Type": "application/json",

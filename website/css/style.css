@@ -113,6 +113,12 @@ header h1.logo img, #license h1 img {
   line-height: var(--line-height);
 }
 
+@media (max-width: 600px) {
+  .banner-box .title {
+    margin-top: 0;
+  }
+}
+
 .banner-box .title span {
   color: var(--text-large-dark-theme-highlight);
 }
@@ -136,11 +142,11 @@ header h1.logo img, #license h1 img {
 }
 
 .banner-box p.smart-el, .banner-box .smart-el {
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .banner-box a.button {
-  margin: 1rem 0 0 0;
+  margin: 0;
   position: relative;
   z-index: 10;
 }
@@ -312,7 +318,7 @@ pre.blinking-kitty {
 
 @media (max-width: 700px) {
   .buy-box {
-    width: 80%;
+    width: 100%;
     margin: 1rem auto;
     padding: 2rem 2rem 4rem;
   }
@@ -326,6 +332,7 @@ pre.blinking-kitty {
   }
   .banner-box {
     padding: 2rem 1rem 2rem;
+    min-height: 86vh;
   }
   .banner-box p, .page p {
     width: 100%;
@@ -345,6 +352,8 @@ pre.blinking-kitty {
 nav {
   float: right;
   z-index: 10;
+  position: relative;
+  top: 1rem;
 }
 
 nav ul, nav li {
@@ -355,10 +364,10 @@ nav ul, nav li {
 }
 
 li.btn-holder {
-  margin: 1.5rem 0;
+  margin: 0;
 }
 
-nav li a {
+nav li a, nav li a.button.smaller {
   display: block;
   padding: 0.8rem 1rem;
   color: var(--text-large-dark-theme);
@@ -367,6 +376,10 @@ nav li a {
   text-transform: uppercase;
   font-size: var(--text-medium);
   letter-spacing: 1px;
+}
+
+nav li a.button.smaller {
+  color: black;
 }
 
 nav li:first-child  a {
@@ -602,6 +615,11 @@ figure.screenshot {
 .feature-list figure.paw {
   text-align: left;
   padding-left: 4rem;
+}
+
+.padding-bottom,
+.wide .content.padding-bottom {
+  padding-bottom: 2rem;
 }
 
 .page.narrow {
@@ -876,8 +894,14 @@ p.license {
 }
 
 @media (max-width: 600px) {
+  .thirds p {
+    margin-bottom: 0;
+  }
   .mobile-hide {
     display: none
+  }
+  .no-mobile-hide .mobile-hide {
+    display: inline-block;
   }
 }
 

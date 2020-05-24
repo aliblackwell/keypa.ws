@@ -5,8 +5,8 @@
   var form = document.getElementById('payment-form');
   let generalErrors = document.querySelector('.general-errors')
   let paymentRequestButton = document.querySelector('#payment-request-button')
-  let paymentForm = document.querySelector('#payment-form')
   var elements = stripe.elements();
+  var isFormHidden = true
 
   showEl(loading)
   hideEl(form)
@@ -131,7 +131,7 @@
     .then(function (result) {
       if (result) {
         prButton.mount('#payment-request-button');
-        hideEl(paymentForm)
+        hideEl(form)
       } else {
         hideEl(paymentRequestButton)
       }
@@ -170,5 +170,19 @@
         }
       });
   });
+
+setInterval(() => {
+  if (!clientSecret) {
+    hideEl(form)
+    isFormHidden = true
+  } else {
+    if (isFormHidden) {
+      showEl(form)
+      isFormHidden = false
+    }
+    
+    
+  }
+}, 5000)
 
 })();

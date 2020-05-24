@@ -18,12 +18,13 @@ function getOS() {
         os = 'Linux';
     }
 
-    return os;
+    return 'Mac OS';
 }
 
 const smartEls = document.querySelectorAll('.smart-el')
 const windowsContents = document.querySelectorAll('.windows')
 const macContents = document.querySelectorAll('.mac')
+const mobileMacContents = document.querySelectorAll('.mobile-mac')
 const linuxContents = document.querySelectorAll('.linux')
 const mobContents = document.querySelectorAll('.mob')
 const winSignup = document.querySelector('#win-signup')
@@ -52,39 +53,49 @@ switch (os) {
 
 }
 
-
-let radios = document.querySelectorAll('input[type="radio"]')
-let radioWrappers = document.querySelectorAll(".wrapper")
-radios.forEach(function (elem) {
-    // Lookup key in settings
-    let key = elem
-        .value
-        .split(":")[0]
-    let value = elem
-        .value
-        .split(":")[1]
-    elem.addEventListener("click", function (e) {
-        let settingsDetails = e
-            .target
-            .value
-            .split(":")
-        let settingsKey = settingsDetails[0]
-        let settingsValue = settingsDetails[1]
-        console.log(settingsValue)
-        hideEl(winSignup)
-        hideEl(linuxSignup)
-        hideEl(macMessage)
-        showEl(shareIt)
-        if (settingsValue === 'windows') {
-            showEl(winSignup)
-        }
-        if (settingsValue === 'mac') {
-            showEl(macMessage)
-        }
-        if (settingsValue === 'linux') {
-            showEl(linuxSignup)
-        }
+if (os === 'iOS' || os === 'Android') {
 
 
+    const previousChoice = localStorage.getItem('desktop')
+    let radios = document.querySelectorAll('input[type="radio"]')
+    let radioWrappers = document.querySelectorAll(".wrapper")
+    radios.forEach(function (elem) {
+        elem.addEventListener("click", function (e) {
+            let settingsValue = e.target.value
+            hideEl(winSignup)
+            hideEl(linuxSignup)
+            hideEl(macMessage)
+            showEl(shareIt)
+            showMobileElements(settingsValue)
+            storeDevice(settingsValue)
+            if (settingsValue === 'windows') {
+                showEl(winSignup)
+            }
+            if (settingsValue === 'mac') {
+                showEl(macMessage)
+
+            }
+            if (settingsValue === 'linux') {
+                showEl(linuxSignup)
+            }
+
+
+        })
     })
-})
+    if (previousChoice) {
+        const radioToClick = document.querySelector('#' + previousChoice)
+        radioToClick && radioToClick.click()
+        showMobileElements(previousChoice)
+    }
+
+}
+function storeDevice(desktop) {
+    localStorage.setItem('desktop', desktop)
+}
+
+function showMobileElements(desktop) {
+    mobileMacContents.forEach(el => hideEl(el))
+    if (desktop === 'mac') {
+        mobileMacContents.forEach(el => showEl(el))
+    }
+}

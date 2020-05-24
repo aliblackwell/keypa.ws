@@ -4,8 +4,9 @@ const app = express()
 const stripe = require("stripe")(`${process.env.STRIPE_SECRET_KEY}`)
 const endpointSecret = `${process.env.STRIPE_SIGNING_SECRET}`
 const cors = require("cors")
-const { CreateLicense } = require("./handlers/create-license.js");
+const { CreateAndStoreLicenseHash } = require("./handlers/create-license-hash.js");
 const { CreatePayment } = require("./handlers/create-payment.js");
+const { SendEmailReceipt } = require("./handlers/mailer.js");
 app.use(cors())
 app.use(require("body-parser").raw({ type: "*/*" }))
 
@@ -24,11 +25,13 @@ app.post("*", async (req, res, next) => {
   try {
     let myEvent = stripe.webhooks.constructEvent(req.body, sig, endpointSecret)
     console.log("success yeah")
-    let newLicense = await CreatePayment(myEvent)
-    let licenseReceipt = await CreateLicense(newLicense)
-    res.send(licenseReceipt)
+    let paymentReceipt = await CreatePayment(myEvent)
+    await CreateAndStoreLicenseHash(paymentReceipt)
+    let emailReceipt = await SendEmailReceipt(paymentReceipt, myEvent.data.object.client_secret)
+    res.send(emailReceipt)
   } catch (err) {
-    res.send(err)
+    console.log(err)
+    res.send({})
   }
 })
 
