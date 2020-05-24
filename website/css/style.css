@@ -5,6 +5,10 @@
 @import url("../styles/typography.css");
 @import url("../styles/sharer.css");
 @import url("../styles/loading.css");
+
+.container {
+  overflow-x: hidden;
+}
 body {
   overflow-x: hidden;
 }
@@ -241,6 +245,7 @@ header h1.logo img, #license h1 img {
     position: absolute;
     right: -13%;
     width: 130%;
+    
   }
 }
 
