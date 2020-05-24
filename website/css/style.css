@@ -222,6 +222,20 @@ header h1.logo img, #license h1 img {
   fill: rgba(255, 255, 255, 0.05);
 }
 
+@media (max-width: 800px) {
+  .license-box {
+    margin-left: 0;
+    width: 100%;
+    padding: 2.5rem 0.5rem;
+  }
+  .license-box h1 {
+    position: relative;
+    top: -2rem;
+    left: 0rem;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 600px) {
   #large-paws {
     position: absolute;
@@ -382,16 +396,15 @@ nav li a.button.smaller {
   color: black;
 }
 
-nav li:first-child  a {
+nav li:first-child a {
   margin-right: 0;
 }
 
-nav li:nth-child(2)  a {
+nav li:nth-child(2) a {
   margin-left: 0;
 }
 
-.about .story,
-.download .download {
+.about .story, .download .download {
   text-decoration: underline;
 }
 
@@ -617,8 +630,7 @@ figure.screenshot {
   padding-left: 4rem;
 }
 
-.padding-bottom,
-.wide .content.padding-bottom {
+.padding-bottom, .wide .content.padding-bottom {
   padding-bottom: 2rem;
 }
 

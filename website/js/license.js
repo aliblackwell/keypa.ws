@@ -37,7 +37,6 @@ function getPaymentConfirmation() {
             return response.json();
         })
         .then((data) => {
-            console.log(data)
             counter++
             if (counter === 12) {
                 showEl(errorEl)
