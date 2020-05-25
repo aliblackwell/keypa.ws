@@ -163,6 +163,7 @@
   setInterval(() => {
     if (!clientSecret) {
       hideEl(form)
+      showEl(loading)
       isFormHidden = true
     } else {
       if (isFormHidden && !usingSpecialPayment) {
@@ -172,7 +173,7 @@
 
 
     }
-  }, 5000)
+  }, 7000)
 
   fetch(`/.netlify/functions/stripe`)
     .then((response) => {
