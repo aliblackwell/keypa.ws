@@ -2,8 +2,8 @@ const express = require("express")
 const serverless = require("serverless-http")
 const app = express()
 
-const stripeSecret = process.env.CONTEXT === 'production' ? process.env.STRIPE_SECRET_KEY_LIVE : process.env.STRIPE_SECRET_KEY
-const stripeSigningSecret = process.env.CONTEXT === 'production' ? process.env.STRIPE_SIGNING_SECRET_LIVE : process.env.STRIPE_SIGNING_SECRET
+const stripeSecret = process.env.CTXT === 'production' ? process.env.STRIPE_SECRET_KEY_LIVE : process.env.STRIPE_SECRET_KEY
+const stripeSigningSecret = process.env.CTXT === 'production' ? process.env.STRIPE_SIGNING_SECRET_LIVE : process.env.STRIPE_SIGNING_SECRET
 
 
 const stripe = require("stripe")(`${stripeSecret}`)

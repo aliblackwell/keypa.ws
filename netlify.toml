@@ -6,3 +6,9 @@
   command = "npm run site:build"
   publish = "ship-site"
   functions = "./lambda-built"
+
+[context.production.environment]
+  CTXT = "production"
+
+[context.deploy-preview.environment]
+  CTXT = "staging"
