@@ -7,6 +7,7 @@
   let paymentRequestButton = document.querySelector('#payment-request-button')
   var elements = stripe.elements();
   var isFormHidden = true
+  var usingSpecialPayment = false
 
   showEl(loading)
   hideEl(form)
@@ -45,7 +46,7 @@
     }).catch(e => {
       console.log(e)
 
-      showError({message: "Payment server not responding. Please try again later."})
+      showError({ message: "Payment server not responding. Please try again later." })
     })
 
 
@@ -67,7 +68,7 @@
   var style = {
     base: {
       color: "#111",
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontFamily: '"omnes-cond","Helvetica Neue", Helvetica, sans-serif',
       fontSmoothing: "antialiased",
       fontSize: "20px",
       "::placeholder": {
@@ -130,9 +131,11 @@
     .canMakePayment()
     .then(function (result) {
       if (result) {
+        usingSpecialPayment = true
         prButton.mount('#payment-request-button');
         hideEl(form)
       } else {
+        usingSpecialPayment = false
         hideEl(paymentRequestButton)
       }
     });
@@ -171,18 +174,18 @@
       });
   });
 
-setInterval(() => {
-  if (!clientSecret) {
-    hideEl(form)
-    isFormHidden = true
-  } else {
-    if (isFormHidden) {
-      showEl(form)
-      isFormHidden = false
+  setInterval(() => {
+    if (!clientSecret) {
+      hideEl(form)
+      isFormHidden = true
+    } else {
+      if (isFormHidden && !usingSpecialPayment) {
+        showEl(form)
+        isFormHidden = false
+      }
+
+
     }
-    
-    
-  }
-}, 5000)
+  }, 5000)
 
 })();
