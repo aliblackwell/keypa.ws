@@ -54,7 +54,7 @@
     {%include 'partials/scripts.njk' %}
     <script>
         setTimeout(() => {
-            //window.location = "https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip"
+            window.location = "https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip"
             sendAnalyticsEvent('download', () => console.log('event-recorded'))
         }, 1000)
     </script>

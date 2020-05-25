@@ -174,7 +174,7 @@
     }
   }, 5000)
 
-  fetch(` https://dc5e76a8.ngrok.io/stripe`)
+  fetch(`/.netlify/functions/stripe`)
     .then((response) => {
       return response.json();
     })
