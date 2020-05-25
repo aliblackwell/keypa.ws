@@ -1,5 +1,5 @@
 (function () {
-  var stripe = Stripe('pk_test_zWhPoJV384YeRFMxDoIn0bUY00DnIIniTt');
+  var stripe = Stripe('pk_live_KQp01Wbx9lXieftigBW9i0Yk004g1HJEW5');
   let clientSecret
   let loading = document.querySelector('.loading')
   var form = document.getElementById('payment-form');
@@ -13,7 +13,7 @@
     country: 'GB',
     currency: 'gbp',
     total: {
-      label: 'Demo total',
+      label: 'KeyPaws license total',
       amount: 800
     },
     requestPayerName: true,
