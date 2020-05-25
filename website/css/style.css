@@ -984,3 +984,8 @@ p.copy {
   border-radius: 40px;
   margin: 0;
 }
+
+.success article + p {
+  margin-top: 2rem;
+  text-align: center;
+}
