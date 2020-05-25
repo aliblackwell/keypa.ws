@@ -7,7 +7,7 @@
 @import url("../styles/loading.css");
 
 .container {
-  overflow-x: hidden;
+  position: relative;
 }
 body {
   overflow-x: hidden;
@@ -351,7 +351,7 @@ pre.blinking-kitty {
   }
   .banner-box {
     padding: 2rem 1rem 2rem;
-    min-height: 86vh;
+    min-height: 80vh;
   }
   .banner-box p, .page p {
     width: 100%;

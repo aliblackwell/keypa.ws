@@ -131,10 +131,8 @@
     .then(function (result) {
       if (result) {
         prButton.mount('#payment-request-button');
-        alert('hiding form')
         hideEl(form)
       } else {
-        alert('hiding payment button')
         hideEl(paymentRequestButton)
       }
     });

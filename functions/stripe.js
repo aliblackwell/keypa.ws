@@ -1,12 +1,17 @@
 const express = require("express")
 const serverless = require("serverless-http")
 const app = express()
-const stripe = require("stripe")(`${process.env.STRIPE_SECRET_KEY}`)
-const endpointSecret = `${process.env.STRIPE_SIGNING_SECRET}`
+
+const stripeSecret = process.env.CONTEXT === 'production' ? process.env.STRIPE_SECRET_KEY_LIVE : process.env.STRIPE_SECRET_KEY
+const stripeSigningSecret = process.env.CONTEXT === 'production' ? process.env.STRIPE_SIGNING_SECRET_LIVE : process.env.STRIPE_SIGNING_SECRET
+
+
+const stripe = require("stripe")(`${stripeSecret}`)
+const endpointSecret = `${stripeSigningSecret}`
 const cors = require("cors")
 const { CreateAndStoreLicenseHash } = require("./handlers/create-license-hash.js");
 const { CreatePayment } = require("./handlers/create-payment.js");
-const { SendEmailReceipt } = require("./handlers/mailer.js");
+const { SendEmailReceipt } = require(". /handlers/mailer.js");
 app.use(cors())
 app.use(require("body-parser").raw({ type: "*/*" }))
 
