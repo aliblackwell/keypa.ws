@@ -11,7 +11,7 @@ const endpointSecret = `${stripeSigningSecret}`
 const cors = require("cors")
 const { CreateAndStoreLicenseHash } = require("./handlers/create-license-hash.js");
 const { CreatePayment } = require("./handlers/create-payment.js");
-const { SendEmailReceipt } = require(". /handlers/mailer.js");
+const { SendEmailReceipt } = require("./handlers/mailer.js");
 app.use(cors())
 app.use(require("body-parser").raw({ type: "*/*" }))
 
