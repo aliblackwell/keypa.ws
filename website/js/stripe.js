@@ -9,6 +9,18 @@
   var isFormHidden = true
   var usingSpecialPayment = false
 
+  var paymentRequest = stripe.paymentRequest({
+    country: 'GB',
+    currency: 'gbp',
+    total: {
+      label: 'Demo total',
+      amount: 800
+    },
+    requestPayerName: true,
+    requestPayerEmail: true
+  });
+
+
   showEl(loading)
   hideEl(form)
 
@@ -34,35 +46,6 @@
 
     }
   }
-
-
-
-
-  var paymentRequest = stripe.paymentRequest({
-    country: 'GB',
-    currency: 'gbp',
-    total: {
-      label: 'Demo total',
-      amount: 800
-    },
-    requestPayerName: true,
-    requestPayerEmail: true
-  });
-
-  fetch(`/.netlify/functions/stripe`)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    clientSecret = data.client_secret
-    checkCapabilities()
-  }).catch(e => {
-    console.log(e)
-
-    showError({ message: "Payment server not responding. Please try again later." })
-  })
-
-
   // Set up Stripe.js and Elements to use in checkout form
   var style = {
     base: {
@@ -137,7 +120,7 @@
           hideEl(loading)
         } else {
           usingSpecialPayment = false
-
+          hideEl(loading)
           showEl(form)
           hideEl(paymentRequestButton)
         }
@@ -190,5 +173,18 @@
 
     }
   }, 5000)
+
+  fetch(` https://dc5e76a8.ngrok.io/stripe`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      clientSecret = data.client_secret
+      checkCapabilities()
+    }).catch(e => {
+      console.log(e)
+
+      showError({ message: "Payment server not responding. Please try again later." })
+    })
 
 })();
