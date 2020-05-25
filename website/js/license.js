@@ -24,7 +24,6 @@ function getUrlParameter(name) {
 let licenseId = getUrlParameter('id')
 
 function displayLicense(lName, email, licenseKey, receiptUrl) {
-    console.log(lName, email, licenseKey)
     licenseEl.innerHTML = licenseKey
     licenseNameEl.innerHTML = lName
     licenseEmailEl.innerHTML = email

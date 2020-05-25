@@ -7,12 +7,9 @@
 <body class="dark">
   <main class="container">
     <header class="banner group theme">
-      <h1 class="logo">
-        <a href="/home"><img src="/img/keypaws-icon.png" alt="KeyPaws App Icon"/>KeyPaws</a>
-      </h1>
+      {% include 'partials/logo.njk' %}
       {% include 'partials/nav.njk' %}
     </header>
-    {% include 'partials/large-paws.svg' %}
     <div class="buy-box">
       <h2>{{ pagetitle }}</h2>
       <p>KeyPaws makes the perfect gift.</p>

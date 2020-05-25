@@ -5,8 +5,21 @@
   var form = document.getElementById('payment-form');
   let generalErrors = document.querySelector('.general-errors')
   let paymentRequestButton = document.querySelector('#payment-request-button')
-  let paymentForm = document.querySelector('#payment-form')
   var elements = stripe.elements();
+  var isFormHidden = true
+  var usingSpecialPayment = false
+
+  var paymentRequest = stripe.paymentRequest({
+    country: 'GB',
+    currency: 'gbp',
+    total: {
+      label: 'Demo total',
+      amount: 800
+    },
+    requestPayerName: true,
+    requestPayerEmail: true
+  });
+
 
   showEl(loading)
   hideEl(form)
@@ -33,41 +46,11 @@
 
     }
   }
-
-  fetch(`/.netlify/functions/stripe`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      clientSecret = data.client_secret
-      hideEl(loading)
-      showEl(form)
-    }).catch(e => {
-      console.log(e)
-
-      showError({message: "Payment server not responding. Please try again later."})
-    })
-
-
-
-  var paymentRequest = stripe.paymentRequest({
-    country: 'GB',
-    currency: 'gbp',
-    total: {
-      label: 'Demo total',
-      amount: 800
-    },
-    requestPayerName: true,
-    requestPayerEmail: true
-  });
-
-
-
   // Set up Stripe.js and Elements to use in checkout form
   var style = {
     base: {
       color: "#111",
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontFamily: '"omnes-cond","Helvetica Neue", Helvetica, sans-serif',
       fontSmoothing: "antialiased",
       fontSize: "20px",
       "::placeholder": {
@@ -125,18 +108,24 @@
     showError(error)
   });
 
-  // Check the availability of the Payment Request API first.
-  paymentRequest
-    .canMakePayment()
-    .then(function (result) {
-      if (result) {
-        prButton.mount('#payment-request-button');
-        hideEl(paymentForm)
-      } else {
-        hideEl(paymentRequestButton)
-      }
-    });
-
+  function checkCapabilities() {
+    // Check the availability of the Payment Request API first.
+    paymentRequest
+      .canMakePayment()
+      .then(function (result) {
+        if (result) {
+          usingSpecialPayment = true
+          prButton.mount('#payment-request-button');
+          hideEl(form)
+          hideEl(loading)
+        } else {
+          usingSpecialPayment = false
+          hideEl(loading)
+          showEl(form)
+          hideEl(paymentRequestButton)
+        }
+      });
+  }
   paymentRequest.on('paymentmethod', function (ev) {
     hideEl(generalErrors)
     showEl(loading)
@@ -170,5 +159,32 @@
         }
       });
   });
+
+  setInterval(() => {
+    if (!clientSecret) {
+      hideEl(form)
+      isFormHidden = true
+    } else {
+      if (isFormHidden && !usingSpecialPayment) {
+        showEl(form)
+        isFormHidden = false
+      }
+
+
+    }
+  }, 5000)
+
+  fetch(`/.netlify/functions/stripe`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      clientSecret = data.client_secret
+      checkCapabilities()
+    }).catch(e => {
+      console.log(e)
+
+      showError({ message: "Payment server not responding. Please try again later." })
+    })
 
 })();

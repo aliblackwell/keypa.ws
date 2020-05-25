@@ -7,8 +7,8 @@
   </head>
   <body class="dark">
     <main class="container">
-      <header class="banner group theme">
-        {% include 'partials/nav.njk' %}
+      <header class="banner group theme no-mobile-hide">
+        {% include 'partials/logo.njk' %}
       </header>
       <div class="banner theme first-narrow content">
         <div class="buy-box">
@@ -43,9 +43,12 @@
               </dl>
               <div class="signed">
                 <p>Signed,<br/>
-                Ali & Merlin</p>
+                  Ali & Merlin</p>
               </div>
             </article>
+            <p>
+              <a class="button medium" href="/download-mac">Download for Mac</a>
+            </p>
 
           </div>
         </div>
@@ -53,7 +56,7 @@
       </div>
     </div>
     {{ content | safe }}
-    {% include 'partials/large-paws.svg' %}
+
     <section class="wide reverse-theme first-wide quotes">
       {% include 'partials/quote.njk' %}
     </section>

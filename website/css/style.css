@@ -5,6 +5,21 @@
 @import url("../styles/typography.css");
 @import url("../styles/sharer.css");
 @import url("../styles/loading.css");
+
+.container {
+  position: relative;
+  background: url(/img/large-paws.svg) no-repeat top right;
+  background-size: 100%;
+}
+
+
+@media (max-width: 600px) {
+  .container {
+    background-position: 40% 0;
+    background-size: 150%;
+  }
+}
+
 body {
   overflow-x: hidden;
 }
@@ -113,6 +128,12 @@ header h1.logo img, #license h1 img {
   line-height: var(--line-height);
 }
 
+@media (max-width: 600px) {
+  .banner-box .title {
+    margin-top: 0;
+  }
+}
+
 .banner-box .title span {
   color: var(--text-large-dark-theme-highlight);
 }
@@ -128,7 +149,7 @@ header h1.logo img, #license h1 img {
   text-align: center;
   width: 70%;
   line-height: var(--line-height);
-  margin: 0rem auto;
+  margin: 1rem auto;
 }
 
 .banner-box p {
@@ -136,11 +157,11 @@ header h1.logo img, #license h1 img {
 }
 
 .banner-box p.smart-el, .banner-box .smart-el {
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .banner-box a.button {
-  margin: 1rem 0 0 0;
+  margin: 0;
   position: relative;
   z-index: 10;
 }
@@ -216,11 +237,26 @@ header h1.logo img, #license h1 img {
   fill: rgba(255, 255, 255, 0.05);
 }
 
+@media (max-width: 800px) {
+  .license-box {
+    margin-left: 0;
+    width: 100%;
+    padding: 2.5rem 0.5rem;
+  }
+  .license-box h1 {
+    position: relative;
+    top: -2rem;
+    left: 0rem;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 600px) {
   #large-paws {
     position: absolute;
     right: -13%;
     width: 130%;
+    
   }
 }
 
@@ -312,7 +348,7 @@ pre.blinking-kitty {
 
 @media (max-width: 700px) {
   .buy-box {
-    width: 80%;
+    width: 100%;
     margin: 1rem auto;
     padding: 2rem 2rem 4rem;
   }
@@ -326,6 +362,7 @@ pre.blinking-kitty {
   }
   .banner-box {
     padding: 2rem 1rem 2rem;
+    min-height: 80vh;
   }
   .banner-box p, .page p {
     width: 100%;
@@ -345,6 +382,8 @@ pre.blinking-kitty {
 nav {
   float: right;
   z-index: 10;
+  position: relative;
+  top: 1rem;
 }
 
 nav ul, nav li {
@@ -355,10 +394,10 @@ nav ul, nav li {
 }
 
 li.btn-holder {
-  margin: 1.5rem 0;
+  margin: 0;
 }
 
-nav li a {
+nav li a, nav li a.button.smaller {
   display: block;
   padding: 0.8rem 1rem;
   color: var(--text-large-dark-theme);
@@ -369,7 +408,19 @@ nav li a {
   letter-spacing: 1px;
 }
 
-.about .story {
+nav li a.button.smaller {
+  color: black;
+}
+
+nav li:first-child a {
+  margin-right: 0;
+}
+
+nav li:nth-child(2) a {
+  margin-left: 0;
+}
+
+.about .story, .download .download {
   text-decoration: underline;
 }
 
@@ -454,10 +505,15 @@ nav li a {
 
 .wide .content {
   padding: 0rem 2rem 0rem;
+  position: relative;
 }
 
 .content h1 {
   margin-top: 0;
+}
+
+section, ::before + div {
+  position: relative;
 }
 
 .wide::before, footer::after, .narrow::before {
@@ -466,7 +522,7 @@ nav li a {
   width: 100%;
   transform: rotate(-0.8deg);
   height: 100px;
-  z-index: -1;
+  z-index: 0;
   top: -2rem;
   right: 0;
 }
@@ -593,6 +649,10 @@ figure.screenshot {
 .feature-list figure.paw {
   text-align: left;
   padding-left: 4rem;
+}
+
+.padding-bottom, .wide .content.padding-bottom {
+  padding-bottom: 2rem;
 }
 
 .page.narrow {
@@ -867,8 +927,14 @@ p.license {
 }
 
 @media (max-width: 600px) {
+  .thirds p {
+    margin-bottom: 0;
+  }
   .mobile-hide {
     display: none
+  }
+  .no-mobile-hide .mobile-hide {
+    display: inline-block;
   }
 }
 
@@ -892,13 +958,34 @@ p.license {
   text-align: left;
   display: inline;
 }
- 
+
+.smart-el.mob {
+  max-width: 23rem;
+  margin: 0 auto;
+}
+
 .banner-box p.spacer {
-  margin: 1rem 0 0 0;
+  margin: 1rem auto
 }
 
 .os-radios .wrapper label {
   padding: 0.45rem 0 0 2.8rem;
   display: inline;
   position: relative;
+}
+
+p.copy {
+  background: white;
+  padding: 0.5rem 1.5rem;
+  color: var(--text-large-light-content);
+  width: auto;
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 40px;
+  margin: 0;
+}
+
+.success article + p {
+  margin-top: 2rem;
+  text-align: center;
 }

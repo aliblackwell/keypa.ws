@@ -34,8 +34,12 @@
 
 /*position new box*/
 
+.wrapper input + label {
+  color: var(--text-medium-dark-theme)
+}
+
 .wrapper input+label::before {
-  border: 2px solid;
+  border: 2px solid var(--text-medium-dark-theme);
   content: "";
   height: 40px;
   left: 0;
@@ -43,6 +47,14 @@
   top: 0;
   width: 40px;
   border-radius: 50%;
+}
+
+.reverse-theme .wrapper input + label {
+  color: var(--text-medium-light-theme)
+}
+
+.reverse-theme .wrapper input+label::before {
+  border: 2px solid var(--text-medium-light-theme);
 }
 
 form input, #card-element, form textarea {
@@ -67,7 +79,8 @@ form input, #card-element, form textarea {
   transition: opacity 0.2s ease-in-out;
 }
 
-.app.light .wrapper input+label::after {
+.app.light .wrapper input+label::after,
+.reverse-theme .wrapper input+label::after {
   border: 10px solid var(--text-highlight-light);
 }
 

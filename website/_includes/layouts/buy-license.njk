@@ -7,8 +7,8 @@
   </head>
   <body class="dark">
     <main class="container">
-      <header class="banner group theme">
-        {% include 'partials/nav.njk' %}
+      <header class="banner group theme no-mobile-hide">
+        {% include 'partials/logo.njk' %}
       </header>
 
       <div class="banner theme first-narrow content">
@@ -18,7 +18,7 @@
 
           {% include 'partials/loading.njk' %}
 
-          <form id="payment-form">
+          <form id="payment-form" class="hidden" aria-hidden="true">
             <div class="form-row inline">
               <div class="col">
                 <label for="name">
@@ -50,11 +50,11 @@
           </div>
           <div class="general-errors" id="error-message" role="alert" aria-hidden="true"></div>
           {{ content | safe }}
-          
+
         </div>
         {% include 'partials/blinking-kitty.njk' %}
       </div>
-      {% include 'partials/large-paws.svg' %}
+ 
       <section class="wide reverse-theme first-last-wide">
         <div class="content thirds">
           <aside>

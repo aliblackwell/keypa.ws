@@ -7,3 +7,4 @@ function hideEl(el) {
   el.classList.add("hidden")
   el.setAttribute("aria-hidden", "true")
 }
+
