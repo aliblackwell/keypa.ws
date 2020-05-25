@@ -35,19 +35,6 @@
     }
   }
 
-  fetch(`/.netlify/functions/stripe`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      clientSecret = data.client_secret
-      hideEl(loading)
-      showEl(form)
-    }).catch(e => {
-      console.log(e)
-
-      showError({ message: "Payment server not responding. Please try again later." })
-    })
 
 
 
@@ -62,6 +49,18 @@
     requestPayerEmail: true
   });
 
+  fetch(`/.netlify/functions/stripe`)
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    clientSecret = data.client_secret
+    checkCapabilities()
+  }).catch(e => {
+    console.log(e)
+
+    showError({ message: "Payment server not responding. Please try again later." })
+  })
 
 
   // Set up Stripe.js and Elements to use in checkout form
@@ -126,20 +125,24 @@
     showError(error)
   });
 
-  // Check the availability of the Payment Request API first.
-  paymentRequest
-    .canMakePayment()
-    .then(function (result) {
-      if (result) {
-        usingSpecialPayment = true
-        prButton.mount('#payment-request-button');
-        hideEl(form)
-      } else {
-        usingSpecialPayment = false
-        hideEl(paymentRequestButton)
-      }
-    });
+  function checkCapabilities() {
+    // Check the availability of the Payment Request API first.
+    paymentRequest
+      .canMakePayment()
+      .then(function (result) {
+        if (result) {
+          usingSpecialPayment = true
+          prButton.mount('#payment-request-button');
+          hideEl(form)
+          hideEl(loading)
+        } else {
+          usingSpecialPayment = false
 
+          showEl(form)
+          hideEl(paymentRequestButton)
+        }
+      });
+  }
   paymentRequest.on('paymentmethod', function (ev) {
     hideEl(generalErrors)
     showEl(loading)
