@@ -8,7 +8,7 @@ module.exports.handler = (event, context, callback) => {
             "Access-Control-Allow-Credentials": "true"
         },
         body: JSON.stringify({
-            status: `Lambda function working in ${process.env.CONTEXT}`
+            status: `Lambda function working in ${process.env.CTXT}`
         })
     })
 
