@@ -511,7 +511,7 @@ nav li:nth-child(2) a {
   margin-top: 0;
 }
 
-section, div {
+section, ::before + div {
   position: relative;
 }
 
