@@ -137,7 +137,8 @@ form input, form textarea, #card-element {
   padding: 0.3rem 1rem;
 }
 
-.reverse-theme .inline-form input {
+.reverse-theme .inline-form input,
+.app.light .inline-form input {
   box-shadow: 0 6px var(--bg-dark-theme);
 }
 

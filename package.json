@@ -45,7 +45,7 @@
     "nano": "^8.2.2",
     "netlify-cli": "^2.25.0",
     "netlify-lambda": "^1.6.3",
-    "nw": "^0.45.1",
+    "nw": "^0.45.6",
     "nw-autoupdater": "^1.1.11",
     "serverless-http": "^2.3.1",
     "stripe": "^8.7.0"
@@ -106,7 +106,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
-    "mocha": "^7.0.0",
+    "mocha": "^7.2.0",
     "nwjs-builder-phoenix": "^1.15.0",
     "prettier": "^1.19.1"
   },
