@@ -18,7 +18,7 @@ function getOS() {
         os = 'Linux';
     }
 
-    return os;
+    return 'd';
 }
 
 const smartEls = document.querySelectorAll('.smart-el')
