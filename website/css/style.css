@@ -342,6 +342,10 @@ pre.blinking-kitty {
   }
 }
 
+section {
+  position: relative;
+}
+
 .first-narrow pre.blinking-kitty {
   z-index: 0;
 }
@@ -510,6 +514,7 @@ nav li:nth-child(2) a {
 
 .content h1 {
   margin-top: 0;
+  position: relative;
 }
 
 section, ::before + div {
