@@ -33,7 +33,7 @@
 
 /*position new box*/
 
-.wrapper input + label {
+.wrapper input+label {
   color: var(--text-medium-dark-theme)
 }
 
@@ -48,7 +48,7 @@
   border-radius: 50%;
 }
 
-.reverse-theme .wrapper input + label {
+.reverse-theme .wrapper input+label {
   color: var(--text-medium-light-theme)
 }
 
@@ -78,8 +78,7 @@ form input, #card-element, form textarea {
   transition: opacity 0.2s ease-in-out;
 }
 
-.app.light .wrapper input+label::after,
-.reverse-theme .wrapper input+label::after {
+.app.light .wrapper input+label::after, .reverse-theme .wrapper input+label::after {
   border: 10px solid var(--text-highlight-light);
 }
 
@@ -134,10 +133,12 @@ form input, form textarea, #card-element {
   box-shadow: 0 6px var(--bg-light-theme);
   margin-bottom: 0;
   padding: 0.3rem 1rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.reverse-theme .inline-form input,
-.app.light .inline-form input {
+.reverse-theme .inline-form input, .app.light .inline-form input {
   box-shadow: 0 6px var(--bg-dark-theme);
 }
 
