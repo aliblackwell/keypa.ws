@@ -366,7 +366,7 @@ section {
   }
   .banner-box {
     padding: 2rem 1rem 2rem;
-    min-height: 80vh;
+    min-height: 32rem;
   }
   .banner-box p, .page p {
     width: 100%;
