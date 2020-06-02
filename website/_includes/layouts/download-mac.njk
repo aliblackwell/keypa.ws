@@ -38,7 +38,7 @@
                     <p>Once the download has finished you need to drag it into your Applications folder.</p>
                     <h2>3. Enter a license key</h2>
                     <p>The app will quit after two hours if you don't enter a license key.</p>
-                    <a class="button medium" data-analytics="buy-license-click" href="/buy-license" title="Get KeyPaws to cat-proof your computer">Buy your license</a>
+                    <a class="button medium" data-analytics="buy-license-click" href="/purrchase" title="Get KeyPaws to cat-proof your computer">Buy your license</a>
 
                 </div>
 
@@ -55,7 +55,7 @@
     <script>
         setTimeout(() => {
             window.location = "https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip"
-            sendAnalyticsEvent('download', () => console.log('event-recorded'))
+            sendAnalyticsEvent('download-mac', () => console.log('event-recorded'))
         }, 1000)
     </script>
 </html>

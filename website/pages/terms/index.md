@@ -5,6 +5,7 @@ layout: layouts/page.njk
 language: 'en'
 permalink: '/terms/'
 dir: 'ltr'
+analytics: View T&Cs
 ---
 
 KeyPaws is offered "as is". Alasdair Blackwell accepts no liability for anything that happens as a result of use or misuse of the software.

@@ -5,6 +5,7 @@ layout: layouts/page.njk
 language: 'en'
 permalink: '/privacy/'
 dir: 'ltr'
+analytics: View Privacy
 ---
 
 At KeyPaws we reject all products and services that allow tracking scripts or tracking cookies to be installed on our users' devices.

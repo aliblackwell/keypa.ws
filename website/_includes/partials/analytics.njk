@@ -1,0 +1,6 @@
+<script>
+    var analyticEvent = "{{analytics | slug}}"
+    setTimeout(() => {
+        sendAnalyticsEvent(analyticEvent, () => console.log(analyticEvent+'-recorded'))
+    }, 1000)
+</script>
