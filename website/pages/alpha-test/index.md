@@ -6,4 +6,5 @@ language: 'en'
 permalink: '/alpha-test/'
 dir: 'ltr'
 pagetitle: Test KeyPaws
+analytics: View alpha test
 ---

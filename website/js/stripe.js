@@ -32,7 +32,7 @@
   }
 
   function handlePaymentSuccess(client_secret) {
-    window.location = '/license?id=' + client_secret
+    window.location = '/payment-complete?id=' + client_secret
   }
 
   function showError(error) {

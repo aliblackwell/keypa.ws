@@ -8,6 +8,7 @@ module.exports = function(config) {
   config.addPassthroughCopy("./website/_redirects")
   config.addPassthroughCopy("./website/humans.txt")
   config.addPassthroughCopy("./website/favicon.png")
+
   return {
     dir: {
       input: "website",

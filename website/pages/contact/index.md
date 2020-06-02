@@ -5,6 +5,7 @@ layout: layouts/page.njk
 language: 'en'
 permalink: '/contact/'
 dir: 'ltr'
+analytics: View contact
 ---
 
 Thanks for your interest in KeyPaws.
