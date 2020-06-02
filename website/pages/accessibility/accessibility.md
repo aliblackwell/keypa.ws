@@ -5,6 +5,7 @@ layout: layouts/page.njk
 language: 'en'
 permalink: '/accessibility/'
 dir: 'ltr'
+analytics: View accessibility
 ---
 
 The KeyPaws app and website have both been built to exceed the latest Web Content Accessibility Guidelines (WCAG 2.1). 

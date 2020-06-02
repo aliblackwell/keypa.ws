@@ -6,4 +6,5 @@ language: 'en'
 permalink: '/alpha-test/feedback/'
 dir: 'ltr'
 pagetitle: Alpha Test feedback
+analytics: View alpha test feedback
 ---

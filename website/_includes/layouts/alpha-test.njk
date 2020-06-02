@@ -12,7 +12,7 @@
       <div class="download-box banner-box">
         <h2 class="subtitle">Alpha testers' download page</h2>
         <p>Please download and try the app, and send in your feedback using the form or by emailing Ali directly.</p>
-        <a class="button medium" data-analytics="download" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip" title="Get KeyPaws to cat-proof your computer">Download KeyPaws for Mac</a>
+        <a class="button medium" data-analytics="download-alpha-test" href="https://downloads.keypa.ws/KeyPaws{{keypaws.version_number}}.zip" title="Get KeyPaws to cat-proof your computer">Download KeyPaws for Mac</a>
         <p>
           <a class="button smaller" href="./feedback/">Feedback form</a>
         </p>
@@ -42,4 +42,5 @@
   </main>
   </body>
   {%include 'partials/scripts.njk' %}
+  {% include 'partials/analytics.njk'%}
 </html>
