@@ -1,6 +1,7 @@
 module.exports = function(config) {
   // pass some assets right through
   config.addPassthroughCopy("./website/css")
+  config.addPassthroughCopy("./website/BingSiteAuth.xml")
   config.addPassthroughCopy("./website/styles")
   config.addPassthroughCopy("./website/img")
   config.addPassthroughCopy("./website/js")
