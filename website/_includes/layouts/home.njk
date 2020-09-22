@@ -26,12 +26,16 @@
     {# <section class="feature-list wide second-wide">
       {% include 'partials/features.njk' %}
     </section> #}
-    <section class="wide theme second-wide quotes">
-      {% include 'partials/home-quote.njk' %}
-    </section>
-    <section class="wide reverse-theme opposite fourth-wide">
+    
+
+
+    {{ content | safe }}
+
+
+    {# <section class="wide reverse-theme opposite fourth-wide">
       {% include 'partials/gift-widget.njk' %}
-    </section>
+    </section> #}
+
     <footer class="wide theme">
       {% include 'partials/footer.njk' %}
     </footer>
