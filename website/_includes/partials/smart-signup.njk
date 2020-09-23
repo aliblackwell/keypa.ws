@@ -2,15 +2,15 @@
     <p class="spacer">What kind of computer do you use?</p>
     <div class="os-radios">
         <div class="wrapper">
-            <input class="computer-switcher-radio" id="mac" name="computer" type="radio" value="mac">
+            <input class="computer-switcher-radio mac" name="computer" type="radio" value="mac">
             <label for="mac">Mac</label>
         </div>
         <div class="wrapper">
-            <input class="computer-switcher-radio" id="linux" name="computer" type="radio" value="linux">
+            <input class="computer-switcher-radio linux" name="computer" type="radio" value="linux">
             <label for="linux">Linux</label>
         </div>
         <div class="wrapper">
-            <input class="computer-switcher-radio" id="windows" name="computer" type="radio" value="windows">
+            <input class="computer-switcher-radio windows" name="computer" type="radio" value="windows">
             <label for="windows">Windows</label>
         </div>
     </div>
@@ -20,28 +20,28 @@
     <a class="button medium" href="/download-mac">Download for Mac</a>
 </p>
 
-<div id="mac-message" class="smart-el hidden" aria-hidden="true">
+<div class="mac-message smart-el hidden" aria-hidden="true">
     <p>KeyPaws is available now for Mac! Visit desktop site to download and try, otherwise:</p>
     <a class="button medium" href="/purrchase">Buy your license now</a>
 </div>
-<div id="win-signup" class="smart-el hidden windows" aria-hidden="true">
+<div class="win-signup smart-el hidden windows" aria-hidden="true">
     <p>KeyPaws is coming soon for Windows. Sign up below to be notified:</p>
-    <form name="windows" class='inline-form' action='/signup-success' method='post' netlify>
+    <form name="windows" class='inline-form' action='/signup-success' method='post' netlify="netlify">
         <label for="email" class="screen-reader-text">Email:</label>
         <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
         <button class="medium title-text inline-smaller">Sign up meow!</button>
     </form>
 </div>
-<div id="linux-signup" class="smart-el hidden linux" aria-hidden="true">
+<div class="linux-signup smart-el hidden linux" aria-hidden="true">
     <p>KeyPaws is coming soon for Linux. Sign up below to be notified:</p>
-    <form name="linux" class='inline-form' action='/signup-success' method='post' netlify>
+    <form name="linux" class='inline-form' action='/signup-success' method='post' netlify="netlify">
         <label for="email" class="screen-reader-text">Email:</label>
         <input type="email" required="required" placeholder="Your email" name="email" id="email" labelled-by="email"/>
         <button class="medium title-text inline-smaller">Sign up meow!</button>
     </form>
 </div>
 
-<div id="share-it" class="smart-el hidden mac windows linux" aria-hidden="true">
+<div class="share-it smart-el hidden mac windows linux" aria-hidden="true">
     <p>Or, if you know someone who'd love it:</p>
     {% include 'partials/sharer.njk' %}
 </div>

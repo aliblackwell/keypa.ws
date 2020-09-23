@@ -27,29 +27,29 @@ const macContents = document.querySelectorAll('.mac')
 const mobileMacContents = document.querySelectorAll('.mobile-mac')
 const linuxContents = document.querySelectorAll('.linux')
 const mobContents = document.querySelectorAll('.mob')
-const winSignup = document.querySelector('#win-signup')
-const linuxSignup = document.querySelector('#linux-signup')
-const macMessage = document.querySelector('#mac-message')
-const shareIt = document.querySelector('#share-it')
+const winSignups = document.querySelectorAll('.win-signup')
+const linuxSignups = document.querySelectorAll('linux-signup')
+const macMessages = document.querySelectorAll('.mac-message')
+const shareIts = document.querySelectorAll('.share-it')
 
-smartEls.forEach(el => {
-    hideEl(el)
-})
+
+hideEls(smartEls)
+
 
 let os = getOS()
 
 switch (os) {
     case "Mac OS":
-        macContents.forEach(el => showEl(el))
+        showEls(macContents)
         break;
     case "Windows":
-        windowsContents.forEach(el => showEl(el))
+        showEls(windowsContents)
         break;
     case "Linux":
-        linuxContents.forEach(el => showEl(el))
+        showEls(linuxContents)
         break;
     default:
-        mobContents.forEach(el => showEl(el))
+        showEls(mobContents)
 
 }
 
@@ -62,21 +62,21 @@ if (os === 'iOS' || os === 'Android') {
     radios.forEach(function (elem) {
         elem.addEventListener("click", function (e) {
             let settingsValue = e.target.value
-            hideEl(winSignup)
-            hideEl(linuxSignup)
-            hideEl(macMessage)
-            showEl(shareIt)
+            hideEls(winSignups)
+            hideEls(linuxSignups)
+            hideEls(macMessages)
+            showEls(shareIts)
             showMobileElements(settingsValue)
             storeDevice(settingsValue)
             if (settingsValue === 'windows') {
-                showEl(winSignup)
+                showEls(winSignups)
             }
             if (settingsValue === 'mac') {
-                showEl(macMessage)
+                showEls(macMessages)
 
             }
             if (settingsValue === 'linux') {
-                showEl(linuxSignup)
+                showEls(linuxSignups)
             }
 
 
@@ -94,8 +94,9 @@ function storeDevice(desktop) {
 }
 
 function showMobileElements(desktop) {
-    mobileMacContents.forEach(el => hideEl(el))
+
+    hideEls(mobileMacContents)
     if (desktop === 'mac') {
-        mobileMacContents.forEach(el => showEl(el))
+        showEls(mobileMacContents)
     }
 }
