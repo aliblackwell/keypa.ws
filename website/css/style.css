@@ -563,6 +563,11 @@ footer {
   position: relative;
 }
 
+.footer-content a {
+  display: block;
+  padding: 0.3rem 0 0.3rem 0.3rem;
+}
+
 footer p {
   position: absolute;
   left: 0;
